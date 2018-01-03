@@ -2,19 +2,35 @@
 
 buildscript {
     repositories {
-        jcenter()
+        if (!"local".equals(System.getenv()['COMPILE_TYPE'])) {
+            maven {
+                //  朝歌maven仓库,集成了jcenter() maven() 等主流仓库
+                url "http://maven.sunniwell.net:8081/nexus/content/groups/public/"
+            }
+        } else {
+            mavenLocal()
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        // 朝歌定制的编译脚本,支持SDK加载的方式编译
+        classpath 'net.sunniwell.build:gradle:2.1.0'
+        // 朝歌定制的发布脚本,支持发布到maven服务器,打包javadoc发布,打包安全送检文件发布,发布内容备份,混淆编译后mapping文件备份等
+        classpath 'net.sunniwell.build:release-android:1.+'
+        // 朝歌定制的NDK编译流程,支持执行文件编译
+        classpath 'net.sunniwell.build:ndk-build:2.2.+'
     }
 }
 
 allprojects {
     repositories {
-        jcenter()
+        if (!"local".equals(System.getenv()['COMPILE_TYPE'])) {
+            maven {
+                //  朝歌maven仓库,集成了jcenter() maven() 等主流仓库
+                url "http://maven.sunniwell.net:8081/nexus/content/groups/public/"
+            }
+        }else {
+            mavenLocal()
+        }
     }
 }
 
