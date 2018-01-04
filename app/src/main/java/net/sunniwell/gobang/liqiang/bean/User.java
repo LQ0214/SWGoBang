@@ -1,10 +1,12 @@
 package net.sunniwell.gobang.liqiang.bean;
 
+import cn.bmob.v3.BmobUser;
+
 /**
  * Created by Administrator on 2018/1/4.
  */
 
-public class User {
+public class User extends BmobUser{
     private int mUserId;
     private String mUserName;
     private String mPassword;

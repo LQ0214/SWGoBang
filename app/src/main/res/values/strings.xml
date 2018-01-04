@@ -4,4 +4,7 @@
     <string name="main_home_man_machine">人机对战</string>
     <string name="main_home_setting">设置</string>
     <string name="main_home_about">关于</string>
+
+    <string name="register_register_succeed">恭喜你，注册成功！</string>
+    <string name="sign_in_sign_in_succeed">登录成功！</string>
 </resources>

@@ -28,6 +28,7 @@ allprojects {
                 //  朝歌maven仓库,集成了jcenter() maven() 等主流仓库
                 url "http://maven.sunniwell.net:8081/nexus/content/groups/public/"
             }
+            maven { url "https://raw.github.com/bmob/bmob-android-sdk/master" }
         }else {
             mavenLocal()
         }
