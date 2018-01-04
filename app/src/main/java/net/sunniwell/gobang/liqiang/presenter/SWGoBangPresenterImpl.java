@@ -3,20 +3,40 @@ package net.sunniwell.gobang.liqiang.presenter;
 import android.graphics.Point;
 
 import net.sunniwell.gobang.liqiang.model.ISWChessLogicModel;
-import net.sunniwell.gobang.liqiang.view.ISWChessbroadView;
+import net.sunniwell.gobang.liqiang.view.ISWGoBangView;
 
 import java.util.List;
 
 /**
  * 棋盘逻辑处理中间层实现类
  */
-public class SWChessLogicPresenterImpl implements ISWChessLogicPresenter {
-    private ISWChessbroadView mChessbroadView;
+public class SWGoBangPresenterImpl implements ISWGoBangPresenter {
+    private ISWGoBangView mChessbroadView;
     private ISWChessLogicModel mChessLogicModel;
 
-    public SWChessLogicPresenterImpl(ISWChessbroadView view, ISWChessLogicModel user) {
+    public SWGoBangPresenterImpl(ISWGoBangView view, ISWChessLogicModel user) {
         this.mChessbroadView = view;
         this.mChessLogicModel = user;
+    }
+
+    @Override
+    public void restart() {
+
+    }
+
+    @Override
+    public void undo() {
+
+    }
+
+    @Override
+    public void giveup() {
+
+    }
+
+    @Override
+    public void draw() {
+
     }
 
     @Override

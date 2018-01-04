@@ -7,7 +7,27 @@ import java.util.List;
 /**
  * 棋盘逻辑处理中间层接口
  */
-public interface ISWChessLogicPresenter {
+public interface ISWGoBangPresenter {
+    /**
+     * 复赛
+     */
+    void restart();
+
+    /**
+     * 悔棋
+     */
+    void undo();
+
+    /**
+     * 认输
+     */
+    void giveup();
+
+    /**
+     * 求和
+     */
+    void draw();
+
 
     /**
      * 判断是否胜利
