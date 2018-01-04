@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 棋盘逻辑处理实现类
  */
-public abstract class SWChessLogicModel implements ISWChessLogicModel {
+public abstract class ASWChessLogicModel implements ISWChessLogicModel {
     @Override
     public boolean isGameOverMethod(List<Point> whitePoints, List<Point> blackPoints) {
         return false;

@@ -10,14 +10,16 @@ import java.util.List;
 /**
  * 棋盘逻辑处理中间层实现类
  */
-public class SWGoBangPresenterImpl implements ISWGoBangPresenter {
+public abstract class ASWGoBangPresenterImpl implements ISWGoBangPresenter {
     private ISWGoBangView mChessbroadView;
     private ISWChessLogicModel mChessLogicModel;
 
-    public SWGoBangPresenterImpl(ISWGoBangView view, ISWChessLogicModel user) {
+    public ASWGoBangPresenterImpl(ISWGoBangView view) {
         this.mChessbroadView = view;
-        this.mChessLogicModel = user;
+        this.mChessLogicModel = createChessLogicModel();
     }
+
+    abstract ISWChessLogicModel createChessLogicModel();
 
     @Override
     public void restart() {
