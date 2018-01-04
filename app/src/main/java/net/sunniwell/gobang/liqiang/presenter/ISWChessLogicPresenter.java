@@ -1,4 +1,4 @@
-package net.sunniwell.liqiang.presenter;
+package net.sunniwell.gobang.liqiang.presenter;
 
 import android.graphics.Point;
 

@@ -1,6 +1,6 @@
-package net.sunniwell.liqiang.model;
+package net.sunniwell.gobang.liqiang.model;
 
-import net.sunniwell.liqiang.bean.User;
+import net.sunniwell.gobang.liqiang.bean.User;
 
 /**
  * 游戏主界面逻辑处理实现类

@@ -1,4 +1,4 @@
-package net.sunniwell.liqiang.view;
+package net.sunniwell.gobang.liqiang.view;
 
 /**
  * 棋盘view接口

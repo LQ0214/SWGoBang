@@ -1,4 +1,4 @@
-package net.sunniwell.liqiang.bean;
+package net.sunniwell.gobang.liqiang.bean;
 
 /**
  * Created by Administrator on 2018/1/4.

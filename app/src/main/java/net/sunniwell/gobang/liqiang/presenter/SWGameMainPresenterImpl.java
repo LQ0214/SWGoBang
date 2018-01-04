@@ -1,7 +1,7 @@
-package net.sunniwell.liqiang.presenter;
+package net.sunniwell.gobang.liqiang.presenter;
 
-import net.sunniwell.liqiang.model.ISWGameMainModel;
-import net.sunniwell.liqiang.view.ISWGameMainView;
+import net.sunniwell.gobang.liqiang.model.ISWGameMainModel;
+import net.sunniwell.gobang.liqiang.view.ISWGameMainView;
 
 /**
  * 游戏主界面中间层实现类

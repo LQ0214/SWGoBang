@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SWGoBang</string>
+    <string name="main_home_man_man">联机对战</string>
+    <string name="main_home_man_machine">人机对战</string>
+    <string name="main_home_setting">设置</string>
+    <string name="main_home_about">关于</string>
 </resources>

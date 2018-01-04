@@ -1,9 +1,13 @@
-package net.sunniwell.liqiang.view;
+package net.sunniwell.gobang.liqiang.model;
 
 /**
- * 游戏主界面view接口
+ * 游戏主界面逻辑处理接口
  */
-public interface ISWGameMainView {
+public interface ISWGameMainModel {
+    void setUserId(int id);
+
+    int getUserId();
+
     /**
      * 复赛
      */

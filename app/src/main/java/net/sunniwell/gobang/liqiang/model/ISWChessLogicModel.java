@@ -1,4 +1,4 @@
-package net.sunniwell.liqiang.model;
+package net.sunniwell.gobang.liqiang.model;
 
 import android.graphics.Point;
 

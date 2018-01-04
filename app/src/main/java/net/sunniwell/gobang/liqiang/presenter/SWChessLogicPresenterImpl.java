@@ -1,9 +1,9 @@
-package net.sunniwell.liqiang.presenter;
+package net.sunniwell.gobang.liqiang.presenter;
 
 import android.graphics.Point;
 
-import net.sunniwell.liqiang.model.ISWChessLogicModel;
-import net.sunniwell.liqiang.view.ISWChessbroadView;
+import net.sunniwell.gobang.liqiang.model.ISWChessLogicModel;
+import net.sunniwell.gobang.liqiang.view.ISWChessbroadView;
 
 import java.util.List;
 

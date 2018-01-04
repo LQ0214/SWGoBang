@@ -1,4 +1,4 @@
-package net.sunniwell.liqiang.presenter;
+package net.sunniwell.gobang.liqiang.presenter;
 
 /**
  * 游戏主界面中间层接口

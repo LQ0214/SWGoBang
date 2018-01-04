@@ -2,5 +2,8 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <!--测试背景颜色-->
+    <color name="colorAccent">#ffccff</color>
+    <!--画笔颜色-->
+    <color name="colorPaint">#9999cc</color>
 </resources>

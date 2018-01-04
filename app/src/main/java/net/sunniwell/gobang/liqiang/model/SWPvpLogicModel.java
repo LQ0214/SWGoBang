@@ -1,4 +1,4 @@
-package net.sunniwell.liqiang.model;
+package net.sunniwell.gobang.liqiang.model;
 
 /**
  * 玩家对战逻辑处理类
