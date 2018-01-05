@@ -22,17 +22,17 @@
         android:supportsRtl="true"
         android:name=".SWApplication"
         android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
-        <activity android:name=".huangjinxing.activity.SWRegisterActivity" />
-        <activity android:name=".huangjinxing.activity.SWMainHomeActivity">
+        <activity android:name=".view.activity.SWRegisterActivity" />
+        <activity android:name=".view.activity.SWMainHomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".huangjinxing.activity.SWManAndMachineActivity" />
-        <activity android:name=".huangjinxing.activity.SWManAndManActivity" />
+        <activity android:name=".view.activity.SWManAndMachineActivity" />
+        <activity android:name=".view.activity.SWManAndManActivity" />
 
-        <activity android:name=".liqiang.view.SWSignInActivity">
+        <activity android:name=".view.SWSignInActivity">
             <intent-filter>
                 <action android:name="net.sunniwell.linhongbo"/>
             </intent-filter>

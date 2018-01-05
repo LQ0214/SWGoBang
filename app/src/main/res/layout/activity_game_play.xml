@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
 
-    <net.sunniwell.gobang.huangjinxing.custom.SWGoBangView
+    <net.sunniwell.gobang.view.widget.SWGoBangView
         android:id="@+id/pvp_piece_board"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
