@@ -13,9 +13,29 @@ import java.util.List;
  */
 public interface ISWChessLogicModel {
     /**
+     * 重新开始
+     */
+    boolean restart(int id);
+
+    /**
+     * 悔棋
+     */
+    boolean undo(int id);
+
+    /**
+     * 认输
+     */
+    boolean giveup(int id);
+
+    /**
+     * 和棋
+     */
+    boolean drawPiece(int id);
+
+    /**
      * 判断是否胜利
      */
-    boolean isGameOverMethod(List<Point> whitePoints, List<Point> blackPoints);
+    boolean isGameOverMethod(int id, List<Point> whitePoints, List<Point> blackPoints);
 
     /**
      * 是否五子连珠

@@ -11,7 +11,11 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import net.sunniwell.gobang.R;
-import net.sunniwell.gobang.presenter.ISWGoBangPresenter;
+import net.sunniwell.gobang.presenter.ASWGoBangPresenterImpl;
+import net.sunniwell.gobang.presenter.SWPveGoBangPresenterImpl;
+import net.sunniwell.gobang.presenter.SWPvpGoBangPresenterImpl;
+import net.sunniwell.gobang.utils.SWGoBangConstant;
+import net.sunniwell.gobang.view.ISWGoBangView;
 import net.sunniwell.jar.log.SWLogger;
 
 import java.util.ArrayList;
@@ -21,7 +25,7 @@ import java.util.List;
  * Created by Xing on 2018/1/4.
  */
 
-public class SWGoBangView extends View {
+public class SWGoBangView extends View implements ISWGoBangView {
     private SWLogger log = SWLogger.getLogger(SWGoBangView.class.getSimpleName());
 
     /**
@@ -51,7 +55,22 @@ public class SWGoBangView extends View {
      */
     private int mBattleMode;
 
-    private ISWGoBangPresenter mGoBangPresenter;
+    private ASWGoBangPresenterImpl mGoBangPresenter;
+    private ISWEventCompletedListener mEventCompletedListener;
+
+
+    public interface ISWEventCompletedListener{
+        void restartCompleted();
+        void undoCompleted();
+        void giveupCompleted();
+        void drawPieveCompleted();
+        void gameOverCompleted();
+        void fiveConnectCompleted();
+    }
+
+    public void setEventCompletedListener(ISWEventCompletedListener listener){
+        mEventCompletedListener = listener;
+    }
 
     public SWGoBangView(Context context) {
         this(context, null);
@@ -209,10 +228,89 @@ public class SWGoBangView extends View {
     }
 
     public void setBattleMode(int mBattleMode) {
+        log.d("hjx   ===>>>  设置战斗模式。。。。");
         this.mBattleMode = mBattleMode;
+        switch (mBattleMode) {
+            case SWGoBangConstant.P_NET_BATTLE_MODE:
+                // 联网对战的present
+                mGoBangPresenter = new SWPvpGoBangPresenterImpl(this);
+                break;
+            case SWGoBangConstant.P_BLUETOOTH_BATTLE_MODE:
+                // 蓝牙对战的present
+
+                break;
+            case SWGoBangConstant.P_COMPUTER_BATTLE_MODE:
+                // 人机对战的present
+                mGoBangPresenter = new SWPveGoBangPresenterImpl(this);
+                break;
+            default:
+                break;
+        }
     }
 
-    public void setPresenterImpl(ISWGoBangPresenter presenterImpl) {
-        this.mGoBangPresenter = presenterImpl;
+
+    /**
+     * 向外提供的接口 ： 重新开始
+     */
+    public void reStart(int id) {
+        if (mGoBangPresenter != null) {
+            mGoBangPresenter.restart(id);
+        }
+    }
+
+    /**
+     * 向外提供的接口 ： 悔棋
+     */
+    public void undo(int id) {
+        if (mGoBangPresenter != null) {
+            mGoBangPresenter.undo(id);
+        }
+    }
+
+    /**
+     * 向外提供的接口 ： 认输
+     */
+    public void giveup(int id) {
+        if (mGoBangPresenter != null) {
+            mGoBangPresenter.giveup(id);
+        }
+    }
+    /**
+     * 向外提供的接口 ： 和棋
+     */
+    public void drawPiece(int id) {
+        if (mGoBangPresenter != null) {
+            mGoBangPresenter.drawPiece(id);
+        }
+    }
+
+    @Override
+    public void restartCompleted(int id) {
+        mEventCompletedListener.restartCompleted();
+    }
+
+    @Override
+    public void undoCompleted(int id) {
+        mEventCompletedListener.undoCompleted();
+    }
+
+    @Override
+    public void giveupCompleted(int id) {
+        mEventCompletedListener.giveupCompleted();
+    }
+
+    @Override
+    public void drawPieveCompleted(int id) {
+        mEventCompletedListener.drawPieveCompleted();
+    }
+
+    @Override
+    public void gameOverCompleted(int id) {
+        mEventCompletedListener.gameOverCompleted();
+    }
+
+    @Override
+    public void fiveConnectCompleted() {
+        mEventCompletedListener.fiveConnectCompleted();
     }
 }

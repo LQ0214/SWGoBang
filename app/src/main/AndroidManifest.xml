@@ -29,7 +29,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.activity.SWManAndMachineActivity" />
-        <activity android:name=".view.activity.SWManAndManActivity" />
+        <activity android:name=".view.activity.SWManAndManActivity" >
+        </activity>
 
         <activity android:name=".view.activity.SWSignInActivity">
             <intent-filter>

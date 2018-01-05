@@ -11,7 +11,7 @@ public interface ISWGoBangView {
     /**
      * 复赛
      */
-    void restartCompleted();
+    void restartCompleted(int id);
 
     /**
      * 悔棋
@@ -26,15 +26,15 @@ public interface ISWGoBangView {
     /**
      * 求和
      */
-    void drawCompleted(int id);
+    void drawPieveCompleted(int id);
 
     /**
      * 判断是否胜利
      */
-    boolean gameOverCompleted();
+    void gameOverCompleted(int id);
 
     /**
      * 是否五子连珠
      */
-    boolean fiveConnectCompleted();
+    void fiveConnectCompleted();
 }

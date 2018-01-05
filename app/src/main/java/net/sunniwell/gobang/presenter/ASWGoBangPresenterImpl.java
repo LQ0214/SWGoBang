@@ -4,61 +4,61 @@ import android.graphics.Point;
 
 import net.sunniwell.gobang.model.ISWChessLogicModel;
 import net.sunniwell.gobang.view.ISWGoBangView;
+import net.sunniwell.jar.log.SWLogger;
 
 import java.util.List;
 
 /**
  * 棋盘逻辑处理中间层实现类
  */
-public abstract class ASWGoBangPresenterImpl implements ISWGoBangPresenter {
+public abstract class ASWGoBangPresenterImpl {
+    private SWLogger log  = SWLogger.getLogger(ASWGoBangPresenterImpl.class.getSimpleName());
     private ISWGoBangView mChessbroadView;
     private ISWChessLogicModel mChessLogicModel;
 
-    public ASWGoBangPresenterImpl() {
+    public ASWGoBangPresenterImpl(ISWGoBangView view) {
         this.mChessLogicModel = createChessLogicModel();
-    }
-
-    public void setGoBangViewListener(ISWGoBangView view) {
         this.mChessbroadView = view;
     }
 
-    abstract ISWChessLogicModel createChessLogicModel();
 
-    @Override
-    public void restart() {
-
-    }
-
-    @Override
-    public void undo() {
-
-    }
-
-    @Override
-    public void giveup() {
-
-    }
-
-    @Override
-    public void draw() {
-
-    }
-
-    @Override
-    public boolean isGameOverMethod(List<Point> whitePoints, List<Point> blackPoints) {
-        if (mChessLogicModel != null && mChessbroadView != null) {
-            mChessbroadView.fiveConnectCompleted();
-            return mChessLogicModel.isGameOverMethod(whitePoints, blackPoints);
-        } else {
-            return false;
+    public void restart(int id) {
+        if (mChessLogicModel.restart(id)) {
+            mChessbroadView.restartCompleted(id);
         }
     }
 
-    @Override
-    public boolean isFiveConnect(List<Point> points) {
-        if (mChessLogicModel != null)
-            return mChessLogicModel.isFiveConnect(points);
-        else
-            return false;
+    public void undo(int id) {
+        if (mChessLogicModel.undo(id)) {
+            mChessbroadView.undoCompleted(id);
+        }
     }
+
+    public void giveup(int id) {
+        log.d("hjx   ===>>>  View调了认输接口    isTrue = "+mChessLogicModel.giveup(id));
+        if (mChessLogicModel.giveup(id)) {
+            mChessbroadView.giveupCompleted(id);
+        }
+
+    }
+
+    public void drawPiece(int id) {
+        if (mChessLogicModel.drawPiece(id)) {
+            mChessbroadView.drawPieveCompleted(id);
+        }
+    }
+
+    public void isGameOverMethod(int id, List<Point> whitePoints, List<Point> blackPoints) {
+        if (mChessLogicModel.isGameOverMethod(id, whitePoints, blackPoints)) {
+            mChessbroadView.gameOverCompleted(id);
+        }
+    }
+
+    public void isFiveConnect(List<Point> points) {
+        if (mChessLogicModel.isFiveConnect(points)) {
+            mChessbroadView.fiveConnectCompleted();
+        }
+    }
+
+    abstract ISWChessLogicModel createChessLogicModel();
 }

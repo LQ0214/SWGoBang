@@ -7,6 +7,12 @@
     <string name="main_home_about">关于</string>
     <string name="main_home_exit">再次点击退出</string>
 
+    <!--game_board-->
+    <string name="game_board_give_up">认输</string>
+    <string name="game_board_undo">悔棋</string>
+    <string name="game_board_restart">重新开始</string>
+    <string name="game_board_draw_piece">和棋</string>
+
     <string name="string_register_register_succeed">恭喜你，注册成功！</string>
     <string name="string_sign_in_sign_in_succeed">登录成功！</string>
     <string name="string_word_account">帐号：</string>

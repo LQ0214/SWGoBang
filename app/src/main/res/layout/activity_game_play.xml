@@ -8,13 +8,44 @@
         android:id="@+id/pvp_piece_board"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:visibility="invisible" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_toStartOf="@id/pvp_piece_board"
-        android:background="@color/colorPrimary"></LinearLayout>
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_renshu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/game_board_give_up"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btn_huiqi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/game_board_undo"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btn_heqi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/game_board_draw_piece"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btn_chongkai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/game_board_restart"
+            android:textSize="30sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
