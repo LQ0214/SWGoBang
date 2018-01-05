@@ -1,5 +1,7 @@
 package net.sunniwell.gobang.view.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -19,6 +21,7 @@ public class SWSignInActivity extends FragmentActivity {
     public static final String SHARE_PREFERENCES_USER_INFO = "userInfo";
     public static final String SHARE_PREFERENCES_USER_NAME = "userName";
     public static final String SHARE_PREFERENCES_USER_PASSWORD = "userPassword";
+    private static Activity mActivity;
 
     private FragmentManager mFragmentManager = getSupportFragmentManager();
 
@@ -42,10 +45,17 @@ public class SWSignInActivity extends FragmentActivity {
      */
     public static void startMainActivity() {
         log.d("startMainActivity");
-        // TODO: 2018/1/5
+        if(mActivity != null){
+            Intent intent = new Intent(mActivity, SWMainHomeActivity.class);
+            mActivity.startActivity(intent);
+            mActivity.finish();
+        } else {
+            new Throwable("mContext = null");
+        }
     }
 
     private void initData() {
+        mActivity = this;
         SWRegisterFragment registerFragment = new SWRegisterFragment();
         FragmentUtil.add(mFragmentManager, R.id.id_sign_in_root, registerFragment, SWRegisterFragment.class.getSimpleName());
         SWSignInFragment signInFragment = new SWSignInFragment();

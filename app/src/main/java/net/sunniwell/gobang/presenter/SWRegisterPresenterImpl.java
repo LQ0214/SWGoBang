@@ -24,10 +24,10 @@ public class SWRegisterPresenterImpl implements ISWOnRegisterInterface.ISWOnRegi
     }
 
     @Override
-    public void register(BmobUser userInfo, final String userPassword) {
+    public void register(BmobUser userInfo, final String userPassword, String smsCode) {
         log.d("register");
         final String userName = userInfo.getUsername();
-        userInfo.signUp(new SaveListener<BmobUser>() {
+        userInfo.signOrLogin(smsCode, new SaveListener<BmobUser>() {
             @Override
             public void done(BmobUser bmobUser, BmobException e) {
                 if (e == null) {
@@ -46,5 +46,6 @@ public class SWRegisterPresenterImpl implements ISWOnRegisterInterface.ISWOnRegi
                 }
             }
         });
+
     }
 }

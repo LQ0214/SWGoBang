@@ -14,7 +14,7 @@ public interface ISWOnRegisterInterface {
      * 注册动作
      */
     interface ISWOnRegisterPresenterInterface {
-        void register(BmobUser userInfo, String password);
+        void register(BmobUser userInfo, String password, String smsCode);
     }
 
 
