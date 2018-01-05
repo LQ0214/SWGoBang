@@ -37,7 +37,7 @@ public class SWSignInActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        FragmentUtil.show(mFragmentManager, SWRegisterFragment.class.getSimpleName());
+        FragmentUtil.show(mFragmentManager, SWSignInFragment.class.getSimpleName());
     }
 
     /**
@@ -61,5 +61,4 @@ public class SWSignInActivity extends FragmentActivity {
         SWSignInFragment signInFragment = new SWSignInFragment();
         FragmentUtil.add(mFragmentManager, R.id.id_sign_in_root, signInFragment, SWSignInFragment.class.getSimpleName());
     }
-
 }

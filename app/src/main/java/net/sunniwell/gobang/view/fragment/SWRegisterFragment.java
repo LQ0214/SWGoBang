@@ -12,6 +12,7 @@ import android.widget.Toast;
 import net.sunniwell.gobang.R;
 import net.sunniwell.gobang.iswinterface.ISWOnRegisterInterface;
 import net.sunniwell.gobang.presenter.SWRegisterPresenterImpl;
+import net.sunniwell.gobang.utils.FragmentUtil;
 import net.sunniwell.gobang.view.activity.SWSignInActivity;
 import net.sunniwell.jar.log.SWLogger;
 
@@ -79,6 +80,8 @@ public class SWRegisterFragment extends Fragment implements ISWOnRegisterInterfa
                 mPresenter.register(userInfo, userPassword, userSmsCode);
                 break;
             case R.id.id_back:
+                FragmentUtil.hide(getFragmentManager(),this);
+                FragmentUtil.show(getFragmentManager(), SWSignInFragment.class.getSimpleName());
                 break;
             case R.id.id_send_sms_code:
                 BmobSMS.requestSMSCode(mTelNumber.getText().toString(), "朝歌帐号注册", new QueryListener<Integer>() {

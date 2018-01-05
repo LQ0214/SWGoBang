@@ -10,6 +10,7 @@ import android.widget.Toast;
 import net.sunniwell.gobang.R;
 import net.sunniwell.gobang.iswinterface.ISWOnSignInInterface;
 import net.sunniwell.gobang.presenter.SWSignInPresenterImpl;
+import net.sunniwell.gobang.utils.FragmentUtil;
 import net.sunniwell.gobang.view.activity.SWSignInActivity;
 import net.sunniwell.jar.log.SWLogger;
 
@@ -30,6 +31,9 @@ public class SWSignInFragment extends Fragment implements ISWOnSignInInterface.I
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign_in, null);
+        view.findViewById(R.id.id_goregister).setOnClickListener(this);
+        view.findViewById(R.id.id_login).setOnClickListener(this);
+        view.findViewById(R.id.id_exit).setOnClickListener(this);
         return view;
     }
 
@@ -49,11 +53,17 @@ public class SWSignInFragment extends Fragment implements ISWOnSignInInterface.I
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            // TODO: 2018/1/4 换为登录的id
-            case 1:
+            case R.id.id_login:
                 String userName = "";
                 String userPassword = "";
                 mPresenter.signIn(userName, userPassword);
+                break;
+            case R.id.id_goregister:
+                FragmentUtil.hide(getFragmentManager(),this);
+                FragmentUtil.show(getFragmentManager(), SWRegisterFragment.class.getSimpleName());
+                break;
+            case R.id.id_exit:
+                getActivity().finish();
                 break;
             // TODO: 2018/1/5 忘记密码的id
             case 2:
