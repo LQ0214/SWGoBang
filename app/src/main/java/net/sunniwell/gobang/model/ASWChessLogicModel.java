@@ -19,5 +19,5 @@ public abstract class ASWChessLogicModel implements ISWChessLogicModel {
         mPlayPiece = playPiece;
     }
 
-    public abstract Point playPiece(int id, List<Point> whitePoints, List<Point> blackPoints);
+    public abstract Point playPiece(int x, int y, int depth);
 }

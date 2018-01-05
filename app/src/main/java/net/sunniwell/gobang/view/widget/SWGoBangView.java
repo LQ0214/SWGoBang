@@ -226,7 +226,7 @@ public class SWGoBangView extends View implements ISWGoBangView {
             }
             //TODO 根据黑白判断 五子连珠
             mGoBangPresenter.isGameOverMethod(getUserId(), mWhiteArray, mBlackArray);
-
+            mGoBangPresenter.playPiece(x, y, 4);
             mIsBlack = !mIsBlack;
             // 重绘
             invalidate();
@@ -311,7 +311,12 @@ public class SWGoBangView extends View implements ISWGoBangView {
 
     @Override
     public void playSucceed(Point point) {
-
+        log.d("into gobang,point = " + point);
+        if (mIsBlack) {
+            mBlackArray.add(point);
+        } else {
+            mWhiteArray.add(point);
+        }
     }
 
     @Override

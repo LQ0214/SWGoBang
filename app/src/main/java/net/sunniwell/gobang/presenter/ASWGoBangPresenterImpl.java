@@ -18,6 +18,7 @@ public abstract class ASWGoBangPresenterImpl implements ASWChessLogicModel.ISWPl
 
     /**
      * 抽象方法，创建子model类
+     *
      * @return
      */
     abstract ASWChessLogicModel createChessLogicModel();
@@ -53,7 +54,7 @@ public abstract class ASWGoBangPresenterImpl implements ASWChessLogicModel.ISWPl
 
     @Override
     public void giveup(int id) {
-        log.d("hjx   ===>>>  View调了认输接口     " );
+        log.d("hjx   ===>>>  View调了认输接口     ");
         if (mChessLogicModel.giveup(id)) {
             mChessbroadView.giveupCompleted(id);
         }
@@ -81,8 +82,8 @@ public abstract class ASWGoBangPresenterImpl implements ASWChessLogicModel.ISWPl
     }
 
     @Override
-    public void playPiece(int id, List<Point> whitePoints, List<Point> blackPoints) {
+    public void playPiece(int x, int y, int depth) {
         mChessLogicModel.setPlayPieceListener(this);
-        mChessLogicModel.playPiece(id, whitePoints, blackPoints);
+        mChessLogicModel.playPiece(x, y, depth);
     }
 }

@@ -21,5 +21,5 @@ public interface ISWGoBangPresentInterface {
 
     void isFiveConnect(List<Point> points);
 
-    void playPiece(int id, List<Point> whitePoints, List<Point> blackPoints);
+    void playPiece(int x, int y, int depth);
 }
