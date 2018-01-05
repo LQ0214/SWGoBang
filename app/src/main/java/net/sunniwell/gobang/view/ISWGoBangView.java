@@ -2,8 +2,6 @@ package net.sunniwell.gobang.view;
 
 import android.graphics.Point;
 
-import java.util.List;
-
 /**
  * 棋盘view接口
  */
@@ -37,4 +35,14 @@ public interface ISWGoBangView {
      * 是否五子连珠
      */
     void fiveConnectCompleted();
+
+    /**
+     * 落子成功
+     */
+    void playSucceed(Point point);
+
+    /**
+     * 落子失败
+     */
+    void playFailed();
 }

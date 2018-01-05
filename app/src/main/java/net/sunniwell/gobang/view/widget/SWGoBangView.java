@@ -57,18 +57,24 @@ public class SWGoBangView extends View implements ISWGoBangView {
 
     private ASWGoBangPresenterImpl mGoBangPresenter;
     private ISWEventCompletedListener mEventCompletedListener;
+    private int mUserId;
 
 
-    public interface ISWEventCompletedListener{
+    public interface ISWEventCompletedListener {
         void restartCompleted();
+
         void undoCompleted();
+
         void giveupCompleted();
+
         void drawPieveCompleted();
+
         void gameOverCompleted();
+
         void fiveConnectCompleted();
     }
 
-    public void setEventCompletedListener(ISWEventCompletedListener listener){
+    public void setEventCompletedListener(ISWEventCompletedListener listener) {
         mEventCompletedListener = listener;
     }
 
@@ -84,6 +90,14 @@ public class SWGoBangView extends View implements ISWGoBangView {
         super(context, attrs, defStyleAttr);
         log.d("hjx   ===>>>  初始化。。。");
         initView();
+    }
+
+    public int getUserId() {
+        return mUserId;
+    }
+
+    public void setUserId(int mUserId) {
+        this.mUserId = mUserId;
     }
 
     /**
@@ -215,7 +229,8 @@ public class SWGoBangView extends View implements ISWGoBangView {
                 mWhiteArray.add(point);
             }
             //TODO 根据黑白判断 五子连珠
-            mGoBangPresenter.isFiveConnect(mBlackArray);
+            mGoBangPresenter.isGameOverMethod(getUserId(), mWhiteArray, mBlackArray);
+
             mIsBlack = !mIsBlack;
             // 重绘
             invalidate();
@@ -275,6 +290,7 @@ public class SWGoBangView extends View implements ISWGoBangView {
             mGoBangPresenter.giveup(id);
         }
     }
+
     /**
      * 向外提供的接口 ： 和棋
      */
@@ -312,5 +328,15 @@ public class SWGoBangView extends View implements ISWGoBangView {
     @Override
     public void fiveConnectCompleted() {
         mEventCompletedListener.fiveConnectCompleted();
+    }
+
+    @Override
+    public void playSucceed(Point point) {
+
+    }
+
+    @Override
+    public void playFailed() {
+
     }
 }

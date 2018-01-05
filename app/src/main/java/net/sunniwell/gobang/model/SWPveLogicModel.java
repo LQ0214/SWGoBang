@@ -38,4 +38,11 @@ public class SWPveLogicModel extends ASWChessLogicModel {
     public boolean isFiveConnect(List<Point> points) {
         return false;
     }
+
+    @Override
+    public Point playPiece(int id, List<Point> whitePoints, List<Point> blackPoints) {
+        //TODO 人机算法 计算棋子落子的point 成功回调 mPlayPiece.playSucceed 失败回调mPlayPiece.playFailed
+        Point point = new Point();
+        return point;
+    }
 }

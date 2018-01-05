@@ -71,6 +71,7 @@ public class SWMainHomeActivity extends Activity {
     @Override
     protected void onDestroy() {
         if (mTimer != null) {
+            mTimer.cancel();
             mTimer = null;
         }
         super.onDestroy();

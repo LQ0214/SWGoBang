@@ -44,4 +44,6 @@ public interface ISWChessLogicModel {
      * @return
      */
     boolean isFiveConnect(List<Point> points);
+
+
 }

@@ -7,5 +7,17 @@ import java.util.List;
 /**
  * 棋盘逻辑处理实现类
  */
-public abstract class ASWChessLogicModel implements ISWChessLogicModel{
+public abstract class ASWChessLogicModel implements ISWChessLogicModel {
+    public interface ISWPlayPiece {
+        void playSucceed(Point point);
+        void playFailed();
+    }
+
+    public ISWPlayPiece mPlayPiece;
+
+    public void setPlayPieceListener(ISWPlayPiece playPiece) {
+        mPlayPiece = playPiece;
+    }
+
+    public abstract Point playPiece(int id, List<Point> whitePoints, List<Point> blackPoints);
 }

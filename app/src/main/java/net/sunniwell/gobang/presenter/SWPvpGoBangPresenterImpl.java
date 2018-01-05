@@ -1,5 +1,6 @@
 package net.sunniwell.gobang.presenter;
 
+import net.sunniwell.gobang.model.ASWChessLogicModel;
 import net.sunniwell.gobang.model.ISWChessLogicModel;
 import net.sunniwell.gobang.model.SWPvpLogicModel;
 import net.sunniwell.gobang.view.ISWGoBangView;
@@ -15,7 +16,7 @@ public class SWPvpGoBangPresenterImpl extends ASWGoBangPresenterImpl {
     }
 
     @Override
-    ISWChessLogicModel createChessLogicModel() {
+    ASWChessLogicModel createChessLogicModel() {
         return new SWPvpLogicModel();
     }
 }

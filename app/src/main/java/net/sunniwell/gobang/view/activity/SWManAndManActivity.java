@@ -33,6 +33,7 @@ public class SWManAndManActivity extends Activity implements SWGoBangView.ISWEve
         // 设置对战模式
         mGoBangView.setBattleMode(SWGoBangConstant.P_NET_BATTLE_MODE);
         mGoBangView.setEventCompletedListener(this);
+        mGoBangView.setUserId(789);
 
 
         btn_renshu = (Button) findViewById(R.id.btn_renshu);

@@ -45,4 +45,9 @@ public class SWPvpLogicModel extends ASWChessLogicModel {
     public boolean isFiveConnect(List<Point> points) {
         return true;
     }
+
+    @Override
+    public Point playPiece(int id, List<Point> whitePoints, List<Point> blackPoints) {
+        return null;
+    }
 }
