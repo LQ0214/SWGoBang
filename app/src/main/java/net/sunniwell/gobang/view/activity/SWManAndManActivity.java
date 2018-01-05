@@ -31,7 +31,7 @@ public class SWManAndManActivity extends Activity implements SWGoBangView.ISWEve
     private void initView() {
         mGoBangView = (SWGoBangView) findViewById(R.id.pvp_piece_board);
         // 设置对战模式
-        mGoBangView.setBattleMode(SWGoBangConstant.P_NET_BATTLE_MODE);
+        mGoBangView.setGoBangPresenter(new SWPvpGoBangPresenterImpl(mGoBangView));
         mGoBangView.setEventCompletedListener(this);
         mGoBangView.setUserId(789);
 

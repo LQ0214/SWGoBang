@@ -11,61 +11,21 @@ import java.util.List;
 /**
  * 棋盘逻辑处理中间层实现类
  */
-public abstract class ASWGoBangPresenterImpl implements ASWChessLogicModel.ISWPlayPiece {
+public abstract class ASWGoBangPresenterImpl implements ASWChessLogicModel.ISWPlayPiece, ISWGoBangPresentInterface {
     private SWLogger log = SWLogger.getLogger(ASWGoBangPresenterImpl.class.getSimpleName());
     private ISWGoBangView mChessbroadView;
     private ASWChessLogicModel mChessLogicModel;
+
+    /**
+     * 抽象方法，创建子model类
+     * @return
+     */
+    abstract ASWChessLogicModel createChessLogicModel();
 
     public ASWGoBangPresenterImpl(ISWGoBangView view) {
         this.mChessLogicModel = createChessLogicModel();
         this.mChessbroadView = view;
     }
-
-
-    public void restart(int id) {
-        if (mChessLogicModel.restart(id)) {
-            mChessbroadView.restartCompleted(id);
-        }
-    }
-
-    public void undo(int id) {
-        if (mChessLogicModel.undo(id)) {
-            mChessbroadView.undoCompleted(id);
-        }
-    }
-
-    public void giveup(int id) {
-        log.d("hjx   ===>>>  View调了认输接口    isTrue = " + mChessLogicModel.giveup(id));
-        if (mChessLogicModel.giveup(id)) {
-            mChessbroadView.giveupCompleted(id);
-        }
-
-    }
-
-    public void drawPiece(int id) {
-        if (mChessLogicModel.drawPiece(id)) {
-            mChessbroadView.drawPieveCompleted(id);
-        }
-    }
-
-    public void isGameOverMethod(int id, List<Point> whitePoints, List<Point> blackPoints) {
-        if (mChessLogicModel.isGameOverMethod(id, whitePoints, blackPoints)) {
-            mChessbroadView.gameOverCompleted(id);
-        }
-    }
-
-    public void isFiveConnect(List<Point> points) {
-        if (mChessLogicModel.isFiveConnect(points)) {
-            mChessbroadView.fiveConnectCompleted();
-        }
-    }
-
-    public void playPiece(int id, List<Point> whitePoints, List<Point> blackPoints) {
-        mChessLogicModel.setPlayPieceListener(this);
-        mChessLogicModel.playPiece(id, whitePoints, blackPoints);
-    }
-
-    abstract ASWChessLogicModel createChessLogicModel();
 
     @Override
     public void playFailed() {
@@ -75,5 +35,54 @@ public abstract class ASWGoBangPresenterImpl implements ASWChessLogicModel.ISWPl
     @Override
     public void playSucceed(Point point) {
         mChessbroadView.playSucceed(point);
+    }
+
+    @Override
+    public void restart(int id) {
+        if (mChessLogicModel.restart(id)) {
+            mChessbroadView.restartCompleted(id);
+        }
+    }
+
+    @Override
+    public void undo(int id) {
+        if (mChessLogicModel.undo(id)) {
+            mChessbroadView.undoCompleted(id);
+        }
+    }
+
+    @Override
+    public void giveup(int id) {
+        log.d("hjx   ===>>>  View调了认输接口     " );
+        if (mChessLogicModel.giveup(id)) {
+            mChessbroadView.giveupCompleted(id);
+        }
+    }
+
+    @Override
+    public void drawPiece(int id) {
+        if (mChessLogicModel.drawPiece(id)) {
+            mChessbroadView.drawPieveCompleted(id);
+        }
+    }
+
+    @Override
+    public void isGameOverMethod(int id, List<Point> whitePoints, List<Point> blackPoints) {
+        if (mChessLogicModel.isGameOverMethod(id, whitePoints, blackPoints)) {
+            mChessbroadView.gameOverCompleted(id);
+        }
+    }
+
+    @Override
+    public void isFiveConnect(List<Point> points) {
+        if (mChessLogicModel.isFiveConnect(points)) {
+            mChessbroadView.fiveConnectCompleted();
+        }
+    }
+
+    @Override
+    public void playPiece(int id, List<Point> whitePoints, List<Point> blackPoints) {
+        mChessLogicModel.setPlayPieceListener(this);
+        mChessLogicModel.playPiece(id, whitePoints, blackPoints);
     }
 }

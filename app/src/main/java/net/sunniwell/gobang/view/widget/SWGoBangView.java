@@ -50,10 +50,6 @@ public class SWGoBangView extends View implements ISWGoBangView {
      * 白色棋子list
      */
     private List<Point> mWhiteArray;
-    /**
-     * 对战模式  1：联网  2：人机  3：蓝牙
-     */
-    private int mBattleMode;
 
     private ASWGoBangPresenterImpl mGoBangPresenter;
     private ISWEventCompletedListener mEventCompletedListener;
@@ -238,31 +234,14 @@ public class SWGoBangView extends View implements ISWGoBangView {
         return super.onTouchEvent(event);
     }
 
-    public int getBattleMode() {
-        return mBattleMode;
+
+    public ASWGoBangPresenterImpl getGoBangPresenter() {
+        return mGoBangPresenter;
     }
 
-    public void setBattleMode(int mBattleMode) {
-        log.d("hjx   ===>>>  设置战斗模式。。。。");
-        this.mBattleMode = mBattleMode;
-        switch (mBattleMode) {
-            case SWGoBangConstant.P_NET_BATTLE_MODE:
-                // 联网对战的present
-                mGoBangPresenter = new SWPvpGoBangPresenterImpl(this);
-                break;
-            case SWGoBangConstant.P_BLUETOOTH_BATTLE_MODE:
-                // 蓝牙对战的present
-
-                break;
-            case SWGoBangConstant.P_COMPUTER_BATTLE_MODE:
-                // 人机对战的present
-                mGoBangPresenter = new SWPveGoBangPresenterImpl(this);
-                break;
-            default:
-                break;
-        }
+    public void setGoBangPresenter(ASWGoBangPresenterImpl mGoBangPresenter) {
+        this.mGoBangPresenter = mGoBangPresenter;
     }
-
 
     /**
      * 向外提供的接口 ： 重新开始

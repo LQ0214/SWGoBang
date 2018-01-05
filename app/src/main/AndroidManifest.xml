@@ -21,13 +21,13 @@
         android:name=".SWApplication"
         android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
         <activity android:name=".view.activity.SWMainHomeActivity">
+        </activity>
+        <activity android:name=".view.activity.SWManAndMachineActivity" />
+        <activity android:name=".view.activity.SWManAndManActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".view.activity.SWManAndMachineActivity" />
-        <activity android:name=".view.activity.SWManAndManActivity" >
         </activity>
 
         <activity android:name=".view.activity.SWSignInActivity">

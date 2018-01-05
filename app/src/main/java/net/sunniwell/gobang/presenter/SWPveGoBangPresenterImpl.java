@@ -19,4 +19,6 @@ public class SWPveGoBangPresenterImpl extends ASWGoBangPresenterImpl {
     ASWChessLogicModel createChessLogicModel() {
         return new SWPveLogicModel();
     }
+
+
 }
