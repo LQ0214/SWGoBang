@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import net.sunniwell.gobang.iswinterface.ISWOnRegisterInterface;
-import net.sunniwell.gobang.view.SWSignInActivity;
+import net.sunniwell.gobang.view.activity.SWSignInActivity;
 import net.sunniwell.jar.log.SWLogger;
 
 /**

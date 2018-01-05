@@ -1,14 +1,16 @@
 package net.sunniwell.gobang.view.fragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import net.sunniwell.gobang.R;
 import net.sunniwell.gobang.iswinterface.ISWOnRegisterInterface;
 import net.sunniwell.gobang.presenter.SWRegisterPresenterImpl;
-import net.sunniwell.gobang.view.SWSignInActivity;
+import net.sunniwell.gobang.view.activity.SWSignInActivity;
 import net.sunniwell.jar.log.SWLogger;
 
 import cn.bmob.v3.BmobUser;
@@ -27,9 +29,15 @@ public class SWRegisterFragment extends Fragment implements ISWOnRegisterInterfa
     }
 
     @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_register, null);
+        return view;
+    }
+
+    @Override
     public void onRegisterSucceed() {
         log.d("onRegisterSucceed");
-        Toast.makeText(getActivity(), R.string.register_register_succeed, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), R.string.string_register_register_succeed, Toast.LENGTH_SHORT).show();
         SWSignInActivity.startMainActivity();
     }
 

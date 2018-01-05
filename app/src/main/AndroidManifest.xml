@@ -22,7 +22,6 @@
         android:supportsRtl="true"
         android:name=".SWApplication"
         android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
-        <activity android:name=".view.activity.SWRegisterActivity" />
         <activity android:name=".view.activity.SWMainHomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,7 +31,7 @@
         <activity android:name=".view.activity.SWManAndMachineActivity" />
         <activity android:name=".view.activity.SWManAndManActivity" />
 
-        <activity android:name=".view.SWSignInActivity">
+        <activity android:name=".view.activity.SWSignInActivity">
             <intent-filter>
                 <action android:name="net.sunniwell.linhongbo"/>
             </intent-filter>

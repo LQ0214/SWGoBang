@@ -1,13 +1,16 @@
 package net.sunniwell.gobang.view.fragment;
 
-import android.app.Fragment;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import net.sunniwell.gobang.R;
 import net.sunniwell.gobang.iswinterface.ISWOnSignInInterface;
 import net.sunniwell.gobang.presenter.SWSignInPresenterImpl;
-import net.sunniwell.gobang.view.SWSignInActivity;
+import net.sunniwell.gobang.view.activity.SWSignInActivity;
 import net.sunniwell.jar.log.SWLogger;
 
 /**
@@ -20,9 +23,20 @@ public class SWSignInFragment extends Fragment implements ISWOnSignInInterface.I
     private SWSignInPresenterImpl mPresenter = new SWSignInPresenterImpl(this);
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_sign_in, null);
+        return view;
+    }
+
+    @Override
     public void onSignInSucceed() {
         log.d("onSignInSucceed");
-        Toast.makeText(getActivity(), R.string.sign_in_sign_in_succeed, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), R.string.string_sign_in_sign_in_succeed, Toast.LENGTH_SHORT).show();
         SWSignInActivity.startMainActivity();
     }
 
