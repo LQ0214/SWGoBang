@@ -6,6 +6,13 @@
     <color name="colorAccent">#ffccff</color>
     <!--画笔颜色-->
     <color name="colorPaint">#9999cc</color>
+    <!--时间button颜色-->
+    <color name="color_time_bg">#99ccff</color>
+    <!--黑色-->
+    <color name="color_black">#000000</color>
+    <!--透明-->
+    <color name="color_transparent"> #01000000</color>
+
 
     <color name="color_button_hover">#5e63e9</color>
     <color name="color_white">#ffffff</color>

@@ -41,7 +41,7 @@ public class SWGoBangView extends View implements ISWGoBangView {
      * 棋子的边长占高的比例
      */
     private static final float PIECE_SCALE = 3 * 1.0f / 4;
-    private boolean mIsBlack;
+    private boolean mIsWhite;
     /**
      * 黑色棋子list
      */
@@ -219,15 +219,15 @@ public class SWGoBangView extends View implements ISWGoBangView {
             if (mBlackArray.contains(point) || mWhiteArray.contains(point)) {
                 return true;
             }
-            if (mIsBlack) {
-                mBlackArray.add(point);
-            } else {
+            if (mIsWhite) {
                 mWhiteArray.add(point);
+            } else {
+                mBlackArray.add(point);
             }
             //TODO 根据黑白判断 五子连珠
             mGoBangPresenter.isGameOverMethod(getUserId(), mWhiteArray, mBlackArray);
             mGoBangPresenter.playPiece(x, y, 4);
-            mIsBlack = !mIsBlack;
+            mIsWhite = !mIsWhite;
             // 重绘
             invalidate();
         }
@@ -312,10 +312,10 @@ public class SWGoBangView extends View implements ISWGoBangView {
     @Override
     public void playSucceed(Point point) {
         log.d("into gobang,point = " + point);
-        if (mIsBlack) {
-            mBlackArray.add(point);
-        } else {
+        if (mIsWhite) {
             mWhiteArray.add(point);
+        } else {
+            mBlackArray.add(point);
         }
     }
 

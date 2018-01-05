@@ -5,53 +5,173 @@
 
 
     <net.sunniwell.gobang.view.widget.SWGoBangView
-        android:id="@+id/pvp_piece_board"
+        android:id="@+id/play_game_board"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-         />
+        android:layout_centerInParent="true" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_toStartOf="@id/pvp_piece_board"
+        android:layout_toStartOf="@id/play_game_board"
         android:background="@color/colorPrimary"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@color/color_time_bg"
+            android:gravity="center"
+            android:text="@string/game_board_time"
+            android:textColor="@color/color_black"
+            android:textSize="25sp" />
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/person_default" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/game_board_id"
+            android:textColor="@color/color_black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/game_board_person_name"
+            android:textColor="@color/color_black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/game_board_battle_history"
+            android:textColor="@color/color_black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/game_board_upper_hand"
+            android:textColor="@color/color_black"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/play_game_right_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@id/play_game_board"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@color/color_time_bg"
+            android:gravity="center"
+            android:text="@string/game_board_time"
+            android:textColor="@color/color_black"
+            android:textSize="25sp" />
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/person_default" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/game_board_id"
+            android:textColor="@color/color_black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/game_board_person_name"
+            android:textColor="@color/color_black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/game_board_battle_history"
+            android:textColor="@color/color_black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/game_board_defensive"
+            android:textColor="@color/color_black"
+            android:textSize="30sp" />
+
         <Button
-            android:id="@+id/btn_renshu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/game_board_give_up"
             android:textSize="30sp" />
 
         <Button
-            android:id="@+id/btn_huiqi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/game_board_undo"
             android:textSize="30sp" />
 
         <Button
-            android:id="@+id/btn_heqi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/game_board_draw_piece"
             android:textSize="30sp" />
 
         <Button
-            android:id="@+id/btn_chongkai"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/game_board_restart"
             android:textSize="30sp" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_toEndOf="@id/pvp_piece_board"
-        android:background="@color/colorPrimary"></LinearLayout>
+    <net.sunniwell.gobang.view.widget.SWSectorMenuView
+        android:id="@+id/play_game_sector_menu"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/color_transparent"/>
 
 
 </RelativeLayout>
