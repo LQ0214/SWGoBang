@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import net.sunniwell.gobang.R;
+import net.sunniwell.gobang.liqiang.presenter.ISWGoBangPresenter;
 import net.sunniwell.jar.log.SWLogger;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import java.util.List;
  */
 
 public class SWGoBangView extends View {
-    private SWLogger log = SWLogger.getLogger("SWGoBangView");
+    private SWLogger log = SWLogger.getLogger(SWGoBangView.class.getSimpleName());
 
     /**
      * 线条数量
@@ -45,6 +46,12 @@ public class SWGoBangView extends View {
      * 白色棋子list
      */
     private List<Point> mWhiteArray;
+    /**
+     * 对战模式  1：联网  2：人机  3：蓝牙
+     */
+    private int mBattleMode;
+
+    private ISWGoBangPresenter mGoBangPresenter;
 
     public SWGoBangView(Context context) {
         this(context, null);
@@ -194,4 +201,13 @@ public class SWGoBangView extends View {
         }
         return super.onTouchEvent(event);
     }
+
+    public int getBattleMode() {
+        return mBattleMode;
+    }
+
+    public void setBattleMode(int mBattleMode) {
+        this.mBattleMode = mBattleMode;
+    }
+
 }
