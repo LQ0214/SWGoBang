@@ -5,7 +5,7 @@
     <!--测试背景颜色-->
     <color name="colorAccent">#ffccff</color>
     <!--画笔颜色-->
-    <color name="colorPaint">#9999cc</color>
+    <color name="colorPaint">#99ffff</color>
     <!--时间button颜色-->
     <color name="color_time_bg">#99ccff</color>
     <!--黑色-->

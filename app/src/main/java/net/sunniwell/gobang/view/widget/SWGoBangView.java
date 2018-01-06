@@ -113,7 +113,7 @@ public class SWGoBangView extends View implements ISWGoBangView {
      * 初始化内容
      */
     private void initView() {
-        setBackgroundColor(getResources().getColor(R.color.colorAccent));
+//        setBackgroundColor(getResources().getColor(R.color.colorAccent));
         mBlackArray = new ArrayList<Point>();
         mWhiteArray = new ArrayList<Point>();
         // 默认我方先手

@@ -1,42 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:background="@drawable/main_bg7">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/main_home_login_info_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/main_home_icon"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/person_default" />
+
+        <net.sunniwell.gobang.view.widget.SWHightLightTextView
+            android:id="@+id/main_home_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/main_home_icon"
+            android:layout_centerHorizontal="true"
+            android:text="@string/main_home_welcome"
+            android:textSize="30sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/main_home_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/main_home_login_info_layout"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="25dp"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <Button
             android:id="@+id/main_home_pvp"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="65dp"
+            android:background="@drawable/btn_shape"
             android:text="@string/main_home_man_man"
             android:textSize="30sp" />
 
         <Button
             android:id="@+id/main_home_pve"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="65dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_shape"
             android:text="@string/main_home_man_machine"
             android:textSize="30sp" />
 
         <Button
             android:id="@+id/main_home_setting"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="65dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_shape"
             android:text="@string/main_home_setting"
             android:textSize="30sp" />
 
         <Button
             android:id="@+id/main_home_about"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="65dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_shape"
             android:text="@string/main_home_about"
             android:textSize="30sp" />
     </LinearLayout>
+
+    <!--<net.sunniwell.gobang.view.widget.SWDisplayDownwardView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_marginEnd="120dp"-->
+    <!--android:layout_toStartOf="@id/main_home_menu"-->
+    <!--android:ems="1"-->
+    <!--android:textSize="60sp"-->
+    <!--nihao:draw_text="欢迎来到英雄联盟" />-->
+
+    <!--<net.sunniwell.gobang.view.widget.HightLightTextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginStart="120dp"-->
+    <!--android:layout_toEndOf="@id/main_home_menu"-->
+    <!--android:text="欢迎来到英雄联盟"-->
+    <!--android:textSize="60sp" />-->
+    <!--<net.sunniwell.gobang.view.widget.button.AnimationButton-->
+    <!--android:id="@+id/btn_bu"-->
+    <!--android:layout_width="200dp"-->
+    <!--android:layout_height="60dp"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:layout_marginEnd="120dp"-->
+    <!--android:layout_toStartOf="@id/main_home_menu" />-->
+
+
 </RelativeLayout>

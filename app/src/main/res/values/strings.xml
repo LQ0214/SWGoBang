@@ -6,6 +6,7 @@
     <string name="main_home_setting">设置</string>
     <string name="main_home_about">关于</string>
     <string name="main_home_exit">再次点击退出</string>
+    <string name="main_home_welcome">欢迎&#160;%1$s&#160;来到五子棋世界</string>
 
     <!--game_board-->
     <string name="game_board_menu">菜单</string>
@@ -13,12 +14,23 @@
     <string name="game_board_undo">悔棋</string>
     <string name="game_board_restart">重开局</string>
     <string name="game_board_draw_piece">和棋</string>
+    <string name="game_board_time_name">时间：</string>
     <string name="game_board_time">05:00</string>
     <string name="game_board_battle_history">赢：%1$s&#160;&#160;负：%2$s&#160;&#160;和：%3$s</string>
     <string name="game_board_id">ID:123456</string>
     <string name="game_board_person_name">昵称：大香蕉</string>
     <string name="game_board_upper_hand">先手</string>
     <string name="game_board_defensive">后手</string>
+    <!--setting-->
+    <string name="setting_manager_account">账号管理</string>
+    <string name="setting_phone_num">手机号码</string>
+    <string name="setting_help">帮助与反馈</string>
+
+    <!--about-->
+    <string name="about_version">版本</string>
+    <string name="about_functional_introduction">功能介绍</string>
+    <string name="about_us">关于我们</string>
+
 
     <string name="string_register_register_succeed">恭喜你，注册成功！</string>
     <string name="string_sign_in_sign_in_succeed">登录成功！</string>

@@ -46,6 +46,7 @@ public class SWMainHomeActivity extends Activity implements View.OnClickListener
         mBtn_pve.setOnClickListener(this);
         mBtn_setting.setOnClickListener(this);
         mBtn_about.setOnClickListener(this);
+
     }
 
     @Override

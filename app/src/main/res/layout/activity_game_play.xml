@@ -1,32 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background">
 
 
     <net.sunniwell.gobang.view.widget.SWGoBangView
         android:id="@+id/play_game_board"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:background="@drawable/piece_bg4" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_toStartOf="@id/play_game_board"
-        android:background="@color/colorPrimary"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:background="@color/color_time_bg"
-            android:gravity="center"
-            android:text="@string/game_board_time"
-            android:textColor="@color/color_black"
-            android:textSize="25sp" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/game_board_time_name"
+                android:textColor="@color/color_white"
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/game_board_time"
+                android:textColor="@color/color_white"
+                android:textSize="25sp" />
+        </LinearLayout>
+
 
         <ImageView
             android:layout_width="150dp"
@@ -41,7 +58,7 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="@string/game_board_id"
-            android:textColor="@color/color_black"
+            android:textColor="@color/color_white"
             android:textSize="15sp" />
 
         <TextView
@@ -51,7 +68,7 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="@string/game_board_person_name"
-            android:textColor="@color/color_black"
+            android:textColor="@color/color_white"
             android:textSize="15sp" />
 
         <TextView
@@ -61,7 +78,7 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="@string/game_board_battle_history"
-            android:textColor="@color/color_black"
+            android:textColor="@color/color_white"
             android:textSize="15sp" />
 
         <TextView
@@ -71,7 +88,7 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="@string/game_board_upper_hand"
-            android:textColor="@color/color_black"
+            android:textColor="@color/color_white"
             android:textSize="30sp" />
     </LinearLayout>
 
@@ -80,19 +97,33 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_toEndOf="@id/play_game_board"
-        android:background="@color/colorPrimary"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:background="@color/color_time_bg"
-            android:gravity="center"
-            android:text="@string/game_board_time"
-            android:textColor="@color/color_black"
-            android:textSize="25sp" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/game_board_time_name"
+                android:textColor="@color/color_white"
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/game_board_time"
+                android:textColor="@color/color_white"
+                android:textSize="25sp" />
+        </LinearLayout>
 
         <ImageView
             android:layout_width="150dp"
@@ -107,7 +138,7 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="@string/game_board_id"
-            android:textColor="@color/color_black"
+            android:textColor="@color/color_white"
             android:textSize="15sp" />
 
         <TextView
@@ -117,7 +148,7 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="@string/game_board_person_name"
-            android:textColor="@color/color_black"
+            android:textColor="@color/color_white"
             android:textSize="15sp" />
 
         <TextView
@@ -127,7 +158,7 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="@string/game_board_battle_history"
-            android:textColor="@color/color_black"
+            android:textColor="@color/color_white"
             android:textSize="15sp" />
 
         <TextView
@@ -137,7 +168,7 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="@string/game_board_defensive"
-            android:textColor="@color/color_black"
+            android:textColor="@color/color_white"
             android:textSize="30sp" />
 
     </LinearLayout>
