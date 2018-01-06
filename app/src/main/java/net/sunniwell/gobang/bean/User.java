@@ -28,7 +28,7 @@ public class User extends BmobUser {
         this.mUserName = userName;
     }
 
-    public String getUserName() {
+    public String getName() {
         return mUserName;
     }
 

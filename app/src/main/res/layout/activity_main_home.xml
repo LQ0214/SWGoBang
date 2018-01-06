@@ -24,7 +24,7 @@
             android:layout_below="@id/main_home_icon"
             android:layout_centerHorizontal="true"
             android:text="@string/main_home_welcome"
-            android:textSize="30sp" />
+            android:textSize="50sp" />
     </RelativeLayout>
 
     <LinearLayout

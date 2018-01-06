@@ -69,6 +69,7 @@ public class SWApplication extends Application {
             String userId = sharePreferences.getString(SWSignInActivity.SHARE_PREFERENCES_USER_ID, "");
             String userName = sharePreferences.getString(SWSignInActivity.SHARE_PREFERENCES_USER_NAME, "");
             String password = sharePreferences.getString(SWSignInActivity.SHARE_PREFERENCES_USER_PASSWORD, "");
+            log.d("into gobang, userName = " + userName);
             BmobUser user = new User(userId, userName, password);
             return user;
         } else {

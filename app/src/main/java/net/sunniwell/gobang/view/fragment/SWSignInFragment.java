@@ -2,6 +2,7 @@ package net.sunniwell.gobang.view.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,9 +81,9 @@ public class SWSignInFragment extends Fragment implements ISWOnSignInInterface.I
 
     private void login() {
         User user = (User) mPresenter.getUserInfo();
-        if (user != null) {
-            log.d("into gobang,user.getUserName() = " + user.getUserName() + ", user.getPassword() = " + user.getPassword());
-//            mPresenter.signIn(user.getUserName(), user.getPassword());
+        if (user != null && !TextUtils.isEmpty(user.getName())) {
+            log.d("into gobang,user.getName() = " + user.getName() + ", user.getPassword() = " + user.getPassword());
+//            mPresenter.signIn(user.getName(), user.getPassword());
             SWSignInActivity.startMainActivity();
         }
     }
