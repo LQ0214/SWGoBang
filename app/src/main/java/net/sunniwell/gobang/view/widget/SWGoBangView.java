@@ -91,8 +91,6 @@ public class SWGoBangView extends View implements ISWGoBangView {
      * 初始化内容
      */
     private void initView() {
-        setBackgroundColor(getResources().getColor(R.color.colorAccent));
-
         // 初始化画笔
         mPaint = new Paint();
         mPaint.setColor(getResources().getColor(R.color.colorPaint));
