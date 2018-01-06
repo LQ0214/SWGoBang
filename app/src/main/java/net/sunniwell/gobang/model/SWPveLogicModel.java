@@ -13,18 +13,6 @@ import java.util.List;
  * 人机对战逻辑处理类
  */
 public class SWPveLogicModel extends ASWChessLogicModel {
-
-    private int mRawAndColumnCount;
-    private int[][] mPosition;
-
-    public SWPveLogicModel() {
-        this(SWGoBangConstant.LINE_NUM);
-    }
-
-    public SWPveLogicModel(int count) {
-        mRawAndColumnCount = count;
-        mPosition = new int[mRawAndColumnCount][mRawAndColumnCount];
-    }
     private static final SWLogger log = SWLogger.getLogger("SWPveLogicModel");
 
     @Override
@@ -294,10 +282,8 @@ public class SWPveLogicModel extends ASWChessLogicModel {
             for (int j = 0; j < mRawAndColumnCount; j++) {
                 stringBuilder.append(mPosition[j][i]+" ");
             }
-            log.d("hjx    ====>>>   "+ stringBuilder.toString());
+            log.d("hjx    ====>>>   "+ stringBuilder.toString() + " mPosition= " + mPosition.hashCode());
             stringBuilder.delete(0,stringBuilder.length());
-
         }
-
     }
 }

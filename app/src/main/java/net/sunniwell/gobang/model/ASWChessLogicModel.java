@@ -186,17 +186,29 @@ public abstract class ASWChessLogicModel implements ISWChessLogicModel {
     @Override
     public boolean undo(int id, List<Point> blackArray, List<Point> whiteArray) {
         Point point;
-        if (blackArray.size() > 0) {
+        if (blackArray.size() > 0 && whiteArray.size() > 0) {
             point = blackArray.get(blackArray.size() - 1);
             blackArray.remove(blackArray.size() - 1);
             mPosition[point.x][point.y] = 0;
-        }
 
-        if (whiteArray.size() > 0) {
+            log.d("linhongbo: x = " + point.x + " y = " + point.y);
             point = whiteArray.get(whiteArray.size() - 1);
             whiteArray.remove(whiteArray.size() - 1);
             mPosition[point.x][point.y] = 0;
+            log.d("linhongbo: x = " + point.x + " y = " + point.y);
         }
+        printTable();
         return true;
+    }
+
+    private void printTable(){
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < mRawAndColumnCount; i++) {
+            for (int j = 0; j < mRawAndColumnCount; j++) {
+                stringBuilder.append(mPosition[j][i]+" ");
+            }
+            log.d("hjx    ====>>>   "+ stringBuilder.toString() + " mPosition= " + mPosition.hashCode());
+            stringBuilder.delete(0,stringBuilder.length());
+        }
     }
 }
