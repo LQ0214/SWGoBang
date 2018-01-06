@@ -213,20 +213,15 @@ public class SWGoBangView extends View implements ISWGoBangView {
                 return true;
             }
 
-            if (mGoBangPresenter instanceof SWPveGoBangPresenterImpl) {
-                if (mGoBangPresenter.isMyTurun()) {
-                    // 我方已落子，轮到对方
-                    mGoBangPresenter.handleChessPosition(point);
-                    // 重绘
-                    invalidate();
-                    mGoBangPresenter.playPiece(point.x, point.y, 1);
-                } else {
-                    Toast.makeText(getContext(), "急个卵，还没轮到你呢~~", Toast.LENGTH_LONG).show();
-                }
-            } else if (mGoBangPresenter instanceof SWPvpGoBangPresenterImpl) {
+            if (mGoBangPresenter.isMyTurun()) {
+                // 我方已落子，轮到对方
                 mGoBangPresenter.handleChessPosition(point);
                 // 重绘
                 invalidate();
+                if (mGoBangPresenter instanceof SWPveGoBangPresenterImpl)
+                    mGoBangPresenter.playPiece(point.x, point.y, 1);
+            } else {
+                Toast.makeText(getContext(), "急个卵，还没轮到你呢~~", Toast.LENGTH_LONG).show();
             }
         }
         return super.onTouchEvent(event);
@@ -307,9 +302,11 @@ public class SWGoBangView extends View implements ISWGoBangView {
     @Override
     public void playSucceed(Point point) {
         // 对方落子完成，轮到我方
-        mGoBangPresenter.handleChessPosition(point);
-        log.d("hjx    ====>>>  对方落子成功    point = " + point);
-        invalidate();
+        if (point != null) {
+            mGoBangPresenter.handleChessPosition(point);
+            log.d("hjx    ====>>>  对方落子成功    point = " + point);
+            invalidate();
+        }
     }
 
     /**

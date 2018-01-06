@@ -53,6 +53,7 @@ public abstract class ASWGoBangPresenterImpl implements ASWChessLogicModel.ISWPl
         mBlackArray = new ArrayList<Point>();
         mWhiteArray = new ArrayList<Point>();
         mChessType = Chess.BLACK;
+        mIsMyTurn = true;
     }
 
     @Override
@@ -62,6 +63,7 @@ public abstract class ASWGoBangPresenterImpl implements ASWChessLogicModel.ISWPl
 
     @Override
     public void playSucceed(Point point) {
+        mIsMyTurn = true;
         mChessbroadView.playSucceed(point);
     }
 
@@ -103,6 +105,7 @@ public abstract class ASWGoBangPresenterImpl implements ASWChessLogicModel.ISWPl
 
     @Override
     public void playPiece(int x, int y, int depth) {
+        mIsMyTurn = false;
         mChessLogicModel.setPlayPieceListener(this);
         mChessLogicModel.playPiece(x, y, depth);
     }

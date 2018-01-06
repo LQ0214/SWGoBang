@@ -37,6 +37,7 @@ public class SWPvpLogicModel extends ASWChessLogicModel {
 
     @Override
     public Point playPiece(int x, int y, int depth) {
+        mPlayPiece.playSucceed(null);
         return null;
     }
 }
