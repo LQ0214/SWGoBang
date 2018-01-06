@@ -22,7 +22,7 @@
         android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
         <activity android:name=".view.activity.SWMainHomeActivity" />
         <activity android:name=".view.activity.SWManAndMachineActivity" />
-        <activity android:name=".view.activity.SWManAndManActivity">
+        <activity android:name=".view.activity.SWPvPActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
