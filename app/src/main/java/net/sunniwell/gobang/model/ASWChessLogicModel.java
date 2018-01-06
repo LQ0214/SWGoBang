@@ -35,7 +35,6 @@ public abstract class ASWChessLogicModel implements ISWChessLogicModel {
 
     public abstract Point playPiece(int x, int y, int depth);
 
-
     @Override
     public boolean isGameOverMethod(int id, int x, int y) {
         if (x >= mRawAndColumnCount || x < 0 || y >= mRawAndColumnCount || y < 0) {

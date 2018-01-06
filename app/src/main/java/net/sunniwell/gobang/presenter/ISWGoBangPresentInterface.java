@@ -1,9 +1,5 @@
 package net.sunniwell.gobang.presenter;
 
-import android.graphics.Point;
-
-import java.util.List;
-
 /**
  * Created by Xing on 2018/1/5.
  */

@@ -2,7 +2,6 @@ package net.sunniwell.gobang.presenter;
 
 import net.sunniwell.gobang.SWApplication;
 import net.sunniwell.gobang.iswinterface.ISWOnRegisterInterface;
-import net.sunniwell.gobang.model.SWRegisterModel;
 import net.sunniwell.jar.log.SWLogger;
 
 import cn.bmob.v3.BmobUser;
@@ -17,7 +16,6 @@ import cn.bmob.v3.listener.SaveListener;
 public class SWRegisterPresenterImpl implements ISWOnRegisterInterface.ISWOnRegisterPresenterInterface {
     private static final SWLogger log = SWLogger.getLogger("SWRegisterPresenterImpl");
     private ISWOnRegisterInterface.ISWOnRegisterViewInterface mView;
-    private SWRegisterModel mModel = new SWRegisterModel();
 
     public SWRegisterPresenterImpl(ISWOnRegisterInterface.ISWOnRegisterViewInterface callback) {
         mView = callback;
