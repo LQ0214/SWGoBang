@@ -2,6 +2,7 @@ package net.sunniwell.gobang.model;
 
 import android.graphics.Point;
 
+import net.sunniwell.gobang.utils.SWGoBangConstant;
 import net.sunniwell.jar.log.SWLogger;
 
 /**
@@ -9,7 +10,6 @@ import net.sunniwell.jar.log.SWLogger;
  */
 public abstract class ASWChessLogicModel extends SWBaseModel implements ISWChessLogicModel {
     private static final SWLogger log = SWLogger.getLogger("ASWChessLogicModel");
-    protected static final int DEFAULT_RAW_COLUMN_COUNT = 12;
     protected int mRawAndColumnCount;
     protected int[][] mPosition;
 
@@ -20,7 +20,7 @@ public abstract class ASWChessLogicModel extends SWBaseModel implements ISWChess
     }
 
     public ASWChessLogicModel() {
-        this(DEFAULT_RAW_COLUMN_COUNT);
+        this(SWGoBangConstant.LINE_NUM);
     }
 
     public ASWChessLogicModel(int count) {

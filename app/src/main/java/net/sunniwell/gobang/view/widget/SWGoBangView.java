@@ -244,6 +244,7 @@ public class SWGoBangView extends View implements ISWGoBangView {
                 }
                 //TODO 根据黑白判断 五子连珠
                 mGoBangPresenter.isGameOverMethod(getUserId(), point.x, point.y);
+
                 mIsWhite = !mIsWhite;
                 // 重绘
                 invalidate();
@@ -318,7 +319,6 @@ public class SWGoBangView extends View implements ISWGoBangView {
 
     @Override
     public void gameOverCompleted(int id) {
-
         mEventCompletedListener.gameOverCompleted();
     }
 
@@ -336,6 +336,7 @@ public class SWGoBangView extends View implements ISWGoBangView {
     public void playSucceed(Point point) {
         log.d("hjx    ====>>>  对方落子成功    point = " + point);
         // 对方落子完成，轮到我方
+        mGoBangPresenter.isGameOverMethod(2, point.x, point.y);
         setIsMyTurn(true);
         if (mIsWhite) {
             mWhiteArray.add(point);
