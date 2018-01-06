@@ -70,6 +70,7 @@ public abstract class ASWGoBangPresenterImpl implements ASWChessLogicModel.ISWPl
     @Override
     public void restart(int id) {
         if (mChessLogicModel.restart(id)) {
+            mIsOver = false;
             mChessbroadView.restartCompleted(id);
         }
     }
@@ -96,15 +97,21 @@ public abstract class ASWGoBangPresenterImpl implements ASWChessLogicModel.ISWPl
         }
     }
 
+    private boolean mIsOver = false;
+
     @Override
     public void isGameOverMethod(int id, int x, int y) {
         if (mChessLogicModel.isGameOverMethod(id, x, y)) {
+            mIsOver = true;
             mChessbroadView.gameOverCompleted(id);
         }
     }
 
     @Override
     public void playPiece(int x, int y, int depth) {
+        if(mIsOver){
+            return;
+        }
         mIsMyTurn = false;
         mChessLogicModel.setPlayPieceListener(this);
         mChessLogicModel.playPiece(x, y, depth);
@@ -131,6 +138,9 @@ public abstract class ASWGoBangPresenterImpl implements ASWChessLogicModel.ISWPl
     public void handleChessPosition(Point point) {
         log.d("into gobang point.x = " + point.x + ",point.y = " + point.y + ",getChess().ordinal() = " + getChess().ordinal());
         //判断五子连珠
+        if(mIsOver){
+            return;
+        }
         isGameOverMethod(getChess().ordinal(), point.x, point.y);
         if (isWhiteChessType()) {
             mWhiteArray.add(point);

@@ -29,7 +29,7 @@ public class SWPveLogicModel extends ASWChessLogicModel {
 
     @Override
     public boolean restart(int id) {
-        return false;
+        return true;
     }
 
     @Override

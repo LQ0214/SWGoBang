@@ -1,8 +1,15 @@
 package net.sunniwell.gobang.view.activity;
 
+import android.animation.Animator;
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.PixelFormat;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -40,6 +47,8 @@ public class SWPvPActivity extends Activity implements SWGoBangView.ISWEventComp
     @Override
     public void restartCompleted() {
         log.d("hjx  ===>>>  model回调过来成功    重新开始。。。");
+        initView();
+        mGoBangView.invalidate();
     }
 
     @Override
@@ -60,6 +69,24 @@ public class SWPvPActivity extends Activity implements SWGoBangView.ISWEventComp
     @Override
     public void gameOverCompleted() {
         log.d("hjx  ===>>>  model回调过来成功    游戏结束。。。");
+        final WindowManager windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+        final View view = LayoutInflater.from(this).inflate(R.layout.view_gobang_finish, null);
+        Button back = (Button) view.findViewById(R.id.id_gobang_finish_return);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mGoBangView.setEnabled(false);
+                windowManager.removeViewImmediate(view);
+            }
+        });
+        WindowManager.LayoutParams wlp = new WindowManager.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        wlp.dimAmount = 0.0f;
+        wlp.format = PixelFormat.TRANSPARENT;
+        wlp.softInputMode = WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN;
+        wlp.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+        wlp.gravity = Gravity.CENTER;
+        windowManager.addView(view, wlp);
+
     }
 
     @Override
@@ -76,15 +103,15 @@ public class SWPvPActivity extends Activity implements SWGoBangView.ISWEventComp
                 break;
             case R.id.btn_undo:
                 Toast.makeText(SWPvPActivity.this, getResources().getString(R.string.game_board_undo), Toast.LENGTH_LONG).show();
-                mGoBangView.drawPiece();
+                mGoBangView.undo();
                 break;
             case R.id.btn_drawpiece:
                 Toast.makeText(SWPvPActivity.this, getResources().getString(R.string.game_board_draw_piece), Toast.LENGTH_LONG).show();
-                mGoBangView.reStart();
+                mGoBangView.drawPiece();
                 break;
             case R.id.btn_restart:
                 Toast.makeText(SWPvPActivity.this, getResources().getString(R.string.game_board_restart), Toast.LENGTH_LONG).show();
-                mGoBangView.undo();
+                mGoBangView.reStart();
                 break;
         }
 
