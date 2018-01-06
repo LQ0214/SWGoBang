@@ -10,23 +10,17 @@ import java.util.List;
  * 玩家对战逻辑处理类
  */
 public class SWPvpLogicModel extends ASWChessLogicModel {
-    private  SWLogger log = SWLogger.getLogger(SWPvpLogicModel.class.getSimpleName());
+    private SWLogger log = SWLogger.getLogger(SWPvpLogicModel.class.getSimpleName());
 
     @Override
     public boolean restart(int id) {
-        log.d("hjx   ==model做逻辑操作==>>>  restart.....    id = "+id);
-        return true;
-    }
-
-    @Override
-    public boolean undo(int id) {
-        log.d("hjx   ==model做逻辑操作==>>>  undo.....    id = "+id);
+        log.d("hjx   ==model做逻辑操作==>>>  restart.....    id = " + id);
         return true;
     }
 
     @Override
     public boolean giveup(int id) {
-        log.d("hjx   ==model做逻辑操作==>>>  giveup.....     id = "+id);
+        log.d("hjx   ==model做逻辑操作==>>>  giveup.....     id = " + id);
         return false;
     }
 

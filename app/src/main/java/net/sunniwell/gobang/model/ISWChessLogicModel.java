@@ -20,7 +20,7 @@ public interface ISWChessLogicModel {
     /**
      * 悔棋
      */
-    boolean undo(int id);
+    boolean undo(int id, List<Point> blackArray, List<Point> whiteArray);
 
     /**
      * 认输

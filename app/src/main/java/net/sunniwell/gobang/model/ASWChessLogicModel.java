@@ -5,6 +5,8 @@ import android.graphics.Point;
 import net.sunniwell.gobang.utils.SWGoBangConstant;
 import net.sunniwell.jar.log.SWLogger;
 
+import java.util.List;
+
 /**
  * 棋盘逻辑处理实现类
  */
@@ -179,5 +181,22 @@ public abstract class ASWChessLogicModel implements ISWChessLogicModel {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean undo(int id, List<Point> blackArray, List<Point> whiteArray) {
+        Point point;
+        if (blackArray.size() > 0) {
+            point = blackArray.get(blackArray.size() - 1);
+            blackArray.remove(blackArray.size() - 1);
+            mPosition[point.x][point.y] = 0;
+        }
+
+        if (whiteArray.size() > 0) {
+            point = whiteArray.get(whiteArray.size() - 1);
+            whiteArray.remove(whiteArray.size() - 1);
+            mPosition[point.x][point.y] = 0;
+        }
+        return true;
     }
 }

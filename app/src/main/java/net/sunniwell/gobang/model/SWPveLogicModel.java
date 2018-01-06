@@ -33,11 +33,6 @@ public class SWPveLogicModel extends ASWChessLogicModel {
     }
 
     @Override
-    public boolean undo(int id) {
-        return false;
-    }
-
-    @Override
     public boolean giveup(int id) {
         return false;
     }

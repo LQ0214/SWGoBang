@@ -25,7 +25,7 @@ import net.sunniwell.jar.log.SWLogger;
  * Created by Administrator on 2018/1/6.
  */
 
-public abstract class BasePlayActivity extends Activity implements SWGoBangView.ISWEventCompletedListener, SWSectorMenuView.ISWOnButtonClickListener {
+public abstract class SWBasePlayActivity extends Activity implements SWGoBangView.ISWEventCompletedListener, SWSectorMenuView.ISWOnButtonClickListener {
     protected SWLogger log = SWLogger.getLogger(SWPveActivity.class.getSimpleName());
     protected SWGoBangView mGoBangView;
     protected SWSectorMenuView mSectorMenuView;
@@ -60,12 +60,13 @@ public abstract class BasePlayActivity extends Activity implements SWGoBangView.
     @Override
     public void restartCompleted() {
         initView();
+        initData();
         mGoBangView.invalidate();
     }
 
     @Override
     public void undoCompleted() {
-
+        mGoBangView.invalidate();
     }
 
     @Override
@@ -108,20 +109,20 @@ public abstract class BasePlayActivity extends Activity implements SWGoBangView.
     public void onButtonClick(View v) {
         switch (v.getId()) {
             case R.id.btn_giveup:
-                Toast.makeText(BasePlayActivity.this, getResources().getString(R.string.game_board_give_up), Toast.LENGTH_LONG).show();
+                Toast.makeText(SWBasePlayActivity.this, getResources().getString(R.string.game_board_give_up), Toast.LENGTH_LONG).show();
                 mGoBangView.giveup();
                 break;
             case R.id.btn_undo:
-                Toast.makeText(BasePlayActivity.this, getResources().getString(R.string.game_board_undo), Toast.LENGTH_LONG).show();
-                mGoBangView.drawPiece();
+                Toast.makeText(SWBasePlayActivity.this, getResources().getString(R.string.game_board_undo), Toast.LENGTH_LONG).show();
+                mGoBangView.undo();
                 break;
             case R.id.btn_drawpiece:
-                Toast.makeText(BasePlayActivity.this, getResources().getString(R.string.game_board_draw_piece), Toast.LENGTH_LONG).show();
-                mGoBangView.reStart();
+                Toast.makeText(SWBasePlayActivity.this, getResources().getString(R.string.game_board_draw_piece), Toast.LENGTH_LONG).show();
+                mGoBangView.drawPiece();
                 break;
             case R.id.btn_restart:
-                Toast.makeText(BasePlayActivity.this, getResources().getString(R.string.game_board_restart), Toast.LENGTH_LONG).show();
-                mGoBangView.undo();
+                Toast.makeText(SWBasePlayActivity.this, getResources().getString(R.string.game_board_restart), Toast.LENGTH_LONG).show();
+                mGoBangView.reStart();
                 break;
         }
     }

@@ -240,7 +240,7 @@ public class SWGoBangView extends View implements ISWGoBangView {
      */
     public void undo() {
         if (mGoBangPresenter != null) {
-            mGoBangPresenter.undo(mUserId);
+            mGoBangPresenter.undo(mUserId, mGoBangPresenter.getBlackArray(), mGoBangPresenter.getWhiteArray());
         }
     }
 

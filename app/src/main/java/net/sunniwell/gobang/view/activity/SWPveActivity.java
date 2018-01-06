@@ -8,7 +8,7 @@ import net.sunniwell.gobang.presenter.SWPveGoBangPresenterImpl;
  * 人机对战模式Activity
  */
 
-public class SWPveActivity extends BasePlayActivity {
+public class SWPveActivity extends SWBasePlayActivity {
 
     @Override
     protected void initData() {

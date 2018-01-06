@@ -7,7 +7,7 @@ import net.sunniwell.gobang.presenter.SWPvpGoBangPresenterImpl;
  * 联网模式Activity
  */
 
-public class SWPvPActivity extends BasePlayActivity {
+public class SWPvPActivity extends SWBasePlayActivity {
     @Override
     protected void initData() {
         super.initData();

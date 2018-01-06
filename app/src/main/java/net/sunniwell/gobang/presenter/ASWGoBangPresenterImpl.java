@@ -76,8 +76,8 @@ public abstract class ASWGoBangPresenterImpl implements ASWChessLogicModel.ISWPl
     }
 
     @Override
-    public void undo(int id) {
-        if (mChessLogicModel.undo(id)) {
+    public void undo(int id, List<Point> blackArray, List<Point> whiteArray) {
+        if (mChessLogicModel.undo(id, blackArray, whiteArray)) {
             mChessbroadView.undoCompleted(id);
         }
     }
