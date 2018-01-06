@@ -35,17 +35,6 @@ public class SWPvpLogicModel extends ASWChessLogicModel {
         return true;
     }
 
-
-    @Override
-    public boolean isGameOverMethod(int id, List<Point> whitePoints, List<Point> blackPoints) {
-        return true;
-    }
-
-    @Override
-    public boolean isFiveConnect(List<Point> points) {
-        return true;
-    }
-
     @Override
     public Point playPiece(int x, int y, int depth) {
         return null;

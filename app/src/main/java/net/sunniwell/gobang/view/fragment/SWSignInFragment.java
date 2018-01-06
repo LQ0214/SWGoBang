@@ -86,7 +86,7 @@ public class SWSignInFragment extends Fragment implements ISWOnSignInInterface.I
         if (user != null) {
             log.d("into gobang,user.getUserName() = " + user.getUserName() + ", user.getPassword() = " + user.getPassword());
 //            mPresenter.signIn(user.getUserName(), user.getPassword());
-//            SWSignInActivity.startMainActivity();
+            SWSignInActivity.startMainActivity();
         }
     }
 }

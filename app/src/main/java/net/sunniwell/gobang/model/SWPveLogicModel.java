@@ -3,6 +3,7 @@ package net.sunniwell.gobang.model;
 import android.graphics.Point;
 
 import net.sunniwell.gobang.utils.SWGoBangConstant;
+import net.sunniwell.jar.log.SWLogger;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class SWPveLogicModel extends ASWChessLogicModel {
         mRawAndColumnCount = count;
         mPosition = new int[mRawAndColumnCount][mRawAndColumnCount];
     }
+    private static final SWLogger log = SWLogger.getLogger("SWPveLogicModel");
 
     @Override
     public boolean restart(int id) {
@@ -46,19 +48,8 @@ public class SWPveLogicModel extends ASWChessLogicModel {
     }
 
     @Override
-    public boolean isGameOverMethod(int id, List<Point> whitePoints, List<Point> blackPoints) {
-        return false;
-    }
-
-    @Override
-    public boolean isFiveConnect(List<Point> points) {
-        return false;
-    }
-
-    @Override
     public Point playPiece(int x, int y, int depth) {
         //TODO 人机算法 计算棋子落子的point 成功回调 mPlayPiece.playSucceed 失败回调mPlayPiece.playFailed
-        mPosition[x][y] = 1;
         int best = Integer.MIN_VALUE;
         List<Point> usefulPositionList = getUsefulPositionList();
         List<Point> bestPoints = new ArrayList<Point>();

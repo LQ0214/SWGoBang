@@ -17,9 +17,7 @@ public interface ISWGoBangPresentInterface {
 
     void drawPiece(int id);
 
-    void isGameOverMethod(int id, List<Point> whitePoints, List<Point> blackPoints);
-
-    void isFiveConnect(List<Point> points);
+    void isGameOverMethod(int id, int x, int y);
 
     void playPiece(int x, int y, int depth);
 }

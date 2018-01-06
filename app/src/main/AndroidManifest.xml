@@ -29,6 +29,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.activity.SWPveActivity" />
+        <activity android:name=".view.activity.SWPvPActivity"/>
+        <activity android:name=".view.activity.SWSettingActivity"/>
+        <activity android:name=".view.activity.SWAboutAcitvity"/>
     </application>
 
 </manifest>

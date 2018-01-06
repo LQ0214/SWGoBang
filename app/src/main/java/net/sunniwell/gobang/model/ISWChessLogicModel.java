@@ -35,15 +35,5 @@ public interface ISWChessLogicModel {
     /**
      * 判断是否胜利
      */
-    boolean isGameOverMethod(int id, List<Point> whitePoints, List<Point> blackPoints);
-
-    /**
-     * 是否五子连珠
-     *
-     * @param points
-     * @return
-     */
-    boolean isFiveConnect(List<Point> points);
-
-
+    boolean isGameOverMethod(int id, int x, int y);
 }

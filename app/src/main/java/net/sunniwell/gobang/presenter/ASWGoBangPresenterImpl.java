@@ -68,16 +68,9 @@ public abstract class ASWGoBangPresenterImpl implements ASWChessLogicModel.ISWPl
     }
 
     @Override
-    public void isGameOverMethod(int id, List<Point> whitePoints, List<Point> blackPoints) {
-        if (mChessLogicModel.isGameOverMethod(id, whitePoints, blackPoints)) {
+    public void isGameOverMethod(int id, int x, int y) {
+        if (mChessLogicModel.isGameOverMethod(id, x, y)) {
             mChessbroadView.gameOverCompleted(id);
-        }
-    }
-
-    @Override
-    public void isFiveConnect(List<Point> points) {
-        if (mChessLogicModel.isFiveConnect(points)) {
-            mChessbroadView.fiveConnectCompleted();
         }
     }
 
