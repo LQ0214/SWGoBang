@@ -49,7 +49,8 @@ public class SWPveLogicModel extends ASWChessLogicModel {
 
     @Override
     public Point playPiece(int x, int y, int depth) {
-        //TODO 人机算法 计算棋子落子的point 成功回调 mPlayPiece.playSucceed 失败回调mPlayPiece.playFailed
+        log.d("playPiece x = " + x + " y = " + y);
+        mPosition[x][y] = 1;
         int best = Integer.MIN_VALUE;
         List<Point> usefulPositionList = getUsefulPositionList();
         List<Point> bestPoints = new ArrayList<Point>();
@@ -66,13 +67,14 @@ public class SWPveLogicModel extends ASWChessLogicModel {
             }
             mPosition[point.x][point.y] = 0;
         }
-
         Point point = bestPoints.get(new SecureRandom().nextInt(bestPoints.size()));
         if (point != null) {
+            mPosition[point.x][point.y] = 2;
             mPlayPiece.playSucceed(point);
         } else {
             mPlayPiece.playFailed();
         }
+        printTable();
         return point;
     }
 
@@ -289,5 +291,18 @@ public class SWPveLogicModel extends ASWChessLogicModel {
         }
         tmpScore += scoreTable(number, emptyBlock);
         return tmpScore;
+    }
+
+    private void printTable(){
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < mRawAndColumnCount; i++) {
+            for (int j = 0; j < mRawAndColumnCount; j++) {
+                stringBuilder.append(mPosition[j][i]+" ");
+            }
+            log.d("hjx    ====>>>   "+ stringBuilder.toString());
+            stringBuilder.delete(0,stringBuilder.length());
+
+        }
+
     }
 }

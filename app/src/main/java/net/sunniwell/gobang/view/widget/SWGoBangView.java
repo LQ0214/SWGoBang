@@ -6,6 +6,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -234,26 +236,25 @@ public class SWGoBangView extends View implements ISWGoBangView {
             if (mBlackArray.contains(point) || mWhiteArray.contains(point)) {
                 return true;
             }
-            if (mIsWhite) {
-                mWhiteArray.add(point);
+            if (isIsMyTurn()) {
+                if (mIsWhite) {
+                    mWhiteArray.add(point);
+                } else {
+                    mBlackArray.add(point);
+                }
+                //TODO 根据黑白判断 五子连珠
+                mGoBangPresenter.isGameOverMethod(getUserId(), point.x, point.y);
+                mIsWhite = !mIsWhite;
+                // 重绘
+                invalidate();
+                //TODO maxNotAlphaBeta(int x, int y, int depth：算法往前先算多的步数)
+                log.d("hjx   ==我方落子==>>>   point.x = " + point.x + "    point.y = " + point.y);
+                // 我方已落子，轮到对方
+                setIsMyTurn(false);
+                mGoBangPresenter.playPiece(point.x, point.y, 1);
             } else {
-                mBlackArray.add(point);
+                Toast.makeText(getContext(), "急个卵，还没轮到你呢~~", Toast.LENGTH_LONG).show();
             }
-            //TODO 根据黑白判断 五子连珠
-            mGoBangPresenter.isGameOverMethod(getUserId(), point.x, point.y);
-            mIsWhite = !mIsWhite;
-            // 重绘
-            invalidate();
-            //TODO maxNotAlphaBeta(int x, int y, int depth：算法往前先算多的步数)
-            log.d("hjx   ==我方落子==>>>   point.x = " + point.x + "    point.y = " + point.y);
-            // 我方已落子，轮到对方
-            setIsMyTurn(false);
-            mGoBangPresenter.playPiece(point.x, point.y, 1);
-//            if (isIsMyTurn()) {
-//
-//            } else {
-//                Toast.makeText(getContext(), "急个卵，还没轮到你呢~~", Toast.LENGTH_LONG).show();
-//            }
         }
         return super.onTouchEvent(event);
     }
