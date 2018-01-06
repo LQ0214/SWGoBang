@@ -20,7 +20,7 @@ public class SWSignInPresenterImpl implements ISWOnSignInInterface.ISWOnSignInPr
     private ISWOnSignInInterface.ISWOnSignInViewInterface mView;
     private SWRegisterModel mModel = new SWRegisterModel();
 
-    public SWSignInPresenterImpl(ISWOnSignInInterface.ISWOnSignInViewInterface view){
+    public SWSignInPresenterImpl(ISWOnSignInInterface.ISWOnSignInViewInterface view) {
         mView = view;
     }
 
@@ -34,7 +34,7 @@ public class SWSignInPresenterImpl implements ISWOnSignInInterface.ISWOnSignInPr
             @Override
             public void done(BmobUser bmobUser, BmobException e) {
                 if (e == null) {
-                    mModel.saveUserInfo2SharePreferences(SWApplication.getContext(), userName, userPassword);
+                    mModel.saveUserInfo2SharePreferences(SWApplication.getContext(), bmobUser.getMobilePhoneNumber(), userName, userPassword);
                     if (mView != null) {
                         mView.onSignInSucceed();
                     } else {
@@ -50,5 +50,10 @@ public class SWSignInPresenterImpl implements ISWOnSignInInterface.ISWOnSignInPr
             }
         });
 
+    }
+
+    @Override
+    public BmobUser getUserInfo() {
+        return mModel.getUserInfoFromSharePreferences(SWApplication.getContext());
     }
 }

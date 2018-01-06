@@ -16,9 +16,11 @@ import net.sunniwell.gobang.utils.FragmentUtil;
 import net.sunniwell.gobang.view.activity.SWSignInActivity;
 import net.sunniwell.jar.log.SWLogger;
 
+import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobSMS;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.CountListener;
 import cn.bmob.v3.listener.QueryListener;
 
 /**
@@ -80,24 +82,44 @@ public class SWRegisterFragment extends Fragment implements ISWOnRegisterInterfa
                 mPresenter.register(userInfo, userPassword, userSmsCode);
                 break;
             case R.id.id_back:
-                FragmentUtil.hide(getFragmentManager(),this);
+                FragmentUtil.hide(getFragmentManager(), this);
                 FragmentUtil.show(getFragmentManager(), SWSignInFragment.class.getSimpleName());
                 break;
             case R.id.id_send_sms_code:
-                BmobSMS.requestSMSCode(mTelNumber.getText().toString(), "朝歌帐号注册", new QueryListener<Integer>() {
-                    @Override
-                    public void done(Integer integer, BmobException e) {
-                        if (e == null) {
-                            Toast.makeText(SWRegisterFragment.this.getActivity(), R.string.string_sms_code_send_succeed, Toast.LENGTH_SHORT).show();
-                        } else {
-                            new Throwable("sms code send error");
-                            Toast.makeText(SWRegisterFragment.this.getActivity(), R.string.string_sms_code_send_failed, Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                requestSMSCode();
                 break;
             default:
                 break;
         }
+    }
+
+    private void requestSMSCode() {
+        new BmobQuery<BmobUser>()
+                .addWhereEqualTo("mobilePhoneNumber", mTelNumber.getText().toString())
+                .count(BmobUser.class, new CountListener() {
+                    @Override
+                    public void done(Integer count, BmobException e) {
+                        if (e == null) {
+                            log.d("into gobang,count = " + count);
+                            if (count != 0) {
+                                Toast.makeText(SWRegisterFragment.this.getActivity(), R.string.string_user_exist, Toast.LENGTH_SHORT).show();
+                            } else {
+                                BmobSMS.requestSMSCode(mTelNumber.getText().toString(), "朝歌帐号注册", new QueryListener<Integer>() {
+                                    @Override
+                                    public void done(Integer integer, BmobException e) {
+                                        if (e == null) {
+                                            Toast.makeText(SWRegisterFragment.this.getActivity(), R.string.string_sms_code_send_succeed, Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            new Throwable("sms code send error");
+                                            Toast.makeText(SWRegisterFragment.this.getActivity(), R.string.string_sms_code_send_failed, Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                            }
+                        } else {
+                            Toast.makeText(SWRegisterFragment.this.getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 }

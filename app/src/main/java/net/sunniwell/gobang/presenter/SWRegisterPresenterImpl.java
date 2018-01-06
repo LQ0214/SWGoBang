@@ -27,11 +27,12 @@ public class SWRegisterPresenterImpl implements ISWOnRegisterInterface.ISWOnRegi
     public void register(BmobUser userInfo, final String userPassword, String smsCode) {
         log.d("register");
         final String userName = userInfo.getUsername();
+        final String userId = userInfo.getMobilePhoneNumber();
         userInfo.signOrLogin(smsCode, new SaveListener<BmobUser>() {
             @Override
             public void done(BmobUser bmobUser, BmobException e) {
                 if (e == null) {
-                    mModel.saveUserInfo2SharePreferences(SWApplication.getContext(), userName, userPassword);
+                    mModel.saveUserInfo2SharePreferences(SWApplication.getContext(), userId, userName, userPassword);
                     if (mView != null) {
                         mView.onRegisterSucceed();
                     } else {

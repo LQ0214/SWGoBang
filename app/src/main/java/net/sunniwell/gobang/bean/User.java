@@ -6,20 +6,21 @@ import cn.bmob.v3.BmobUser;
  * Created by Administrator on 2018/1/4.
  */
 
-public class User extends BmobUser{
-    private int mUserId;
+public class User extends BmobUser {
+    private String mUserId;
     private String mUserName;
     private String mPassword;
 
-    public User(int userId, String userName) {
+    public User(String userId, String userName, String password) {
         mUserId = userId;
         mUserName = userName;
+        mPassword = password;
     }
 
     public void setUserId(int userId) {
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return mUserId;
     }
 
@@ -27,7 +28,7 @@ public class User extends BmobUser{
         this.mUserName = userName;
     }
 
-    public String getUserNam() {
+    public String getUserName() {
         return mUserName;
     }
 
