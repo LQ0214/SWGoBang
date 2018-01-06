@@ -28,10 +28,6 @@ import java.util.List;
 public class SWGoBangView extends View implements ISWGoBangView {
     private SWLogger log = SWLogger.getLogger(SWGoBangView.class.getSimpleName());
 
-    /**
-     * 线条数量
-     */
-    private static final int LINE_NUM = 12;
     private int mLineWidth;
     private float mLineHeight;
     private Paint mPaint;
@@ -144,7 +140,7 @@ public class SWGoBangView extends View implements ISWGoBangView {
         super.onSizeChanged(w, h, oldw, oldh);
         log.d("hjx   ===>>>  Size改变。。。");
         mLineWidth = w;
-        mLineHeight = mLineWidth * 1.0f / LINE_NUM;
+        mLineHeight = mLineWidth * 1.0f / SWGoBangConstant.LINE_NUM;
         log.d("hjx   ===>>>   宽 = " + mLineWidth + "      高 = " + mLineHeight);
 
         int pieceWidth = (int) (mLineHeight * PIECE_SCALE);
@@ -189,14 +185,14 @@ public class SWGoBangView extends View implements ISWGoBangView {
         int width = mLineWidth;
         float lineHeight = mLineHeight;
         // 画横线
-        for (int i = 0; i < LINE_NUM; i++) {
+        for (int i = 0; i < SWGoBangConstant.LINE_NUM; i++) {
             int startX = (int) (lineHeight / 2);
             int stopX = (int) (width - lineHeight / 2);
             int y = (int) ((0.5 + i) * lineHeight);
             canvas.drawLine(startX, y, stopX, y, mPaint);
         }
         // 画竖线
-        for (int i = 0; i < LINE_NUM; i++) {
+        for (int i = 0; i < SWGoBangConstant.LINE_NUM; i++) {
             int x = (int) ((0.5 + i) * lineHeight);
             int startY = (int) (lineHeight / 2);
             int stopY = (int) (width - lineHeight / 2);
@@ -226,7 +222,7 @@ public class SWGoBangView extends View implements ISWGoBangView {
             }
             //TODO 根据黑白判断 五子连珠
             mGoBangPresenter.isGameOverMethod(getUserId(), mWhiteArray, mBlackArray);
-            mGoBangPresenter.playPiece(x, y, 4);
+            mGoBangPresenter.playPiece(point.x, point.y, 4);
             mIsWhite = !mIsWhite;
             // 重绘
             invalidate();

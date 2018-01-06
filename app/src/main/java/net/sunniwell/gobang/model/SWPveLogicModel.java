@@ -2,6 +2,8 @@ package net.sunniwell.gobang.model;
 
 import android.graphics.Point;
 
+import net.sunniwell.gobang.utils.SWGoBangConstant;
+
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +13,11 @@ import java.util.List;
  */
 public class SWPveLogicModel extends ASWChessLogicModel {
 
-    private static final int DEFAULT_RAW_COLUMN_COUNT = 12;
     private int mRawAndColumnCount;
     private int[][] mPosition;
 
     public SWPveLogicModel() {
-        this(DEFAULT_RAW_COLUMN_COUNT);
+        this(SWGoBangConstant.LINE_NUM);
     }
 
     public SWPveLogicModel(int count) {

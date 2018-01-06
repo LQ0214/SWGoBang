@@ -17,4 +17,10 @@ public class SWGoBangConstant {
      * 蓝牙模式
      */
     public static final int P_BLUETOOTH_BATTLE_MODE = 3;
+
+
+    /**
+     * 绘制棋盘线条数量
+     */
+    public static final int LINE_NUM = 15;
 }
