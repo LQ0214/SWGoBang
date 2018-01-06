@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/main_background">
 
-
     <net.sunniwell.gobang.view.widget.SWGoBangView
         android:id="@+id/play_game_board"
         android:layout_width="match_parent"
