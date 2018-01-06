@@ -140,29 +140,6 @@
             android:textColor="@color/color_black"
             android:textSize="30sp" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/game_board_give_up"
-            android:textSize="30sp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/game_board_undo"
-            android:textSize="30sp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/game_board_draw_piece"
-            android:textSize="30sp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/game_board_restart"
-            android:textSize="30sp" />
     </LinearLayout>
 
     <net.sunniwell.gobang.view.widget.SWSectorMenuView
@@ -171,7 +148,7 @@
         android:layout_height="200dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:background="@color/color_transparent"/>
+        android:background="@color/color_transparent" />
 
 
 </RelativeLayout>

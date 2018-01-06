@@ -63,7 +63,7 @@ public class SWGoBangView extends View implements ISWGoBangView {
 
         void giveupCompleted();
 
-        void drawPieveCompleted();
+        void drawPieceCompleted();
 
         void gameOverCompleted();
 
@@ -246,36 +246,36 @@ public class SWGoBangView extends View implements ISWGoBangView {
     /**
      * 向外提供的接口 ： 重新开始
      */
-    public void reStart(int id) {
+    public void reStart() {
         if (mGoBangPresenter != null) {
-            mGoBangPresenter.restart(id);
+            mGoBangPresenter.restart(mUserId);
         }
     }
 
     /**
      * 向外提供的接口 ： 悔棋
      */
-    public void undo(int id) {
+    public void undo() {
         if (mGoBangPresenter != null) {
-            mGoBangPresenter.undo(id);
+            mGoBangPresenter.undo(mUserId);
         }
     }
 
     /**
      * 向外提供的接口 ： 认输
      */
-    public void giveup(int id) {
+    public void giveup() {
         if (mGoBangPresenter != null) {
-            mGoBangPresenter.giveup(id);
+            mGoBangPresenter.giveup(mUserId);
         }
     }
 
     /**
      * 向外提供的接口 ： 和棋
      */
-    public void drawPiece(int id) {
+    public void drawPiece() {
         if (mGoBangPresenter != null) {
-            mGoBangPresenter.drawPiece(id);
+            mGoBangPresenter.drawPiece(mUserId);
         }
     }
 
@@ -296,7 +296,7 @@ public class SWGoBangView extends View implements ISWGoBangView {
 
     @Override
     public void drawPieveCompleted(int id) {
-        mEventCompletedListener.drawPieveCompleted();
+        mEventCompletedListener.drawPieceCompleted();
     }
 
     @Override
