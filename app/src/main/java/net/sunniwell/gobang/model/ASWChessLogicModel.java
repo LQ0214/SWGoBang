@@ -8,10 +8,11 @@ import net.sunniwell.jar.log.SWLogger;
 /**
  * 棋盘逻辑处理实现类
  */
-public abstract class ASWChessLogicModel extends SWBaseModel implements ISWChessLogicModel {
+public abstract class ASWChessLogicModel implements ISWChessLogicModel {
     private static final SWLogger log = SWLogger.getLogger("ASWChessLogicModel");
     protected int mRawAndColumnCount;
     protected int[][] mPosition;
+    protected ISWPlayPiece mPlayPiece;
 
     public interface ISWPlayPiece {
         void playSucceed(Point point);
@@ -28,9 +29,6 @@ public abstract class ASWChessLogicModel extends SWBaseModel implements ISWChess
         mPosition = new int[mRawAndColumnCount][mRawAndColumnCount];
     }
 
-
-    public ISWPlayPiece mPlayPiece;
-
     public void setPlayPieceListener(ISWPlayPiece playPiece) {
         mPlayPiece = playPiece;
     }
@@ -45,7 +43,7 @@ public abstract class ASWChessLogicModel extends SWBaseModel implements ISWChess
         }
         mPosition[x][y] = id;
         boolean flag = checkXDirection(id, x, y) || checkYDirection(id, x, y) || checkXYDirection(id, x, y) || checkYXDirection(id, x, y);
-        log.d("linhongbo: isGameOverMethod flag = " + flag);
+        log.d("linhongbo: isGameOverMethod flag = " + flag + ",id  = " + id);
         return flag;
     }
 

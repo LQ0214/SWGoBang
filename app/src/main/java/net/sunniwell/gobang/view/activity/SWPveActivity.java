@@ -17,7 +17,7 @@ import net.sunniwell.jar.log.SWLogger;
  * 人机对战模式Activity
  */
 
-public class SWPveActivity extends Activity implements SWGoBangView.ISWEventCompletedListener, SWSectorMenuView.ISWOnButtonClickListener{
+public class SWPveActivity extends Activity implements SWGoBangView.ISWEventCompletedListener, SWSectorMenuView.ISWOnButtonClickListener {
     private SWLogger log = SWLogger.getLogger(SWPveActivity.class.getSimpleName());
     private SWGoBangView mGoBangView;
     private SWSectorMenuView mSectorMenuView;
@@ -34,11 +34,8 @@ public class SWPveActivity extends Activity implements SWGoBangView.ISWEventComp
         // 设置对战模式的presenter
         mGoBangView.setGoBangPresenter(new SWPveGoBangPresenterImpl(mGoBangView));
         mGoBangView.setEventCompletedListener(this);
-        //绑定用户ID
-        mGoBangView.setUserId(789);
         mSectorMenuView = (SWSectorMenuView) findViewById(R.id.play_game_sector_menu);
         mSectorMenuView.setOnButtonClickListener(this);
-
     }
 
     @Override
@@ -91,6 +88,5 @@ public class SWPveActivity extends Activity implements SWGoBangView.ISWEventComp
                 mGoBangView.undo();
                 break;
         }
-
     }
 }

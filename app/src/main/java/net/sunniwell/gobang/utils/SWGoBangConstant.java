@@ -18,6 +18,9 @@ public class SWGoBangConstant {
      */
     public static final int P_BLUETOOTH_BATTLE_MODE = 3;
 
+    public static final int PLAY_FIRST = 1;
+
+
 
     /**
      * 绘制棋盘线条数量

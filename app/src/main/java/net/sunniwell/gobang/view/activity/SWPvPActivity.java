@@ -33,10 +33,8 @@ public class SWPvPActivity extends Activity implements SWGoBangView.ISWEventComp
         // 设置对战模式的presenter
         mGoBangView.setGoBangPresenter(new SWPvpGoBangPresenterImpl(mGoBangView));
         mGoBangView.setEventCompletedListener(this);
-        mGoBangView.setUserId(789);
         mSectorMenuView = (SWSectorMenuView) findViewById(R.id.play_game_sector_menu);
         mSectorMenuView.setOnButtonClickListener(this);
-
     }
 
     @Override

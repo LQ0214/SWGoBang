@@ -34,7 +34,7 @@ public class SWSignInPresenterImpl implements ISWOnSignInInterface.ISWOnSignInPr
             @Override
             public void done(BmobUser bmobUser, BmobException e) {
                 if (e == null) {
-                    mModel.saveUserInfo2SharePreferences(SWApplication.getContext(), bmobUser.getMobilePhoneNumber(), userName, userPassword);
+                    SWApplication.saveUserInfo2SharePreferences(SWApplication.getContext(), bmobUser.getMobilePhoneNumber(), userName, userPassword);
                     if (mView != null) {
                         mView.onSignInSucceed();
                     } else {
@@ -54,6 +54,6 @@ public class SWSignInPresenterImpl implements ISWOnSignInInterface.ISWOnSignInPr
 
     @Override
     public BmobUser getUserInfo() {
-        return mModel.getUserInfoFromSharePreferences(SWApplication.getContext());
+        return SWApplication.getUserInfoFromSharePreferences();
     }
 }

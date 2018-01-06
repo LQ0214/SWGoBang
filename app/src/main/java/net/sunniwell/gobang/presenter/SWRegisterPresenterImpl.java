@@ -32,7 +32,7 @@ public class SWRegisterPresenterImpl implements ISWOnRegisterInterface.ISWOnRegi
             @Override
             public void done(BmobUser bmobUser, BmobException e) {
                 if (e == null) {
-                    mModel.saveUserInfo2SharePreferences(SWApplication.getContext(), userId, userName, userPassword);
+                    SWApplication.saveUserInfo2SharePreferences(SWApplication.getContext(), userId, userName, userPassword);
                     if (mView != null) {
                         mView.onRegisterSucceed();
                     } else {

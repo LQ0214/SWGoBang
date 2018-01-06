@@ -6,8 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.os.Handler;
-import android.os.Looper;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,12 +14,11 @@ import android.widget.Toast;
 
 import net.sunniwell.gobang.R;
 import net.sunniwell.gobang.presenter.ASWGoBangPresenterImpl;
+import net.sunniwell.gobang.presenter.SWPveGoBangPresenterImpl;
+import net.sunniwell.gobang.presenter.SWPvpGoBangPresenterImpl;
 import net.sunniwell.gobang.utils.SWGoBangConstant;
 import net.sunniwell.gobang.view.ISWGoBangView;
 import net.sunniwell.jar.log.SWLogger;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Xing on 2018/1/4.
@@ -39,23 +37,10 @@ public class SWGoBangView extends View implements ISWGoBangView {
      */
     private static final float PIECE_SCALE = 3 * 1.0f / 4;
     private boolean mIsWhite;
-    /**
-     * 黑色棋子list
-     */
-    private List<Point> mBlackArray;
-    /**
-     * 白色棋子list
-     */
-    private List<Point> mWhiteArray;
 
     private ASWGoBangPresenterImpl mGoBangPresenter;
     private ISWEventCompletedListener mEventCompletedListener;
     private int mUserId;
-    /**
-     * 是否轮到我方
-     */
-    private boolean mIsMyTurn;
-
 
     public interface ISWEventCompletedListener {
         void restartCompleted();
@@ -89,35 +74,24 @@ public class SWGoBangView extends View implements ISWGoBangView {
         initView();
     }
 
-    public int getUserId() {
-        return mUserId;
-    }
-
-    public void setUserId(int mUserId) {
-        this.mUserId = mUserId;
-    }
-
-    public boolean isIsMyTurn() {
-        return mIsMyTurn;
-    }
-
-    public void setIsMyTurn(boolean mIsMyTurn) {
-        this.mIsMyTurn = mIsMyTurn;
+    public void bindUserId() {
+        if (mGoBangPresenter != null) {
+            String userId = mGoBangPresenter.getUser().getMobilePhoneNumber();
+            if (!TextUtils.isEmpty(userId) && !userId.equals("0"))
+                mUserId = Integer.valueOf(userId);
+        }
     }
 
     public void setGoBangPresenter(ASWGoBangPresenterImpl mGoBangPresenter) {
         this.mGoBangPresenter = mGoBangPresenter;
+        bindUserId();
     }
 
     /**
      * 初始化内容
      */
     private void initView() {
-//        setBackgroundColor(getResources().getColor(R.color.colorAccent));
-        mBlackArray = new ArrayList<Point>();
-        mWhiteArray = new ArrayList<Point>();
-        // 默认我方先手
-        setIsMyTurn(true);
+        setBackgroundColor(getResources().getColor(R.color.colorAccent));
 
         // 初始化画笔
         mPaint = new Paint();
@@ -187,14 +161,16 @@ public class SWGoBangView extends View implements ISWGoBangView {
      * @param canvas
      */
     private void drawPiece(Canvas canvas) {
-        log.d("hjx    =====>>>   黑棋数量  size = " + mBlackArray.size());
-        log.d("hjx    =====>>>   白棋数量  size = " + mWhiteArray.size());
-        for (Point point : mBlackArray) {
-            canvas.drawBitmap(mBlackPiece, (point.x + (1 - PIECE_SCALE) / 2) * mLineHeight, (point.y + (1 - PIECE_SCALE) / 2) * mLineHeight, mPaint);
-        }
-        for (Point point : mWhiteArray) {
-            canvas.drawBitmap(mWhitePiece, (point.x + (1 - PIECE_SCALE) / 2) * mLineHeight, (point.y + (1 - PIECE_SCALE) / 2) * mLineHeight, mPaint);
-        }
+        log.d("hjx    =====>>>   黑棋数量  size = " + mGoBangPresenter.getBlackArray().size());
+        log.d("hjx    =====>>>   白棋数量  size = " + mGoBangPresenter.getWhiteArray().size());
+        if (mGoBangPresenter.getBlackArray() != null)
+            for (Point point : mGoBangPresenter.getBlackArray()) {
+                canvas.drawBitmap(mBlackPiece, (point.x + (1 - PIECE_SCALE) / 2) * mLineHeight, (point.y + (1 - PIECE_SCALE) / 2) * mLineHeight, mPaint);
+            }
+        if (mGoBangPresenter.getWhiteArray() != null)
+            for (Point point : mGoBangPresenter.getWhiteArray()) {
+                canvas.drawBitmap(mWhitePiece, (point.x + (1 - PIECE_SCALE) / 2) * mLineHeight, (point.y + (1 - PIECE_SCALE) / 2) * mLineHeight, mPaint);
+            }
     }
 
     /**
@@ -233,28 +209,24 @@ public class SWGoBangView extends View implements ISWGoBangView {
             // 根据坐标的值来取商直接保存落子坐标
             Point point = new Point((int) (x / mLineHeight), (int) (y / mLineHeight));
             // 如果点击的位置上已经有落子，直接消费掉
-            if (mBlackArray.contains(point) || mWhiteArray.contains(point)) {
+            if (mGoBangPresenter.getBlackArray().contains(point) || mGoBangPresenter.getWhiteArray().contains(point)) {
                 return true;
             }
-            if (isIsMyTurn()) {
-                if (mIsWhite) {
-                    mWhiteArray.add(point);
-                } else {
-                    mBlackArray.add(point);
-                }
-                //TODO 根据黑白判断 五子连珠
-                mGoBangPresenter.isGameOverMethod(getUserId(), point.x, point.y);
 
-                mIsWhite = !mIsWhite;
+            if (mGoBangPresenter instanceof SWPveGoBangPresenterImpl) {
+                if (mGoBangPresenter.isMyTurun()) {
+                    // 我方已落子，轮到对方
+                    mGoBangPresenter.handleChessPosition(point);
+                    // 重绘
+                    invalidate();
+                    mGoBangPresenter.playPiece(point.x, point.y, 1);
+                } else {
+                    Toast.makeText(getContext(), "急个卵，还没轮到你呢~~", Toast.LENGTH_LONG).show();
+                }
+            } else if (mGoBangPresenter instanceof SWPvpGoBangPresenterImpl) {
+                mGoBangPresenter.handleChessPosition(point);
                 // 重绘
                 invalidate();
-                //TODO maxNotAlphaBeta(int x, int y, int depth：算法往前先算多的步数)
-                log.d("hjx   ==我方落子==>>>   point.x = " + point.x + "    point.y = " + point.y);
-                // 我方已落子，轮到对方
-                setIsMyTurn(false);
-                mGoBangPresenter.playPiece(point.x, point.y, 1);
-            } else {
-                Toast.makeText(getContext(), "急个卵，还没轮到你呢~~", Toast.LENGTH_LONG).show();
             }
         }
         return super.onTouchEvent(event);
@@ -334,16 +306,9 @@ public class SWGoBangView extends View implements ISWGoBangView {
      */
     @Override
     public void playSucceed(Point point) {
-        log.d("hjx    ====>>>  对方落子成功    point = " + point);
         // 对方落子完成，轮到我方
-        mGoBangPresenter.isGameOverMethod(2, point.x, point.y);
-        setIsMyTurn(true);
-        if (mIsWhite) {
-            mWhiteArray.add(point);
-        } else {
-            mBlackArray.add(point);
-        }
-        mIsWhite = !mIsWhite;
+        mGoBangPresenter.handleChessPosition(point);
+        log.d("hjx    ====>>>  对方落子成功    point = " + point);
         invalidate();
     }
 
