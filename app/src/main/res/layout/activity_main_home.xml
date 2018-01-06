@@ -1,40 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        <Button
+            android:id="@+id/main_home_pvp"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="@string/main_home_man_man"
+            android:textSize="30sp" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/main_home_man_man"
-                android:textSize="30sp" />
+        <Button
+            android:id="@+id/main_home_pve"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="@string/main_home_man_machine"
+            android:textSize="30sp" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/main_home_man_machine"
-                android:textSize="30sp" />
+        <Button
+            android:id="@+id/main_home_setting"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="@string/main_home_setting"
+            android:textSize="30sp" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/main_home_setting"
-                android:textSize="30sp" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/main_home_about"
-                android:textSize="30sp" />
-        </LinearLayout>
-    </RelativeLayout>
-</layout>
+        <Button
+            android:id="@+id/main_home_about"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="@string/main_home_about"
+            android:textSize="30sp" />
+    </LinearLayout>
+</RelativeLayout>
