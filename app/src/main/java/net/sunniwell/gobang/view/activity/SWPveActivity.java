@@ -1,5 +1,6 @@
 package net.sunniwell.gobang.view.activity;
 
+import net.sunniwell.gobang.R;
 import net.sunniwell.gobang.presenter.SWPveGoBangPresenterImpl;
 
 /**
@@ -14,5 +15,6 @@ public class SWPveActivity extends BasePlayActivity {
         super.initData();
         // 设置对战模式的presenter
         mGoBangView.setGoBangPresenter(new SWPveGoBangPresenterImpl(mGoBangView));
+        mOtherTextView.setText(R.string.string_word_othername);
     }
 }

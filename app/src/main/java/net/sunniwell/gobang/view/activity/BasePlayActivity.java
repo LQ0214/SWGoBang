@@ -59,7 +59,8 @@ public abstract class BasePlayActivity extends Activity implements SWGoBangView.
 
     @Override
     public void restartCompleted() {
-
+        initView();
+        mGoBangView.invalidate();
     }
 
     @Override
