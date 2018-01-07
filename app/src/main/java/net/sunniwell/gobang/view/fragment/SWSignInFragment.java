@@ -42,6 +42,7 @@ public class SWSignInFragment extends Fragment implements ISWOnSignAboutInterfac
         view.findViewById(R.id.id_goregister).setOnClickListener(this);
         view.findViewById(R.id.id_login).setOnClickListener(this);
         view.findViewById(R.id.id_exit).setOnClickListener(this);
+        view.findViewById(R.id.id_forget_password).setOnClickListener(this);
         mLoginEditText = (EditText) view.findViewById(R.id.id_login_account);
         mPasswordEditText = (EditText) view.findViewById(R.id.id_login_password);
         return view;
@@ -73,8 +74,8 @@ public class SWSignInFragment extends Fragment implements ISWOnSignAboutInterfac
             case R.id.id_exit:
                 getActivity().finish();
                 break;
-            // TODO: 2018/1/5 忘记密码的id
-            case 2:
+            case R.id.id_forget_password:
+                Toast.makeText(getActivity(), R.string.string_word_please_wait, Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;
