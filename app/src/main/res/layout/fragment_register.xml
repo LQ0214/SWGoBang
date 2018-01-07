@@ -63,9 +63,9 @@
 
         <Button
             android:id="@+id/id_send_sms_code"
-            android:layout_width="80dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="@string/string_word_register_send_sms_code" />
+            android:text="@string/string_word_register_get_sms_code" />
     </LinearLayout>
 
     <LinearLayout
