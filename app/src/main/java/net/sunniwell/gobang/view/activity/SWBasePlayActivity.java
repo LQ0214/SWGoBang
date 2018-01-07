@@ -118,19 +118,15 @@ public abstract class SWBasePlayActivity extends Activity implements SWGoBangVie
     public void onButtonClick(View v) {
         switch (v.getId()) {
             case R.id.btn_giveup:
-                Toast.makeText(SWBasePlayActivity.this, getResources().getString(R.string.game_board_give_up), Toast.LENGTH_LONG).show();
                 mGoBangView.giveup();
                 break;
             case R.id.btn_undo:
-                Toast.makeText(SWBasePlayActivity.this, getResources().getString(R.string.game_board_undo), Toast.LENGTH_LONG).show();
                 mGoBangView.undo();
                 break;
             case R.id.btn_drawpiece:
-                Toast.makeText(SWBasePlayActivity.this, getResources().getString(R.string.game_board_draw_piece), Toast.LENGTH_LONG).show();
                 mGoBangView.drawPiece();
                 break;
             case R.id.btn_restart:
-                Toast.makeText(SWBasePlayActivity.this, getResources().getString(R.string.game_board_restart), Toast.LENGTH_LONG).show();
                 mGoBangView.reStart();
                 break;
         }
