@@ -73,10 +73,11 @@ public class SWPveLogicModel extends ASWChessLogicModel {
         for (int i = (x - 3) > 0 ? (x - 3) : 0;
              i <= x + 3 && i < mRawAndColumnCount; i++) {
             for (int j = (y - 3) > 0 ? (y - 3) : 0; j <= (y + 3) && j < mRawAndColumnCount; j++) {
-                if (i != 0 || j != 0) {
+                // 修复第一次下棋左上角不能下子的情况
+//                if (i != 0 || j != 0) {
                     if (mPosition[i][j] != 0) {
                         return true;
-                    }
+//                    }
                 }
             }
         }
