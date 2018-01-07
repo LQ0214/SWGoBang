@@ -11,8 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import net.sunniwell.gobang.R;
-import net.sunniwell.gobang.SWApplication;
-import net.sunniwell.gobang.bean.User;
 import net.sunniwell.gobang.iswinterface.ISWOnSignAboutInterface;
 import net.sunniwell.gobang.presenter.SWSignOutPresenterImpl;
 import net.sunniwell.jar.log.SWLogger;
@@ -20,11 +18,13 @@ import net.sunniwell.jar.log.SWLogger;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import cn.bmob.v3.BmobUser;
+
 /**
  * Created by Xing on 2018/1/4.
  */
 
-public class SWMainHomeActivity extends Activity implements View.OnClickListener,ISWOnSignAboutInterface.ISWOnSignOutViewInterface {
+public class SWMainHomeActivity extends Activity implements View.OnClickListener, ISWOnSignAboutInterface.ISWOnSignOutViewInterface {
     private SWLogger log = SWLogger.getLogger(SWMainHomeActivity.class.getSimpleName());
     private Timer mTimer;
     private boolean mIsExit;
@@ -58,7 +58,7 @@ public class SWMainHomeActivity extends Activity implements View.OnClickListener
         mBtn_setting.setOnClickListener(this);
         mBtn_about.setOnClickListener(this);
 
-        String userName = ((User) SWApplication.getUserInfoFromSharePreferences()).getName();
+        String userName = BmobUser.getCurrentUser().getUsername();
         log.d("into gobang,userName = " + userName);
         if (!TextUtils.isEmpty(userName))
             mWelcomeTextView.setText(getResources().getString(R.string.main_home_welcome, userName));
@@ -118,7 +118,7 @@ public class SWMainHomeActivity extends Activity implements View.OnClickListener
                 startActivity(pveIntent);
                 break;
             case R.id.main_home_setting:
-                if(mSignOutPresenter != null){
+                if (mSignOutPresenter != null) {
                     mSignOutPresenter.signOut();
                 }
                 break;
@@ -131,7 +131,7 @@ public class SWMainHomeActivity extends Activity implements View.OnClickListener
 
     @Override
     public void onSignOutSucceed() {
-        Toast.makeText(this, getString(R.string.string_sign_out_succeed), Toast.LENGTH_SHORT);
+        Toast.makeText(this, getString(R.string.string_sign_out_succeed), Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, SWSignInActivity.class);
         startActivity(intent);
         finish();
@@ -139,6 +139,6 @@ public class SWMainHomeActivity extends Activity implements View.OnClickListener
 
     @Override
     public void onSignOutFailed(String reason) {
-        Toast.makeText(this, getString(R.string.string_sign_out_failed), Toast.LENGTH_SHORT);
+        Toast.makeText(this, getString(R.string.string_sign_out_failed), Toast.LENGTH_SHORT).show();
     }
 }

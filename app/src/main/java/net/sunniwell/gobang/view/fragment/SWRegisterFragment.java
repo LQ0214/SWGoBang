@@ -2,6 +2,7 @@ package net.sunniwell.gobang.view.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,6 +95,10 @@ public class SWRegisterFragment extends Fragment implements ISWOnRegisterInterfa
     }
 
     private void requestSMSCode() {
+        if (TextUtils.isEmpty(mTelNumber.getText().toString())) {
+            Toast.makeText(SWRegisterFragment.this.getActivity(), R.string.string_tel_is_null, Toast.LENGTH_SHORT).show();
+            return;
+        }
         new BmobQuery<BmobUser>()
                 .addWhereEqualTo("mobilePhoneNumber", mTelNumber.getText().toString())
                 .count(BmobUser.class, new CountListener() {

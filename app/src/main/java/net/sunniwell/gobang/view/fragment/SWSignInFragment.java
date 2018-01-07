@@ -10,12 +10,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import net.sunniwell.gobang.R;
-import net.sunniwell.gobang.bean.User;
 import net.sunniwell.gobang.iswinterface.ISWOnSignAboutInterface;
 import net.sunniwell.gobang.presenter.SWSignInPresenterImpl;
 import net.sunniwell.gobang.utils.FragmentUtil;
 import net.sunniwell.gobang.view.activity.SWSignInActivity;
 import net.sunniwell.jar.log.SWLogger;
+
+import cn.bmob.v3.BmobUser;
 
 /**
  * Created by lin on 2018/1/4.
@@ -80,9 +81,9 @@ public class SWSignInFragment extends Fragment implements ISWOnSignAboutInterfac
     }
 
     private void login() {
-        User user = (User) mPresenter.getUserInfo();
-        if (user != null && !TextUtils.isEmpty(user.getName())) {
-            log.d("into gobang,user.getName() = " + user.getName() + ", user.getPassword() = " + user.getPassword());
+        BmobUser user = mPresenter.getUserInfo();
+        if (user != null && !TextUtils.isEmpty(user.getUsername())) {
+            log.d("into gobang,user.getName() = " + user.getUsername());
 //            mPresenter.signIn(user.getName(), user.getPassword());
             SWSignInActivity.startMainActivity();
         }

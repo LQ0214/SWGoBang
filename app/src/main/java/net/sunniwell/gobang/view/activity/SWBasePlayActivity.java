@@ -21,6 +21,8 @@ import net.sunniwell.gobang.view.widget.SWGoBangView;
 import net.sunniwell.gobang.view.widget.SWSectorMenuView;
 import net.sunniwell.jar.log.SWLogger;
 
+import cn.bmob.v3.BmobUser;
+
 /**
  * Created by Administrator on 2018/1/6.
  */
@@ -51,7 +53,7 @@ public abstract class SWBasePlayActivity extends Activity implements SWGoBangVie
 
 
     protected void initData() {
-        String userName = SWApplication.getUserInfoFromSharePreferences().getUsername();
+        String userName = BmobUser.getCurrentUser().getUsername();
         if (!TextUtils.isEmpty(userName))
             mMyTextView.setText(userName);
         mOtherTextView.setText(R.string.string_word_othername);

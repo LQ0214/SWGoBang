@@ -4,7 +4,6 @@ import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 
 import net.sunniwell.gobang.R;
-import net.sunniwell.gobang.SWApplication;
 import net.sunniwell.gobang.iswinterface.ISWOnRegisterInterface;
 import net.sunniwell.jar.log.SWLogger;
 
@@ -29,17 +28,15 @@ public class SWRegisterPresenterImpl implements ISWOnRegisterInterface.ISWOnRegi
     public void register(BmobUser userInfo, final String userPassword, String smsCode) {
         log.d("register");
         final String userName = userInfo.getUsername();
-        final String userId = userInfo.getMobilePhoneNumber();
-        String telNumber = userInfo.getMobilePhoneNumber();
-        if(TextUtils.isEmpty(telNumber)){
-            mView.onRegisterFailed(((Fragment)mView).getString(R.string.string_tel_is_null));
+        final String telNumber = userInfo.getMobilePhoneNumber();
+        if (TextUtils.isEmpty(telNumber) || TextUtils.isEmpty(userName) || TextUtils.isEmpty(userPassword) || TextUtils.isEmpty(smsCode)) {
+            mView.onRegisterFailed(((Fragment) mView).getString(R.string.string_please_fill_in_complete_info));
             return;
         }
         userInfo.signOrLogin(smsCode, new SaveListener<BmobUser>() {
             @Override
             public void done(BmobUser bmobUser, BmobException e) {
                 if (e == null) {
-                    SWApplication.saveUserInfo2SharePreferences(SWApplication.getContext(), userId, userName, userPassword);
                     if (mView != null) {
                         mView.onRegisterSucceed();
                     } else {
@@ -54,6 +51,5 @@ public class SWRegisterPresenterImpl implements ISWOnRegisterInterface.ISWOnRegi
                 }
             }
         });
-
     }
 }

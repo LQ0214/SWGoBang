@@ -23,10 +23,6 @@ import java.util.TimerTask;
 
 public class SWSignInActivity extends FragmentActivity {
     private static final SWLogger log = SWLogger.getLogger("SWSignInActivity");
-    public static final String SHARE_PREFERENCES_USER_INFO = "userInfo";
-    public static final String SHARE_PREFERENCES_USER_ID = "userId";
-    public static final String SHARE_PREFERENCES_USER_NAME = "userName";
-    public static final String SHARE_PREFERENCES_USER_PASSWORD = "userPassword";
     private static Activity mActivity;
     private Timer mTimer;
 

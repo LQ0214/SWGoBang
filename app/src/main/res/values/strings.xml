@@ -38,10 +38,16 @@
     <string name="string_word_password">密码：</string>
     <string name="string_word_tel_number">手机号：</string>
     <string name="string_word_sms_code">验证码：</string>
+    <string name="string_word_register_account">*用户名：</string>
+    <string name="string_word_register_password">*密码：</string>
+    <string name="string_word_register_tel_number">*手机号：</string>
+    <string name="string_word_register_sms_code">*验证码：</string>
+    <string name="string_word_register_hint">带*项目必填</string>
+    <string name="string_tel_is_null">手机号为空！</string>
     <string name="string_user_exist">该手机号码已经被注册</string>
     <string name="string_sms_code_send_succeed">验证码发送成功！</string>
     <string name="string_sms_code_send_failed">验证码发送失败！</string>
-    <string name="string_tel_is_null">手机号为空！</string>
+    <string name="string_please_fill_in_complete_info">手请填写完整信息</string>
     <string name="string_word_register">注册</string>
     <string name="string_word_back">取消</string>
     <string name="string_word_exit">退出游戏</string>

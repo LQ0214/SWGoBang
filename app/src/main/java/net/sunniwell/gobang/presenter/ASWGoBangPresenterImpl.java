@@ -121,7 +121,7 @@ public abstract class ASWGoBangPresenterImpl implements ASWChessLogicModel.ISWPl
     }
 
     public BmobUser getUser() {
-        return SWApplication.getUserInfoFromSharePreferences();
+        return BmobUser.getCurrentUser();
     }
 
     public void setChessType(Chess chessType) {

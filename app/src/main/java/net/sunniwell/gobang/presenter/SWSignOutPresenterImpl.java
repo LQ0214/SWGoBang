@@ -8,6 +8,8 @@ import net.sunniwell.gobang.iswinterface.ISWOnSignAboutInterface;
 import net.sunniwell.gobang.view.activity.SWSignInActivity;
 import net.sunniwell.jar.log.SWLogger;
 
+import cn.bmob.v3.BmobUser;
+
 /**
  * Created by lin on 2018/1/7.
  */
@@ -26,10 +28,7 @@ public class SWSignOutPresenterImpl implements ISWOnSignAboutInterface.ISWOnSign
     public void signOut() {
         Context context = SWApplication.getContext();
         if (context != null) {
-            SharedPreferences sharePreferences = context.getSharedPreferences(SWSignInActivity.SHARE_PREFERENCES_USER_INFO, Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharePreferences.edit();
-            editor.clear();
-            editor.commit();
+            BmobUser.logOut();
             mView.onSignOutSucceed();
         } else {
             new Throwable("context = " + context);
