@@ -74,11 +74,11 @@ public class SWGoBangView extends View implements ISWGoBangView {
     }
 
     public void bindUserId() {
-//        if (mGoBangPresenter != null) {
-//            String userId = mGoBangPresenter.getUser().getMobilePhoneNumber();
-//            if (!TextUtils.isEmpty(userId) && !userId.equals("0"))
-//                mUserId = Integer.valueOf(userId);
-//        }
+        if (mGoBangPresenter != null) {
+            String userId = mGoBangPresenter.getUser().getMobilePhoneNumber();
+            if (!TextUtils.isEmpty(userId) && !userId.equals("0"))
+                mUserId = (int)Double.parseDouble(userId);
+        }
     }
 
     public void setGoBangPresenter(ASWGoBangPresenterImpl mGoBangPresenter) {

@@ -58,4 +58,6 @@
     <string name="string_sign_out_succeed">注销成功</string>
     <string name="string_sign_out_failed">注销失败</string>
     <string name="string_word_please_wait">程序猿还在抓紧时间开发中,敬请期待&#8230;</string>
+    <string name="string_white_win">白子胜利</string>
+    <string name="string_black_win">黑子胜利</string>
 </resources>
