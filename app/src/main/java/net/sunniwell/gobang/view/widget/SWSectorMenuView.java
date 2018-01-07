@@ -56,11 +56,11 @@ public class SWSectorMenuView extends RelativeLayout {
 
     private void initButtons(View view) {
         //4个按钮，具体视情况而定
-        mBtns = new Button[4];
-        mBtns[0] = (Button) view.findViewById(R.id.btn_giveup);
-        mBtns[1] = (Button) view.findViewById(R.id.btn_undo);
-        mBtns[2] = (Button) view.findViewById(R.id.btn_drawpiece);
-        mBtns[3] = (Button) view.findViewById(R.id.btn_restart);
+        mBtns = new Button[2];
+//        mBtns[0] = (Button) view.findViewById(R.id.btn_giveup);
+        mBtns[0] = (Button) view.findViewById(R.id.btn_undo);
+//        mBtns[2] = (Button) view.findViewById(R.id.btn_drawpiece);
+        mBtns[1] = (Button) view.findViewById(R.id.btn_restart);
         mBtn_menu = (Button) view.findViewById(R.id.btn_menu);
 
         mLeftMargin = ((RelativeLayout.LayoutParams) (mBtn_menu.getLayoutParams())).leftMargin;
