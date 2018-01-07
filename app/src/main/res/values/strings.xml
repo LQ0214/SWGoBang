@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">SWGoBang</string>
     <!--main_home-->
-    <string name="main_home_man_man">联机对战</string>
+    <string name="main_home_man_man">人人对战</string>
     <string name="main_home_man_machine">人机对战</string>
-    <string name="main_home_setting">注销</string>
+    <string name="main_home_setting">设置</string>
+    <string name="main_home_logout">注销</string>
     <string name="main_home_about">关于</string>
     <string name="main_home_exit">再次点击退出</string>
     <string name="main_home_welcome">欢迎&#160;%1$s&#160;来到五子棋世界</string>

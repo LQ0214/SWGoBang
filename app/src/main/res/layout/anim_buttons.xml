@@ -12,9 +12,10 @@
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="10dp"
         android:layout_marginStart="10dp"
-        android:background="@drawable/left_menu"
-        android:visibility="gone"
-        android:text="@string/game_board_give_up" />
+        android:background="@drawable/sector_btn"
+        android:text="@string/game_board_give_up"
+        android:textColor="@color/color_white"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/btn_undo"
@@ -24,9 +25,10 @@
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="10dp"
         android:layout_marginStart="10dp"
-        android:background="@drawable/left_menu"
-        android:visibility="gone"
-        android:text="@string/game_board_undo" />
+        android:background="@drawable/sector_btn"
+        android:text="@string/game_board_undo"
+        android:textColor="@color/color_white"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/btn_drawpiece"
@@ -36,9 +38,10 @@
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="10dp"
         android:layout_marginStart="10dp"
-        android:background="@drawable/left_menu"
-        android:visibility="gone"
-        android:text="@string/game_board_draw_piece" />
+        android:background="@drawable/sector_btn"
+        android:text="@string/game_board_draw_piece"
+        android:textColor="@color/color_white"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/btn_restart"
@@ -48,9 +51,10 @@
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="10dp"
         android:layout_marginStart="10dp"
-        android:background="@drawable/left_menu"
-        android:visibility="gone"
-        android:text="@string/game_board_restart" />
+        android:background="@drawable/sector_btn"
+        android:text="@string/game_board_restart"
+        android:textColor="@color/color_white"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/btn_menu"

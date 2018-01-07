@@ -50,8 +50,6 @@ public class SWGoBangView extends View implements ISWGoBangView {
         void drawPieceCompleted();
 
         void gameOverCompleted(boolean isWhiteSuccess);
-
-        void fiveConnectCompleted();
     }
 
     public void setEventCompletedListener(ISWEventCompletedListener listener) {

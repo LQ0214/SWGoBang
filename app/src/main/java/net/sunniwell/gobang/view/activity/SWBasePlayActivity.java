@@ -85,7 +85,7 @@ public abstract class SWBasePlayActivity extends Activity implements SWGoBangVie
         final WindowManager windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         final View view = LayoutInflater.from(this).inflate(R.layout.view_gobang_finish, null);
         TextView whoWinTip = (TextView) view.findViewById(R.id.id_who_win);
-        if(isWhiteSuccess){
+        if (isWhiteSuccess) {
             whoWinTip.setText(R.string.string_white_win);
         } else {
             whoWinTip.setText(R.string.string_black_win);
@@ -105,11 +105,6 @@ public abstract class SWBasePlayActivity extends Activity implements SWGoBangVie
         wlp.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         wlp.gravity = Gravity.CENTER;
         windowManager.addView(view, wlp);
-    }
-
-    @Override
-    public void fiveConnectCompleted() {
-
     }
 
     @Override

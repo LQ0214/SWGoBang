@@ -28,7 +28,7 @@ public class SWMainHomeActivity extends Activity implements View.OnClickListener
     private SWLogger log = SWLogger.getLogger(SWMainHomeActivity.class.getSimpleName());
     private Timer mTimer;
     private boolean mIsExit;
-    private Button mPvpBtn, mPveBtn, mSettingBtn, mAboutBtn;
+    private Button mPvpBtn, mPveBtn, mSettingBtn, mAboutBtn, mLogoutBtn;
     private TextView mWelcomeTv;
     private SWSignOutPresenterImpl mSignOutPresenter;
 
@@ -50,13 +50,14 @@ public class SWMainHomeActivity extends Activity implements View.OnClickListener
         mPveBtn = (Button) findViewById(R.id.main_home_pve);
         mSettingBtn = (Button) findViewById(R.id.main_home_setting);
         mAboutBtn = (Button) findViewById(R.id.main_home_about);
-        mAboutBtn = (Button) findViewById(R.id.main_home_about);
+        mLogoutBtn = (Button) findViewById(R.id.main_home_logout);
         mWelcomeTv = (TextView) findViewById(R.id.main_home_welcome);
 
         mPvpBtn.setOnClickListener(this);
         mPveBtn.setOnClickListener(this);
         mSettingBtn.setOnClickListener(this);
         mAboutBtn.setOnClickListener(this);
+        mLogoutBtn.setOnClickListener(this);
 
         String userName = BmobUser.getCurrentUser().getUsername();
         log.d("SWGoBangLog:  userName = " + userName);
@@ -118,13 +119,18 @@ public class SWMainHomeActivity extends Activity implements View.OnClickListener
                 startActivity(pveIntent);
                 break;
             case R.id.main_home_setting:
-                if (mSignOutPresenter != null) {
-                    mSignOutPresenter.signOut();
-                }
+                Toast.makeText(this, getResources().getString(R.string.string_word_please_wait), Toast.LENGTH_LONG).show();
                 break;
             case R.id.main_home_about:
                 Intent aboutIntent = new Intent(this, SWAboutAcitvity.class);
                 startActivity(aboutIntent);
+                break;
+            case R.id.main_home_logout:
+                if (mSignOutPresenter != null) {
+                    mSignOutPresenter.signOut();
+                }
+                break;
+            default:
                 break;
         }
     }
