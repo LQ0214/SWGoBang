@@ -3,6 +3,7 @@ package net.sunniwell.gobang.iswinterface;
 import cn.bmob.v3.BmobUser;
 
 /**
+ * 登录业务的接口定义
  * Created by lin on 2018/1/4.
  */
 
@@ -17,6 +18,9 @@ public interface ISWOnSignAboutInterface {
         BmobUser getUserInfo();
     }
 
+    /**
+     * 注销动作
+     */
     interface ISWOnSignOutPresenterInter {
         void signOut();
     }

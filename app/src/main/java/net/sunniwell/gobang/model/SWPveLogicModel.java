@@ -2,7 +2,6 @@ package net.sunniwell.gobang.model;
 
 import android.graphics.Point;
 
-import net.sunniwell.gobang.utils.SWGoBangConstant;
 import net.sunniwell.jar.log.SWLogger;
 
 import java.security.SecureRandom;
@@ -30,13 +29,23 @@ public class SWPveLogicModel extends ASWChessLogicModel {
         return false;
     }
 
+    /**
+     * 用户落子，通知AI计算下子位置
+     *
+     * @param x     已经确定下子的x，即二维数组的x下标
+     * @param y     已经确定下子的y，即二维数组的y下标
+     * @param depth 深度，人机对战时，让机器往后考虑的不熟，根据目前的算法，depth为>1时，会导致计算结果太久。
+     * @return
+     */
     @Override
     public Point playPiece(int x, int y, int depth) {
-        log.d("playPiece x = " + x + " y = " + y);
+        log.d("SWGoBangLog: x = " + x + " y = " + y);
         mPosition[x][y] = 1;
+        // 电脑为MAX局面
         int best = Integer.MIN_VALUE;
         List<Point> usefulPositionList = getUsefulPositionList();
         List<Point> bestPoints = new ArrayList<Point>();
+        log.d("SWGoBangLog: usefulPositionList.size() = " + usefulPositionList.size());
         for (int i = 0; i < usefulPositionList.size(); i++) {
             Point point = usefulPositionList.get(i);
             mPosition[point.x][point.y] = 2;
@@ -50,6 +59,7 @@ public class SWPveLogicModel extends ASWChessLogicModel {
             }
             mPosition[point.x][point.y] = 0;
         }
+        // 如果得分最高的有几个位置，那么随机下子
         Point point = bestPoints.get(new SecureRandom().nextInt(bestPoints.size()));
         if (point != null) {
             mPosition[point.x][point.y] = 2;
@@ -57,13 +67,12 @@ public class SWPveLogicModel extends ASWChessLogicModel {
         } else {
             mPlayPiece.playFailed();
         }
-        printTable();
         return point;
     }
 
 
     /**
-     * 该点周围有棋子
+     * 该点周围有棋子,说明这个位置有下子的必要性，搜索范围为当前下子位置的+/-3的单位
      *
      * @param x
      * @param y
@@ -73,11 +82,8 @@ public class SWPveLogicModel extends ASWChessLogicModel {
         for (int i = (x - 3) > 0 ? (x - 3) : 0;
              i <= x + 3 && i < mRawAndColumnCount; i++) {
             for (int j = (y - 3) > 0 ? (y - 3) : 0; j <= (y + 3) && j < mRawAndColumnCount; j++) {
-                // 修复第一次下棋左上角不能下子的情况
-//                if (i != 0 || j != 0) {
-                    if (mPosition[i][j] != 0) {
-                        return true;
-//                    }
+                if (mPosition[i][j] != 0) {
+                    return true;
                 }
             }
         }
@@ -85,7 +91,7 @@ public class SWPveLogicModel extends ASWChessLogicModel {
     }
 
     /**
-     * 获取有意义的落子位置
+     * 获取有意义的落子点
      * 1、该点没有棋子
      * 2、该点的周围有其他棋子
      *
@@ -104,8 +110,15 @@ public class SWPveLogicModel extends ASWChessLogicModel {
         return usefulPositionList;
     }
 
+    /**
+     * MAX局面的的记分算法
+     *
+     * @param x
+     * @param y
+     * @param depth
+     * @return
+     */
     private int maxNotAlphaBeta(int x, int y, int depth) {
-
         int finalScore = calculateScoreMinMaxNotAlphaBeta();
         if (depth <= 0) {
             return finalScore;
@@ -124,6 +137,14 @@ public class SWPveLogicModel extends ASWChessLogicModel {
         return best;
     }
 
+    /**
+     * MIN局面的的记分算法
+     *
+     * @param x
+     * @param y
+     * @param depth
+     * @return
+     */
     private int minNotAlphaBeta(int x, int y, int depth) {
         int finalScore = calculateScoreMinMaxNotAlphaBeta();
         if (depth <= 0) {
@@ -143,10 +164,16 @@ public class SWPveLogicModel extends ASWChessLogicModel {
         return best;
     }
 
+    /**
+     * 计算当前落子的得分
+     *
+     * @return
+     */
     private int calculateScoreMinMaxNotAlphaBeta() {
         int scoreComputer = 0;
         int scoreHuman = 0;
         List<Point> allPositions = new ArrayList<Point>(mRawAndColumnCount * mRawAndColumnCount);
+        // 计算横向的分数
         for (int i = 0; i < mRawAndColumnCount; i++) {
             for (int j = 0; j < mRawAndColumnCount; j++) {
                 Point point = new Point(i, j);
@@ -156,7 +183,7 @@ public class SWPveLogicModel extends ASWChessLogicModel {
             scoreHuman += countScore(allPositions, 1);
             allPositions.clear();
         }
-
+        // 计算纵向的分数
         for (int j = 0; j < mRawAndColumnCount; j++) {
             for (int i = 0; i < mRawAndColumnCount; i++) {
                 Point point = new Point(i, j);
@@ -214,6 +241,13 @@ public class SWPveLogicModel extends ASWChessLogicModel {
         return scoreComputer - scoreHuman;
     }
 
+    /**
+     * 计算表，根据当前连在一起的子的数目跟两测的空白块来计算分数
+     *
+     * @param number
+     * @param emptyBlock
+     * @return
+     */
     private int scoreTable(int number, int emptyBlock) {
         if (number >= 5) {
             return 100000;
@@ -243,6 +277,13 @@ public class SWPveLogicModel extends ASWChessLogicModel {
         return 0;
     }
 
+    /**
+     * 根据计分的规则，计算出每个子当前的获分情况，再根据分数表累加分数。
+     *
+     * @param allPosition
+     * @param turn
+     * @return
+     */
     private int countScore(List<Point> allPosition, int turn) {
         int tmpScore = 0;
         int emptyBlock = 0;
@@ -275,16 +316,5 @@ public class SWPveLogicModel extends ASWChessLogicModel {
         }
         tmpScore += scoreTable(number, emptyBlock);
         return tmpScore;
-    }
-
-    private void printTable(){
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < mRawAndColumnCount; i++) {
-            for (int j = 0; j < mRawAndColumnCount; j++) {
-                stringBuilder.append(mPosition[j][i]+" ");
-            }
-            log.d("hjx    ====>>>   "+ stringBuilder.toString() + " mPosition= " + mPosition.hashCode());
-            stringBuilder.delete(0,stringBuilder.length());
-        }
     }
 }

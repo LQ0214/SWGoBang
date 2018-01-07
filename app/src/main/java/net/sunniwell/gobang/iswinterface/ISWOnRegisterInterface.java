@@ -5,6 +5,7 @@ import android.content.Context;
 import cn.bmob.v3.BmobUser;
 
 /**
+ * 注册业务的接口定义
  * Created by lin on 2018/1/4.
  */
 
@@ -25,9 +26,5 @@ public interface ISWOnRegisterInterface {
         void onRegisterSucceed();
 
         void onRegisterFailed(String reason);
-    }
-
-    interface ISWOnRegisterModelInterface {
-        void saveUserInfo2SharePreferences(Context context, String userName, String userPassword);
     }
 }
