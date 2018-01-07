@@ -79,9 +79,9 @@ public class SWPveLogicModel extends ASWChessLogicModel {
      * @return
      */
     private boolean hasPieceAround(int x, int y) {
-        for (int i = (x - 3) > 0 ? (x - 3) : 0;
-             i <= x + 3 && i < mRawAndColumnCount; i++) {
-            for (int j = (y - 3) > 0 ? (y - 3) : 0; j <= (y + 3) && j < mRawAndColumnCount; j++) {
+        for (int i = (x - STEP) > 0 ? (x - STEP) : 0;
+             i <= x + STEP && i < mRawAndColumnCount; i++) {
+            for (int j = (y - STEP) > 0 ? (y - STEP) : 0; j <= (y + STEP) && j < mRawAndColumnCount; j++) {
                 if (mPosition[i][j] != 0) {
                     return true;
                 }
@@ -89,6 +89,8 @@ public class SWPveLogicModel extends ASWChessLogicModel {
         }
         return false;
     }
+
+    private static final int STEP = 2;
 
     /**
      * 获取有意义的落子点
