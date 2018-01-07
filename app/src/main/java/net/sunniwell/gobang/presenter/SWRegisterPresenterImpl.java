@@ -1,5 +1,9 @@
 package net.sunniwell.gobang.presenter;
 
+import android.support.v4.app.Fragment;
+import android.text.TextUtils;
+
+import net.sunniwell.gobang.R;
 import net.sunniwell.gobang.SWApplication;
 import net.sunniwell.gobang.iswinterface.ISWOnRegisterInterface;
 import net.sunniwell.jar.log.SWLogger;
@@ -26,6 +30,11 @@ public class SWRegisterPresenterImpl implements ISWOnRegisterInterface.ISWOnRegi
         log.d("register");
         final String userName = userInfo.getUsername();
         final String userId = userInfo.getMobilePhoneNumber();
+        String telNumber = userInfo.getMobilePhoneNumber();
+        if(TextUtils.isEmpty(telNumber)){
+            mView.onRegisterFailed(((Fragment)mView).getString(R.string.string_tel_is_null));
+            return;
+        }
         userInfo.signOrLogin(smsCode, new SaveListener<BmobUser>() {
             @Override
             public void done(BmobUser bmobUser, BmobException e) {

@@ -108,6 +108,7 @@ public class SWRegisterFragment extends Fragment implements ISWOnRegisterInterfa
                                     @Override
                                     public void done(Integer integer, BmobException e) {
                                         if (e == null) {
+                                            mSmsCode.requestFocus();
                                             Toast.makeText(SWRegisterFragment.this.getActivity(), R.string.string_sms_code_send_succeed, Toast.LENGTH_SHORT).show();
                                         } else {
                                             new Throwable("sms code send error");
