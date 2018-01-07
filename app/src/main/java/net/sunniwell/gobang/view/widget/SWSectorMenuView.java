@@ -107,6 +107,7 @@ public class SWSectorMenuView extends RelativeLayout {
         for (int i = 0; i < mBtns.length; i++) {
             float x = (float) (r * Math.sin(i * mAngle));
             float y = (float) (r * Math.cos(i * mAngle));
+            mBtns[i].setVisibility(View.VISIBLE);
             mBtns[i].startAnimation(animTranslate(x, -y, mLeftMargin + (int) x, bottomMargins - (int) y, mBtns[i], mMinTimeSpent + i * intervalTimeSpent));
         }
     }
@@ -121,6 +122,7 @@ public class SWSectorMenuView extends RelativeLayout {
             float x = (float) (r * Math.sin(i * mAngle));
             float y = (float) (r * Math.cos(i * mAngle));
             mBtns[i].startAnimation(animTranslate(-x, y, mLeftMargin, bottomMargins - 4, mBtns[i], mMaxTimeSpent - i * intervalTimeSpent));
+            mBtns[i].setVisibility(View.GONE);
         }
     }
 

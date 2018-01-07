@@ -13,6 +13,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginStart="10dp"
         android:background="@drawable/left_menu"
+        android:visibility="gone"
         android:text="@string/game_board_give_up" />
 
     <Button
@@ -24,6 +25,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginStart="10dp"
         android:background="@drawable/left_menu"
+        android:visibility="gone"
         android:text="@string/game_board_undo" />
 
     <Button
@@ -35,6 +37,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginStart="10dp"
         android:background="@drawable/left_menu"
+        android:visibility="gone"
         android:text="@string/game_board_draw_piece" />
 
     <Button
@@ -46,6 +49,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginStart="10dp"
         android:background="@drawable/left_menu"
+        android:visibility="gone"
         android:text="@string/game_board_restart" />
 
     <Button
