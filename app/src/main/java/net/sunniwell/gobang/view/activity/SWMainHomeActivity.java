@@ -13,6 +13,8 @@ import android.widget.Toast;
 import net.sunniwell.gobang.R;
 import net.sunniwell.gobang.SWApplication;
 import net.sunniwell.gobang.bean.User;
+import net.sunniwell.gobang.iswinterface.ISWOnSignAboutInterface;
+import net.sunniwell.gobang.presenter.SWSignOutPresenterImpl;
 import net.sunniwell.jar.log.SWLogger;
 
 import java.util.Timer;
@@ -22,12 +24,13 @@ import java.util.TimerTask;
  * Created by Xing on 2018/1/4.
  */
 
-public class SWMainHomeActivity extends Activity implements View.OnClickListener {
+public class SWMainHomeActivity extends Activity implements View.OnClickListener,ISWOnSignAboutInterface.ISWOnSignOutViewInterface {
     private SWLogger log = SWLogger.getLogger(SWMainHomeActivity.class.getSimpleName());
     private Timer mTimer;
     private boolean mIsExit;
     private Button mBtn_pvp, mBtn_pve, mBtn_setting, mBtn_about;
     private TextView mWelcomeTextView;
+    private SWSignOutPresenterImpl mSignOutPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,7 @@ public class SWMainHomeActivity extends Activity implements View.OnClickListener
     private void init() {
         mTimer = new Timer();
         mIsExit = false;
+        mSignOutPresenter = new SWSignOutPresenterImpl(this);
         mBtn_pvp = (Button) findViewById(R.id.main_home_pvp);
         mBtn_pve = (Button) findViewById(R.id.main_home_pve);
         mBtn_setting = (Button) findViewById(R.id.main_home_setting);
@@ -114,13 +118,27 @@ public class SWMainHomeActivity extends Activity implements View.OnClickListener
                 startActivity(pveIntent);
                 break;
             case R.id.main_home_setting:
-                Intent setttingIntent = new Intent(this, SWSettingActivity.class);
-                startActivity(setttingIntent);
+                if(mSignOutPresenter != null){
+                    mSignOutPresenter.signOut();
+                }
                 break;
             case R.id.main_home_about:
                 Intent aboutIntent = new Intent(this, SWAboutAcitvity.class);
                 startActivity(aboutIntent);
                 break;
         }
+    }
+
+    @Override
+    public void onSignOutSucceed() {
+        Toast.makeText(this, getString(R.string.string_sign_out_succeed), Toast.LENGTH_SHORT);
+        Intent intent = new Intent(this, SWSignInActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onSignOutFailed(String reason) {
+        Toast.makeText(this, getString(R.string.string_sign_out_failed), Toast.LENGTH_SHORT);
     }
 }

@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import net.sunniwell.gobang.R;
 import net.sunniwell.gobang.bean.User;
-import net.sunniwell.gobang.iswinterface.ISWOnSignInInterface;
+import net.sunniwell.gobang.iswinterface.ISWOnSignAboutInterface;
 import net.sunniwell.gobang.presenter.SWSignInPresenterImpl;
 import net.sunniwell.gobang.utils.FragmentUtil;
 import net.sunniwell.gobang.view.activity.SWSignInActivity;
@@ -21,7 +21,7 @@ import net.sunniwell.jar.log.SWLogger;
  * Created by lin on 2018/1/4.
  */
 
-public class SWSignInFragment extends Fragment implements ISWOnSignInInterface.ISWOnSignInViewInterface, View.OnClickListener {
+public class SWSignInFragment extends Fragment implements ISWOnSignAboutInterface.ISWOnSignInViewInterface, View.OnClickListener {
 
     private static final SWLogger log = SWLogger.getLogger("SWSignInFragment");
     private SWSignInPresenterImpl mPresenter = new SWSignInPresenterImpl(this);

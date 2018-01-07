@@ -3,7 +3,7 @@
     <!--main_home-->
     <string name="main_home_man_man">联机对战</string>
     <string name="main_home_man_machine">人机对战</string>
-    <string name="main_home_setting">设置</string>
+    <string name="main_home_setting">注销</string>
     <string name="main_home_about">关于</string>
     <string name="main_home_exit">再次点击退出</string>
     <string name="main_home_welcome">欢迎&#160;%1$s&#160;来到五子棋世界</string>
@@ -48,4 +48,6 @@
     <string name="string_word_login">登录</string>
     <string name="string_word_othername">高级电脑</string>
     <string name="string_word_playname">朝歌第一帅</string>
+    <string name="string_sign_out_succeed">注销成功</string>
+    <string name="string_sign_out_failed">注销失败</string>
 </resources>

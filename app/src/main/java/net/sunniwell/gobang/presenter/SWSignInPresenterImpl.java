@@ -1,7 +1,7 @@
 package net.sunniwell.gobang.presenter;
 
 import net.sunniwell.gobang.SWApplication;
-import net.sunniwell.gobang.iswinterface.ISWOnSignInInterface;
+import net.sunniwell.gobang.iswinterface.ISWOnSignAboutInterface;
 import net.sunniwell.jar.log.SWLogger;
 
 import cn.bmob.v3.BmobUser;
@@ -13,13 +13,13 @@ import cn.bmob.v3.listener.SaveListener;
  * Created by lin on 2018/1/4.
  */
 
-public class SWSignInPresenterImpl implements ISWOnSignInInterface.ISWOnSignInPresenterInterface {
+public class SWSignInPresenterImpl implements ISWOnSignAboutInterface.ISWOnSignInPresenterInterface {
 
     private static final SWLogger log = SWLogger.getLogger("SWSignInPresenterImpl");
-    private ISWOnSignInInterface.ISWOnSignInViewInterface mView;
+    private ISWOnSignAboutInterface.ISWOnSignInViewInterface mSignInView;
 
-    public SWSignInPresenterImpl(ISWOnSignInInterface.ISWOnSignInViewInterface view) {
-        mView = view;
+    public SWSignInPresenterImpl(ISWOnSignAboutInterface.ISWOnSignInViewInterface view) {
+        mSignInView = view;
     }
 
     @Override
@@ -33,14 +33,14 @@ public class SWSignInPresenterImpl implements ISWOnSignInInterface.ISWOnSignInPr
             public void done(BmobUser bmobUser, BmobException e) {
                 if (e == null) {
                     SWApplication.saveUserInfo2SharePreferences(SWApplication.getContext(), bmobUser.getMobilePhoneNumber(), userName, userPassword);
-                    if (mView != null) {
-                        mView.onSignInSucceed();
+                    if (mSignInView != null) {
+                        mSignInView.onSignInSucceed();
                     } else {
                         new Throwable("error: the mCallback is null");
                     }
                 } else {
-                    if (mView != null) {
-                        mView.onSignInFailed(e.getMessage());
+                    if (mSignInView != null) {
+                        mSignInView.onSignInFailed(e.getMessage());
                     } else {
                         new Throwable("error: the mCallback is null");
                     }

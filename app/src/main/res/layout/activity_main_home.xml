@@ -55,21 +55,21 @@
             android:textSize="30sp" />
 
         <Button
-            android:id="@+id/main_home_setting"
-            android:layout_width="300dp"
-            android:layout_height="65dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/btn_shape"
-            android:text="@string/main_home_setting"
-            android:textSize="30sp" />
-
-        <Button
             android:id="@+id/main_home_about"
             android:layout_width="300dp"
             android:layout_height="65dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/btn_shape"
             android:text="@string/main_home_about"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/main_home_setting"
+            android:layout_width="300dp"
+            android:layout_height="65dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_shape"
+            android:text="@string/main_home_setting"
             android:textSize="30sp" />
     </LinearLayout>
 
