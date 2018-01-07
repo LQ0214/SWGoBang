@@ -68,7 +68,7 @@ public class SWMainHomeActivity extends Activity implements View.OnClickListener
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         int action = event.getAction();
         log.d("hjx    ==SWMainHomeActivity==>>>  action = " + "   keyCode = " + keyCode);
-        if (action == KeyEvent.ACTION_DOWN) {
+        if (action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK) {
             exit();
             return true;
         }

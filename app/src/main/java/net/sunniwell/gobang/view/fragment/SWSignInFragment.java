@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import net.sunniwell.gobang.R;
+import net.sunniwell.gobang.SWApplication;
 import net.sunniwell.gobang.iswinterface.ISWOnSignAboutInterface;
 import net.sunniwell.gobang.presenter.SWSignInPresenterImpl;
 import net.sunniwell.gobang.utils.FragmentUtil;
@@ -49,7 +50,7 @@ public class SWSignInFragment extends Fragment implements ISWOnSignAboutInterfac
     @Override
     public void onSignInSucceed() {
         log.d("onSignInSucceed");
-        Toast.makeText(getActivity(), R.string.string_sign_in_sign_in_succeed, Toast.LENGTH_SHORT).show();
+        Toast.makeText(SWApplication.getContext(), R.string.string_sign_in_sign_in_succeed, Toast.LENGTH_SHORT).show();
         SWSignInActivity.startMainActivity();
     }
 

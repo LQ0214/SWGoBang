@@ -71,8 +71,7 @@ public class SWSignInActivity extends FragmentActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         int action = event.getAction();
         log.d("hjx    ==SWMainHomeActivity==>>>  action = " + "   keyCode = " + keyCode);
-        if (action == KeyEvent.ACTION_DOWN) {
-            exit();
+        if (action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK) {
             return true;
         }
         return super.onKeyDown(keyCode, event);

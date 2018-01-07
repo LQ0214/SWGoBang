@@ -36,7 +36,6 @@ public class SWGoBangView extends View implements ISWGoBangView {
      * 棋子的边长占高的比例
      */
     private static final float PIECE_SCALE = 3 * 1.0f / 4;
-    private boolean mIsWhite;
 
     private ASWGoBangPresenterImpl mGoBangPresenter;
     private ISWEventCompletedListener mEventCompletedListener;
@@ -51,7 +50,7 @@ public class SWGoBangView extends View implements ISWGoBangView {
 
         void drawPieceCompleted();
 
-        void gameOverCompleted();
+        void gameOverCompleted(boolean isWhiteSuccess);
 
         void fiveConnectCompleted();
     }
@@ -75,11 +74,11 @@ public class SWGoBangView extends View implements ISWGoBangView {
     }
 
     public void bindUserId() {
-        if (mGoBangPresenter != null) {
-            String userId = mGoBangPresenter.getUser().getMobilePhoneNumber();
-            if (!TextUtils.isEmpty(userId) && !userId.equals("0"))
-                mUserId = Integer.valueOf(userId);
-        }
+//        if (mGoBangPresenter != null) {
+//            String userId = mGoBangPresenter.getUser().getMobilePhoneNumber();
+//            if (!TextUtils.isEmpty(userId) && !userId.equals("0"))
+//                mUserId = Integer.valueOf(userId);
+//        }
     }
 
     public void setGoBangPresenter(ASWGoBangPresenterImpl mGoBangPresenter) {
@@ -303,7 +302,7 @@ public class SWGoBangView extends View implements ISWGoBangView {
 
     @Override
     public void gameOverCompleted(int id) {
-        mEventCompletedListener.gameOverCompleted();
+        mEventCompletedListener.gameOverCompleted(mGoBangPresenter.isWhiteChessType());
     }
 
     @Override

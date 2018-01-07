@@ -56,4 +56,6 @@
     <string name="string_word_playname">朝歌第一帅</string>
     <string name="string_sign_out_succeed">注销成功</string>
     <string name="string_sign_out_failed">注销失败</string>
+    <string name="string_white_win">白子胜利</string>
+    <string name="string_black_win">黑子胜利</string>
 </resources>
