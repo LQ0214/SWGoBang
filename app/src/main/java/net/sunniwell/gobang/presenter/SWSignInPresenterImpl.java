@@ -1,5 +1,9 @@
 package net.sunniwell.gobang.presenter;
 
+import android.support.v4.app.Fragment;
+import android.text.TextUtils;
+
+import net.sunniwell.gobang.R;
 import net.sunniwell.gobang.iswinterface.ISWOnSignAboutInterface;
 import net.sunniwell.jar.log.SWLogger;
 
@@ -23,6 +27,10 @@ public class SWSignInPresenterImpl implements ISWOnSignAboutInterface.ISWOnSignI
 
     @Override
     public void signIn(final String telNum, final String userPassword) {
+        if (TextUtils.isEmpty(telNum) || TextUtils.isEmpty(userPassword)) {
+            mSignInView.onSignInFailed(((Fragment) mSignInView).getString(R.string.string_please_fill_in_complete_info));
+            return;
+        }
         log.d("signIn");
         //手机密码登录
         BmobUser.loginByAccount(telNum, userPassword, new LogInListener<BmobUser>() {
