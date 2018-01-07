@@ -34,6 +34,7 @@
             android:id="@+id/id_register_tel_number"
             android:layout_width="250dp"
             android:layout_height="match_parent"
+            android:inputType="number"
             android:textSize="20sp" />
     </LinearLayout>
 
@@ -63,7 +64,7 @@
             android:id="@+id/id_send_sms_code"
             android:layout_width="80dp"
             android:layout_height="match_parent"
-            android:text="验证码" />
+            android:text="@string/string_word_register_send_sms_code" />
     </LinearLayout>
 
     <LinearLayout

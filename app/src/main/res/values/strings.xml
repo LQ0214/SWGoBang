@@ -38,7 +38,8 @@
 
     <string name="string_register_register_succeed">恭喜你，注册成功！</string>
     <string name="string_sign_in_sign_in_succeed">登录成功！</string>
-    <string name="string_word_account">&#160;&#160;&#8201;手机\n或用户名:</string>
+    <string name="string_word_account_hint">支持手机号/用户名登录</string>
+    <string name="string_word_account">账号</string>
     <string name="string_word_forget_password"><u>忘记密码</u></string>
     <string name="string_word_password">密码：</string>
     <string name="string_word_tel_number">手机号：</string>
@@ -47,6 +48,7 @@
     <string name="string_word_register_password">*密码：</string>
     <string name="string_word_register_tel_number">*手机号：</string>
     <string name="string_word_register_sms_code">*验证码：</string>
+    <string name="string_word_register_send_sms_code">发送验证码</string>
     <string name="string_word_register_hint">带*项目必填</string>
     <string name="string_tel_is_null">手机号为空！</string>
     <string name="string_user_exist">该手机号码已经被注册</string>
