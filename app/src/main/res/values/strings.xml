@@ -59,6 +59,7 @@
     <string name="string_sms_code_send_succeed">验证码发送成功！</string>
     <string name="string_sms_code_send_failed">验证码发送失败！</string>
     <string name="string_please_fill_in_complete_info">请填写完整的信息</string>
+    <string name="string_please_fill_in_correct_telnum">请填写正确的手机号</string>
     <string name="string_word_register">注册</string>
     <string name="string_word_back">取消</string>
     <string name="string_word_exit">退出游戏</string>

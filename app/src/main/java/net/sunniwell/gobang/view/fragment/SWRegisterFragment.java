@@ -98,6 +98,10 @@ public class SWRegisterFragment extends Fragment implements ISWOnRegisterInterfa
         if (TextUtils.isEmpty(mTelNumber.getText().toString())) {
             Toast.makeText(SWRegisterFragment.this.getActivity(), R.string.string_tel_is_null, Toast.LENGTH_SHORT).show();
             return;
+        } else if (!mPresenter.isTelNum(mTelNumber.getText().toString())) {
+            log.d("SWGoBangLog ,register telNumber = " + mTelNumber.getText().toString());
+            Toast.makeText(SWRegisterFragment.this.getActivity(), R.string.string_please_fill_in_correct_telnum, Toast.LENGTH_SHORT).show();
+            return;
         }
         new BmobQuery<BmobUser>()
                 .addWhereEqualTo("mobilePhoneNumber", mTelNumber.getText().toString())

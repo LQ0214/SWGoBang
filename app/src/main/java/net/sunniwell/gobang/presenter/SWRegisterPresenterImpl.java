@@ -7,6 +7,9 @@ import net.sunniwell.gobang.R;
 import net.sunniwell.gobang.iswinterface.ISWOnRegisterInterface;
 import net.sunniwell.jar.log.SWLogger;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
@@ -40,6 +43,11 @@ public class SWRegisterPresenterImpl implements ISWOnRegisterInterface.ISWOnRegi
             mRegisterView.onRegisterFailed(((Fragment) mRegisterView).getString(R.string.string_please_fill_in_complete_info));
             return;
         }
+        if (!isTelNum(telNumber)) {
+            log.d("SWGoBangLog ,register telNumber = " + telNumber);
+            mRegisterView.onRegisterFailed(((Fragment) mRegisterView).getString(R.string.string_please_fill_in_correct_telnum));
+            return;
+        }
         userInfo.signOrLogin(smsCode, new SaveListener<BmobUser>() {
             @Override
             public void done(BmobUser bmobUser, BmobException e) {
@@ -58,5 +66,17 @@ public class SWRegisterPresenterImpl implements ISWOnRegisterInterface.ISWOnRegi
                 }
             }
         });
+    }
+
+    /**
+     * 验证手机号
+     *
+     * @param mobiles 手机号
+     * @return 是否正确
+     */
+    public boolean isTelNum(String mobiles) {
+        Pattern p = Pattern.compile("^((13[0-9])|(15[^4])|(18[0-9])|(17[0-9])|(147))\\d{8}$");
+        Matcher m = p.matcher(mobiles);
+        return m.matches();
     }
 }
