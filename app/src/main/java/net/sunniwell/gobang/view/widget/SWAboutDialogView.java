@@ -7,21 +7,22 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StyleRes;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 /**
  * Created by Xing on 2018/1/7.
  */
 
-public class SWSettingDialogView extends Dialog {
+public class SWAboutDialogView extends Dialog {
     private int mViewId;
     private View mContentView;
     private Context mContext;
 
-    public SWSettingDialogView(@NonNull Context context) {
+    public SWAboutDialogView(@NonNull Context context) {
         super(context);
     }
 
-    public SWSettingDialogView(@NonNull Context context, @StyleRes int theme,int ViewId) {
+    public SWAboutDialogView(@NonNull Context context, @StyleRes int theme, int ViewId) {
         super(context, theme);
         mContext = context;
         mViewId = ViewId;
@@ -29,7 +30,9 @@ public class SWSettingDialogView extends Dialog {
     }
 
     private void initView() {
-        mContentView = LayoutInflater.from(mContext).inflate(mViewId,null);
+        mContentView = LayoutInflater.from(mContext).inflate(mViewId, null);
+        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(400, 250);
+        setContentView(mContentView, lp);
     }
 
 
