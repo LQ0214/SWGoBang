@@ -2,7 +2,6 @@ package net.sunniwell.gobang.presenter;
 
 import android.graphics.Point;
 
-import net.sunniwell.gobang.SWApplication;
 import net.sunniwell.gobang.model.ASWChessLogicModel;
 import net.sunniwell.gobang.view.ISWGoBangView;
 import net.sunniwell.jar.log.SWLogger;
@@ -20,20 +19,19 @@ public abstract class ASWGoBangPresenterImpl implements ASWChessLogicModel.ISWPl
     private ISWGoBangView mChessbroadView;
     private ASWChessLogicModel mChessLogicModel;
     private Chess mChessType;
-    /**
-     * 是否轮到我方
-     */
-    protected boolean mIsMyTurn;
-    /**
-     * 黑色棋子list
-     */
+    //是否轮到我方
+    private boolean mIsMyTurn;
+    //是否结束
+    private boolean mIsOver = false;
+    // 黑色棋子list
     private List<Point> mBlackArray;
-    /**
-     * 白色棋子list
-     */
+    //白色棋子list
     private List<Point> mWhiteArray;
 
-    public enum Chess {
+    /**
+     * 棋子枚举类
+     */
+    private enum Chess {
         EMPTY(0), BLACK(1), WHITE(2);
 
         Chess(int i) {
@@ -43,7 +41,7 @@ public abstract class ASWGoBangPresenterImpl implements ASWChessLogicModel.ISWPl
     /**
      * 抽象方法，创建子model类
      *
-     * @return
+     * @return ASWChessLogicModel
      */
     abstract ASWChessLogicModel createChessLogicModel();
 
@@ -56,17 +54,30 @@ public abstract class ASWGoBangPresenterImpl implements ASWChessLogicModel.ISWPl
         mIsMyTurn = true;
     }
 
+    /**
+     * 落子失败方法
+     */
     @Override
     public void playFailed() {
         mChessbroadView.playFailed();
     }
 
+    /**
+     * 落子成功方法
+     *
+     * @param point 点
+     */
     @Override
     public void playSucceed(Point point) {
         mIsMyTurn = true;
         mChessbroadView.playSucceed(point);
     }
 
+    /**
+     * 重赛
+     *
+     * @param id userId
+     */
     @Override
     public void restart(int id) {
         if (mChessLogicModel.restart(id)) {
@@ -75,9 +86,16 @@ public abstract class ASWGoBangPresenterImpl implements ASWChessLogicModel.ISWPl
         }
     }
 
+    /**
+     * 悔棋
+     *
+     * @param id         userId
+     * @param blackArray 黑棋列表
+     * @param whiteArray 白棋列表
+     */
     @Override
     public void undo(int id, List<Point> blackArray, List<Point> whiteArray) {
-        if(mIsOver){
+        if (mIsOver) {
             return;
         }
         if (mChessLogicModel.undo(id, blackArray, whiteArray)) {
@@ -85,14 +103,24 @@ public abstract class ASWGoBangPresenterImpl implements ASWChessLogicModel.ISWPl
         }
     }
 
+    /**
+     * 认输
+     *
+     * @param id userId
+     */
     @Override
     public void giveup(int id) {
-        log.d("hjx   ===>>>  View调了认输接口     ");
+        log.d("SWGoBangLog ,giveip id = " + id);
         if (mChessLogicModel.giveup(id)) {
             mChessbroadView.giveupCompleted(id);
         }
     }
 
+    /**
+     * 和棋
+     *
+     * @param id userId
+     */
     @Override
     public void drawPiece(int id) {
         if (mChessLogicModel.drawPiece(id)) {
@@ -100,8 +128,13 @@ public abstract class ASWGoBangPresenterImpl implements ASWChessLogicModel.ISWPl
         }
     }
 
-    private boolean mIsOver = false;
-
+    /**
+     * 判断是否五子连珠,游戏结束
+     *
+     * @param id userId
+     * @param x  当前点x坐标
+     * @param y  当前点y坐标
+     */
     @Override
     public void isGameOverMethod(int id, int x, int y) {
         if (mChessLogicModel.isGameOverMethod(id, x, y)) {
@@ -110,9 +143,16 @@ public abstract class ASWGoBangPresenterImpl implements ASWChessLogicModel.ISWPl
         }
     }
 
+    /**
+     * 算法
+     *
+     * @param x     当前点x坐标
+     * @param y     当前点y坐标
+     * @param depth 计算深度
+     */
     @Override
     public void playPiece(int x, int y, int depth) {
-        if(mIsOver){
+        if (mIsOver) {
             return;
         }
         mIsMyTurn = false;
@@ -120,37 +160,37 @@ public abstract class ASWGoBangPresenterImpl implements ASWChessLogicModel.ISWPl
         mChessLogicModel.playPiece(x, y, depth);
     }
 
+    /**
+     * 获取当前用户
+     *
+     * @return 用户对象
+     */
     public BmobUser getUser() {
         return BmobUser.getCurrentUser();
     }
 
-    public void setChessType(Chess chessType) {
-        mChessType = chessType;
-    }
-
-    public Chess getChess() {
-        return mChessType;
-    }
-
     public boolean isWhiteChessType() {
-        if (mChessType == Chess.WHITE)
-            return true;
-        else return false;
+        return mChessType == Chess.WHITE;
     }
 
+    /**
+     * 处理棋子落点
+     *
+     * @param point point
+     */
     public void handleChessPosition(Point point) {
-        log.d("into gobang point.x = " + point.x + ",point.y = " + point.y + ",getChess().ordinal() = " + getChess().ordinal());
-        //判断五子连珠
-        if(mIsOver){
+        log.d("SWGoBangLog ,into gobang point.x = " + point.x + ",point.y = " + point.y + ",mChessType.ordinal() = " + mChessType.ordinal());
+
+        if (mIsOver) {
             return;
         }
-        isGameOverMethod(getChess().ordinal(), point.x, point.y);
+        isGameOverMethod(mChessType.ordinal(), point.x, point.y);
         if (isWhiteChessType()) {
             mWhiteArray.add(point);
-            setChessType(Chess.BLACK);
+            mChessType = Chess.BLACK;
         } else {
             mBlackArray.add(point);
-            setChessType(Chess.WHITE);
+            mChessType = Chess.WHITE;
         }
     }
 

@@ -1,11 +1,9 @@
 package net.sunniwell.gobang.presenter;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import net.sunniwell.gobang.SWApplication;
 import net.sunniwell.gobang.iswinterface.ISWOnSignAboutInterface;
-import net.sunniwell.gobang.view.activity.SWSignInActivity;
 import net.sunniwell.jar.log.SWLogger;
 
 import cn.bmob.v3.BmobUser;
@@ -16,7 +14,7 @@ import cn.bmob.v3.BmobUser;
 
 public class SWSignOutPresenterImpl implements ISWOnSignAboutInterface.ISWOnSignOutPresenterInter {
 
-    private static final SWLogger log = SWLogger.getLogger("SWSignOutPresenterImpl");
+    private static final SWLogger log = SWLogger.getLogger(SWSignOutPresenterImpl.class.getSimpleName());
 
     private ISWOnSignAboutInterface.ISWOnSignOutViewInterface mView;
 
@@ -24,6 +22,9 @@ public class SWSignOutPresenterImpl implements ISWOnSignAboutInterface.ISWOnSign
         mView = view;
     }
 
+    /**
+     * 登出
+     */
     @Override
     public void signOut() {
         Context context = SWApplication.getContext();

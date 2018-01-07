@@ -17,34 +17,41 @@ import cn.bmob.v3.listener.SaveListener;
  */
 
 public class SWRegisterPresenterImpl implements ISWOnRegisterInterface.ISWOnRegisterPresenterInterface {
-    private static final SWLogger log = SWLogger.getLogger("SWRegisterPresenterImpl");
-    private ISWOnRegisterInterface.ISWOnRegisterViewInterface mView;
+    private static final SWLogger log = SWLogger.getLogger(SWRegisterPresenterImpl.class.getSimpleName());
+    private ISWOnRegisterInterface.ISWOnRegisterViewInterface mRegisterView;
 
     public SWRegisterPresenterImpl(ISWOnRegisterInterface.ISWOnRegisterViewInterface callback) {
-        mView = callback;
+        mRegisterView = callback;
     }
 
+    /**
+     * 注册
+     *
+     * @param userInfo     用户信息
+     * @param userPassword 密码
+     * @param smsCode      验证码
+     */
     @Override
     public void register(BmobUser userInfo, final String userPassword, String smsCode) {
-        log.d("register");
+        log.d("SWGoBangLog ,register");
         final String userName = userInfo.getUsername();
         final String telNumber = userInfo.getMobilePhoneNumber();
         if (TextUtils.isEmpty(telNumber) || TextUtils.isEmpty(userName) || TextUtils.isEmpty(userPassword) || TextUtils.isEmpty(smsCode)) {
-            mView.onRegisterFailed(((Fragment) mView).getString(R.string.string_please_fill_in_complete_info));
+            mRegisterView.onRegisterFailed(((Fragment) mRegisterView).getString(R.string.string_please_fill_in_complete_info));
             return;
         }
         userInfo.signOrLogin(smsCode, new SaveListener<BmobUser>() {
             @Override
             public void done(BmobUser bmobUser, BmobException e) {
                 if (e == null) {
-                    if (mView != null) {
-                        mView.onRegisterSucceed();
+                    if (mRegisterView != null) {
+                        mRegisterView.onRegisterSucceed();
                     } else {
                         new Throwable("error: the mCallback is null");
                     }
                 } else {
-                    if (mView != null) {
-                        mView.onRegisterFailed(e.getMessage());
+                    if (mRegisterView != null) {
+                        mRegisterView.onRegisterFailed(e.getMessage());
                     } else {
                         new Throwable("error: the mCallback is null");
                     }

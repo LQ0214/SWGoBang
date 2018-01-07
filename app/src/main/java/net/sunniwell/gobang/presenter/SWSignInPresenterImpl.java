@@ -18,22 +18,28 @@ import cn.bmob.v3.listener.LogInListener;
 
 public class SWSignInPresenterImpl implements ISWOnSignAboutInterface.ISWOnSignInPresenterInterface {
 
-    private static final SWLogger log = SWLogger.getLogger("SWSignInPresenterImpl");
+    private static final SWLogger log = SWLogger.getLogger(SWSignInPresenterImpl.class.getSimpleName());
     private ISWOnSignAboutInterface.ISWOnSignInViewInterface mSignInView;
 
     public SWSignInPresenterImpl(ISWOnSignAboutInterface.ISWOnSignInViewInterface view) {
         mSignInView = view;
     }
 
+    /**
+     * 登录
+     *
+     * @param account      账号
+     * @param userPassword 密码
+     */
     @Override
-    public void signIn(final String telNum, final String userPassword) {
-        if (TextUtils.isEmpty(telNum) || TextUtils.isEmpty(userPassword)) {
+    public void signIn(final String account, final String userPassword) {
+        if (TextUtils.isEmpty(account) || TextUtils.isEmpty(userPassword)) {
             mSignInView.onSignInFailed(((Fragment) mSignInView).getString(R.string.string_please_fill_in_complete_info));
             return;
         }
-        log.d("signIn");
-        //手机密码登录
-        BmobUser.loginByAccount(telNum, userPassword, new LogInListener<BmobUser>() {
+        log.d("SWGoBangLog ,signIn");
+        //手机和用户名登录
+        BmobUser.loginByAccount(account, userPassword, new LogInListener<BmobUser>() {
             @Override
             public void done(BmobUser user, BmobException e) {
                 if (e == null) {
@@ -51,26 +57,6 @@ public class SWSignInPresenterImpl implements ISWOnSignAboutInterface.ISWOnSignI
                 }
             }
         });
-        //账号密码登录
-//        userInfo.login(new SaveListener<BmobUser>() {
-//            @Override
-//            public void done(BmobUser bmobUser, BmobException e) {
-//                if (e == null) {
-//                    SWApplication.saveUserInfo2SharePreferences(SWApplication.getContext(), bmobUser.getMobilePhoneNumber(), userName, userPassword);
-//                    if (mView != null) {
-//                        mView.onSignInSucceed();
-//                    } else {
-//                        new Throwable("error: the mCallback is null");
-//                    }
-//                } else {
-//                    if (mView != null) {
-//                        mView.onSignInFailed(e.getMessage());
-//                    } else {
-//                        new Throwable("error: the mCallback is null");
-//                    }
-//                }
-//            }
-//        });
     }
 
     @Override
