@@ -93,7 +93,7 @@ public class SWGoBangView extends View implements ISWGoBangView {
     private void initView() {
         // 初始化画笔
         mPaint = new Paint();
-        mPaint.setColor(getResources().getColor(R.color.colorPaint));
+        mPaint.setColor(getResources().getColor(R.color.color_black));
         // 抗锯齿
         mPaint.setAntiAlias(true);
         // 防抖动
@@ -148,9 +148,28 @@ public class SWGoBangView extends View implements ISWGoBangView {
         log.d("hjx   ===>>>  开始画。。。");
         // 画线
         drawLine(canvas);
+        // 绘制小黑点
+        drawBlackPoint(canvas);
         // 画棋子
         drawPiece(canvas);
 
+    }
+
+    /**
+     * 绘制小黑点
+     *
+     * @param canvas
+     */
+    private void drawBlackPoint(Canvas canvas) {
+        Paint paint = new Paint();
+        paint.setColor(getResources().getColor(R.color.color_black));
+        paint.setAntiAlias(true);
+        paint.setDither(true);
+        canvas.drawCircle(this.getMeasuredWidth() / 2, this.getMeasuredHeight() / 2, 5, paint);
+        canvas.drawCircle(this.getMeasuredWidth() / 2 - mLineHeight * 4, this.getMeasuredHeight() / 2 - mLineHeight * 4, 5, paint);
+        canvas.drawCircle(this.getMeasuredWidth() / 2 + mLineHeight * 4, this.getMeasuredHeight() / 2 - mLineHeight * 4, 5, paint);
+        canvas.drawCircle(this.getMeasuredWidth() / 2 - mLineHeight * 4, this.getMeasuredHeight() / 2 + mLineHeight * 4, 5, paint);
+        canvas.drawCircle(this.getMeasuredWidth() / 2 + mLineHeight * 4, this.getMeasuredHeight() / 2 + mLineHeight * 4, 5, paint);
     }
 
     /**
