@@ -22,7 +22,7 @@ import java.util.TimerTask;
  */
 
 public class SWSignInActivity extends FragmentActivity {
-    private static final SWLogger log = SWLogger.getLogger("SWSignInActivity");
+    private static final SWLogger log = SWLogger.getLogger(SWSignInActivity.class.getSimpleName());
     private static Activity mActivity;
     private Timer mTimer;
 

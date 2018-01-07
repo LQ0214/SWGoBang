@@ -28,8 +28,8 @@ public class SWMainHomeActivity extends Activity implements View.OnClickListener
     private SWLogger log = SWLogger.getLogger(SWMainHomeActivity.class.getSimpleName());
     private Timer mTimer;
     private boolean mIsExit;
-    private Button mBtn_pvp, mBtn_pve, mBtn_setting, mBtn_about;
-    private TextView mWelcomeTextView;
+    private Button mPvpBtn, mPveBtn, mSettingBtn, mAboutBtn;
+    private TextView mWelcomeTv;
     private SWSignOutPresenterImpl mSignOutPresenter;
 
     @Override
@@ -46,22 +46,22 @@ public class SWMainHomeActivity extends Activity implements View.OnClickListener
         mTimer = new Timer();
         mIsExit = false;
         mSignOutPresenter = new SWSignOutPresenterImpl(this);
-        mBtn_pvp = (Button) findViewById(R.id.main_home_pvp);
-        mBtn_pve = (Button) findViewById(R.id.main_home_pve);
-        mBtn_setting = (Button) findViewById(R.id.main_home_setting);
-        mBtn_about = (Button) findViewById(R.id.main_home_about);
-        mBtn_about = (Button) findViewById(R.id.main_home_about);
-        mWelcomeTextView = (TextView) findViewById(R.id.main_home_welcome);
+        mPvpBtn = (Button) findViewById(R.id.main_home_pvp);
+        mPveBtn = (Button) findViewById(R.id.main_home_pve);
+        mSettingBtn = (Button) findViewById(R.id.main_home_setting);
+        mAboutBtn = (Button) findViewById(R.id.main_home_about);
+        mAboutBtn = (Button) findViewById(R.id.main_home_about);
+        mWelcomeTv = (TextView) findViewById(R.id.main_home_welcome);
 
-        mBtn_pvp.setOnClickListener(this);
-        mBtn_pve.setOnClickListener(this);
-        mBtn_setting.setOnClickListener(this);
-        mBtn_about.setOnClickListener(this);
+        mPvpBtn.setOnClickListener(this);
+        mPveBtn.setOnClickListener(this);
+        mSettingBtn.setOnClickListener(this);
+        mAboutBtn.setOnClickListener(this);
 
         String userName = BmobUser.getCurrentUser().getUsername();
         log.d("SWGoBangLog:  userName = " + userName);
         if (!TextUtils.isEmpty(userName))
-            mWelcomeTextView.setText(getResources().getString(R.string.main_home_welcome, userName));
+            mWelcomeTv.setText(getResources().getString(R.string.main_home_welcome, userName));
     }
 
     @Override

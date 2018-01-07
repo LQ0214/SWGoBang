@@ -25,7 +25,7 @@ import cn.bmob.v3.BmobUser;
 
 public class SWSignInFragment extends Fragment implements ISWOnSignAboutInterface.ISWOnSignInViewInterface, View.OnClickListener {
 
-    private static final SWLogger log = SWLogger.getLogger("SWSignInFragment");
+    private static final SWLogger log = SWLogger.getLogger(SWSignInFragment.class.getSimpleName());
     private SWSignInPresenterImpl mPresenter = new SWSignInPresenterImpl(this);
     private EditText mLoginEditText;
     private EditText mPasswordEditText;

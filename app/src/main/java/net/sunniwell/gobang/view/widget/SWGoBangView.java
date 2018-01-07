@@ -75,7 +75,7 @@ public class SWGoBangView extends View implements ISWGoBangView {
         if (mGoBangPresenter != null) {
             String userId = mGoBangPresenter.getUser().getMobilePhoneNumber();
             if (!TextUtils.isEmpty(userId) && !userId.equals("0"))
-                mUserId = (int)Double.parseDouble(userId);
+                mUserId = (int) Double.parseDouble(userId);
         }
     }
 
@@ -297,11 +297,6 @@ public class SWGoBangView extends View implements ISWGoBangView {
     @Override
     public void gameOverCompleted(int id) {
         mEventCompletedListener.gameOverCompleted(mGoBangPresenter.isWhiteChessType());
-    }
-
-    @Override
-    public void fiveConnectCompleted() {
-        mEventCompletedListener.fiveConnectCompleted();
     }
 
     /**

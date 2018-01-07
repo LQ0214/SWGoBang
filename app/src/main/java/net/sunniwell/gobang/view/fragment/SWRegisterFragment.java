@@ -29,7 +29,7 @@ import cn.bmob.v3.listener.QueryListener;
  */
 
 public class SWRegisterFragment extends Fragment implements ISWOnRegisterInterface.ISWOnRegisterViewInterface, View.OnClickListener {
-    private static final SWLogger log = SWLogger.getLogger("SWRegisterFragment");
+    private static final SWLogger log = SWLogger.getLogger(SWRegisterFragment.class.getSimpleName());
     private SWRegisterPresenterImpl mPresenter = new SWRegisterPresenterImpl(this);
     private EditText mAccount, mPassword, mTelNumber, mSmsCode;
     private Button mBack, mConfirm, mSendSmsCode;
@@ -105,11 +105,11 @@ public class SWRegisterFragment extends Fragment implements ISWOnRegisterInterfa
                     @Override
                     public void done(Integer count, BmobException e) {
                         if (e == null) {
-                            log.d("into gobang,count = " + count);
+                            log.d("SWGoBangLog:   count = " + count);
                             if (count != 0) {
                                 Toast.makeText(SWRegisterFragment.this.getActivity(), R.string.string_user_exist, Toast.LENGTH_SHORT).show();
                             } else {
-                                BmobSMS.requestSMSCode(mTelNumber.getText().toString(), "朝歌帐号注册", new QueryListener<Integer>() {
+                                BmobSMS.requestSMSCode(mTelNumber.getText().toString(), getResources().getString(R.string.main_home_register), new QueryListener<Integer>() {
                                     @Override
                                     public void done(Integer integer, BmobException e) {
                                         if (e == null) {

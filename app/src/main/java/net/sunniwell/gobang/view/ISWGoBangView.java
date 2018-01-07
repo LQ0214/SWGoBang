@@ -32,11 +32,6 @@ public interface ISWGoBangView {
     void gameOverCompleted(int id);
 
     /**
-     * 是否五子连珠
-     */
-    void fiveConnectCompleted();
-
-    /**
      * 落子成功
      */
     void playSucceed(Point point);
