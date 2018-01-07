@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">五子棋</string>
     <!--main_home-->
-    <string name="main_home_man_man">人人对战</string>
+    <string name="main_home_man_man">双人对战</string>
     <string name="main_home_man_machine">人机对战</string>
-    <string name="main_home_setting">设置</string>
+    <string name="main_home_setting">联网对战</string>
     <string name="main_home_logout">注销</string>
     <string name="main_home_about">关于</string>
     <string name="main_home_exit">再次点击退出</string>
@@ -37,7 +37,7 @@
     <string name="about_functional_introduction">功能介绍</string>
     <string name="about_function">五子棋是起源于中国古代的传统黑白棋之一，在一块类似围棋的棋盘上，你和对手轮流放下黑白棋子，无论是横竖还是斜。只要有五颗相同颜色的棋子连成一线即可 获得一句胜利。它不仅能使人增强思维能力，提高智力，而且富含丰富的哲理，有助于修身养性。现在五子棋有“连珠”、“连五子”、“五子连珠”、“串珠”、 “五目”、“五目碰”、“五格”等多种称谓。</string>
     <string name="about_us">关于我们</string>
-    <string name="about_us_info">我们是相亲相爱的五人团队，专注于科学前沿技术研究。成员分别有：廖玲丽(Email:liaolingli@sunniwell.net)、林鸿博(Email:linhongbo@sunniwell.net)、李强(Email:liqiang@sunniwell.net)、黄锦兴(Email:huangjinxing@sunniwell.net)、程建清(Email:chengjianqing@sunniwell.net)</string>
+    <string name="about_us_info">我们是相亲相爱的五人团队，专注于科学前沿技术研究。成员：\n廖玲丽(Email:liaolingli@sunniwell.net)\n林鸿博(Email:linhongbo@sunniwell.net)\n李强(Email:liqiang@sunniwell.net)\n黄锦兴(Email:huangjinxing@sunniwell.net)\n程建清(Email:chengjianqing@sunniwell.net)</string>
 
 
     <string name="string_register_register_succeed">恭喜你，注册成功！</string>
@@ -49,7 +49,7 @@
     <string name="string_word_tel_number">手机号：</string>
     <string name="string_word_sms_code">验证码：</string>
     <string name="string_word_register_account">*用户名：</string>
-    <string name="string_word_register_password">*密码：</string>
+    <string name="string_word_register_password">*密　码：</string>
     <string name="string_word_register_tel_number">*手机号：</string>
     <string name="string_word_register_sms_code">*验证码：</string>
     <string name="string_word_register_get_sms_code">获取验证码</string>
