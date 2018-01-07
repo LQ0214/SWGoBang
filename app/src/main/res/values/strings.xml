@@ -21,6 +21,8 @@
     <string name="game_board_person_name">昵称：大香蕉</string>
     <string name="game_board_upper_hand">先手</string>
     <string name="game_board_defensive">后手</string>
+    <string name="game_board_turn">别急，还没轮到您呢~~</string>
+
     <!--setting-->
     <string name="setting_manager_account">账号管理</string>
     <string name="setting_phone_num">手机号码</string>

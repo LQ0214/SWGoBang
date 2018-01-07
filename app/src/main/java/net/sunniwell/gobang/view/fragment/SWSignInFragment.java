@@ -50,14 +50,14 @@ public class SWSignInFragment extends Fragment implements ISWOnSignAboutInterfac
 
     @Override
     public void onSignInSucceed() {
-        log.d("onSignInSucceed");
+        log.d("SWGoBangLog:   onSignInSucceed");
         Toast.makeText(SWApplication.getContext(), R.string.string_sign_in_sign_in_succeed, Toast.LENGTH_SHORT).show();
         SWSignInActivity.startMainActivity();
     }
 
     @Override
     public void onSignInFailed(String reason) {
-        log.d("onSignInFailed, reason = " + reason);
+        log.d("SWGoBangLog:   onSignInFailed, reason = " + reason);
         Toast.makeText(getActivity(), reason, Toast.LENGTH_SHORT).show();
     }
 
@@ -85,7 +85,7 @@ public class SWSignInFragment extends Fragment implements ISWOnSignAboutInterfac
     private void login() {
         BmobUser user = mPresenter.getUserInfo();
         if (user != null && !TextUtils.isEmpty(user.getUsername())) {
-            log.d("into gobang,user.getName() = " + user.getUsername());
+            log.d("SWGoBangLog:    user.getName() = " + user.getUsername());
 //            mPresenter.signIn(user.getName(), user.getPassword());
             SWSignInActivity.startMainActivity();
         }

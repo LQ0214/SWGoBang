@@ -59,7 +59,7 @@ public class SWMainHomeActivity extends Activity implements View.OnClickListener
         mBtn_about.setOnClickListener(this);
 
         String userName = BmobUser.getCurrentUser().getUsername();
-        log.d("into gobang,userName = " + userName);
+        log.d("SWGoBangLog:  userName = " + userName);
         if (!TextUtils.isEmpty(userName))
             mWelcomeTextView.setText(getResources().getString(R.string.main_home_welcome, userName));
     }
@@ -67,7 +67,7 @@ public class SWMainHomeActivity extends Activity implements View.OnClickListener
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         int action = event.getAction();
-        log.d("hjx    ==SWMainHomeActivity==>>>  action = " + "   keyCode = " + keyCode);
+        log.d("SWGoBangLog:  action = " + "   keyCode = " + keyCode);
         if (action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK) {
             exit();
             return true;
@@ -131,7 +131,6 @@ public class SWMainHomeActivity extends Activity implements View.OnClickListener
 
     @Override
     public void onSignOutSucceed() {
-        Toast.makeText(this, getString(R.string.string_sign_out_succeed), Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, SWSignInActivity.class);
         startActivity(intent);
         finish();
@@ -139,6 +138,5 @@ public class SWMainHomeActivity extends Activity implements View.OnClickListener
 
     @Override
     public void onSignOutFailed(String reason) {
-        Toast.makeText(this, getString(R.string.string_sign_out_failed), Toast.LENGTH_SHORT).show();
     }
 }

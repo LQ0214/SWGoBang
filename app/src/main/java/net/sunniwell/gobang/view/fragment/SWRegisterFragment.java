@@ -57,14 +57,14 @@ public class SWRegisterFragment extends Fragment implements ISWOnRegisterInterfa
 
     @Override
     public void onRegisterSucceed() {
-        log.d("onRegisterSucceed");
+        log.d("SWGoBangLog:    onRegisterSucceed");
         Toast.makeText(getActivity(), R.string.string_register_register_succeed, Toast.LENGTH_SHORT).show();
         SWSignInActivity.startMainActivity();
     }
 
     @Override
     public void onRegisterFailed(String reason) {
-        log.d("onRegisterFailed, reason = " + reason);
+        log.d("SWGoBangLog:   onRegisterFailed, reason = " + reason);
         Toast.makeText(getActivity(), reason, Toast.LENGTH_SHORT).show();
     }
 

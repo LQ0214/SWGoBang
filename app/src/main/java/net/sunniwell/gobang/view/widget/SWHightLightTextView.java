@@ -18,11 +18,11 @@ public class SWHightLightTextView extends TextView {
     // 线性渲染  
     private LinearGradient mLinearGradient;  
     // 存储变换的matrix  
-    private Matrix matrix;  
+    private Matrix mMatrix;
     // 移动距离  
     private int mTranslateX = 0;  
     // 是否开启动画  
-    private boolean isAnimateOn = true;  
+    private boolean mIsAnimateOn = true;
   
     // 构造方法  
     public SWHightLightTextView(Context context) {
@@ -53,7 +53,7 @@ public class SWHightLightTextView extends TextView {
                 // 线性渲染  
                 mLinearGradient = new LinearGradient(-mTextViewWidth, 0, 0, 0, new int[] { 0X55FFFFFF, 0XFFFFFFFF, 0X55FFFFFF }, new float[] { 0, 0.5f, 1 }, TileMode.CLAMP);  
                 mPaint.setShader(mLinearGradient);  
-                matrix = new Matrix();  
+                mMatrix = new Matrix();
             }  
         }  
     }  
@@ -61,16 +61,16 @@ public class SWHightLightTextView extends TextView {
     @Override  
     protected void onDraw(Canvas canvas) {  
         super.onDraw(canvas);  
-        if (isAnimateOn && matrix != null) {  
+        if (mIsAnimateOn && mMatrix != null) {
             mTranslateX += mTextViewWidth / 10;  
             // 如果移动的距离大于两倍的宽度，则重新开始移动  
             if (mTranslateX > 2 * mTextViewWidth) {  
                 mTranslateX = -mTextViewWidth;  
             }  
             // 平移matrix  
-            matrix.setTranslate(mTranslateX, 0);  
+            mMatrix.setTranslate(mTranslateX, 0);
             // 设置线性变化的matrix  
-            mLinearGradient.setLocalMatrix(matrix);  
+            mLinearGradient.setLocalMatrix(mMatrix);
             // 延迟100ms重绘  
             postInvalidateDelayed(100);  
         }  

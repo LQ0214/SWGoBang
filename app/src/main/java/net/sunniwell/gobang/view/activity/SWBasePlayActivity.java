@@ -13,10 +13,8 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import net.sunniwell.gobang.R;
-import net.sunniwell.gobang.SWApplication;
 import net.sunniwell.gobang.view.widget.SWGoBangView;
 import net.sunniwell.gobang.view.widget.SWSectorMenuView;
 import net.sunniwell.jar.log.SWLogger;
@@ -83,7 +81,7 @@ public abstract class SWBasePlayActivity extends Activity implements SWGoBangVie
 
     @Override
     public void gameOverCompleted(boolean isWhiteSuccess) {
-        log.d("gobang: is white chess win :" + isWhiteSuccess);
+        log.d("SWGoBangLog:" + isWhiteSuccess);
         final WindowManager windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         final View view = LayoutInflater.from(this).inflate(R.layout.view_gobang_finish, null);
         TextView whoWinTip = (TextView) view.findViewById(R.id.id_who_win);

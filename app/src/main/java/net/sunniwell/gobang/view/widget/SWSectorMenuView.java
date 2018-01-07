@@ -25,12 +25,12 @@ public class SWSectorMenuView extends RelativeLayout {
     private Context mContext;
     private int mLeftMargin = 0, mBottomMargin = 0;
     private final int mButtonWidth = 58;//图片宽高
-    private final int r = 100;//半径
+    private final int mRadius = 100;//半径
     private final int mMaxTimeSpent = 200;//最长动画耗时
     private final int mMinTimeSpent = 80;//最短动画耗时
-    private int intervalTimeSpent;//每相邻2个的时间间隔
+    private int mIntervalTimeSpent;//每相邻2个的时间间隔
     private Button[] mBtns;
-    private Button mBtn_menu;
+    private Button mBtnMenu;
     private RelativeLayout.LayoutParams mParams;
     private boolean mIsOpen = false;//是否菜单打开状态
     private float mAngle;//每个按钮之间的夹角
@@ -61,27 +61,26 @@ public class SWSectorMenuView extends RelativeLayout {
         mBtns[0] = (Button) view.findViewById(R.id.btn_undo);
 //        mBtns[2] = (Button) view.findViewById(R.id.btn_drawpiece);
         mBtns[1] = (Button) view.findViewById(R.id.btn_restart);
-        mBtn_menu = (Button) view.findViewById(R.id.btn_menu);
+        mBtnMenu = (Button) view.findViewById(R.id.btn_menu);
 
-        mLeftMargin = ((RelativeLayout.LayoutParams) (mBtn_menu.getLayoutParams())).leftMargin;
-        mBottomMargin = ((RelativeLayout.LayoutParams) (mBtn_menu.getLayoutParams())).bottomMargin;
+        mLeftMargin = ((RelativeLayout.LayoutParams) (mBtnMenu.getLayoutParams())).leftMargin;
+        mBottomMargin = ((RelativeLayout.LayoutParams) (mBtnMenu.getLayoutParams())).bottomMargin;
 
         for (int i = 0; i < mBtns.length; i++) {
-            mBtns[i].setLayoutParams(mBtn_menu.getLayoutParams());//初始化的时候按钮都重合
+            mBtns[i].setLayoutParams(mBtnMenu.getLayoutParams());//初始化的时候按钮都重合
             mBtns[i].setTag(String.valueOf(i));
             mBtns[i].setOnTouchListener(touchListener);
         }
 
-        intervalTimeSpent = (mMaxTimeSpent - mMinTimeSpent) / mBtns.length;//20
+        mIntervalTimeSpent = (mMaxTimeSpent - mMinTimeSpent) / mBtns.length;//20
         mAngle = (float) Math.PI / (2 * (mBtns.length - 1));
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        log.d("hjx   ===>>>  88888888888888888");
         final int bottomMargins = this.getMeasuredHeight() - mButtonWidth - mBottomMargin;
-        mBtn_menu.setOnClickListener(new OnClickListener() {
+        mBtnMenu.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -105,10 +104,10 @@ public class SWSectorMenuView extends RelativeLayout {
      */
     private void dynamicExtendMove(int bottomMargins) {
         for (int i = 0; i < mBtns.length; i++) {
-            float x = (float) (r * Math.sin(i * mAngle));
-            float y = (float) (r * Math.cos(i * mAngle));
+            float x = (float) (mRadius * Math.sin(i * mAngle));
+            float y = (float) (mRadius * Math.cos(i * mAngle));
             mBtns[i].setVisibility(View.VISIBLE);
-            mBtns[i].startAnimation(animTranslate(x, -y, mLeftMargin + (int) x, bottomMargins - (int) y, mBtns[i], mMinTimeSpent + i * intervalTimeSpent));
+            mBtns[i].startAnimation(animTranslate(x, -y, mLeftMargin + (int) x, bottomMargins - (int) y, mBtns[i], mMinTimeSpent + i * mIntervalTimeSpent));
         }
     }
 
@@ -119,16 +118,25 @@ public class SWSectorMenuView extends RelativeLayout {
      */
     private void dynamicshrinkMove(int bottomMargins) {
         for (int i = 0; i < mBtns.length; i++) {
-            float x = (float) (r * Math.sin(i * mAngle));
-            float y = (float) (r * Math.cos(i * mAngle));
-            mBtns[i].startAnimation(animTranslate(-x, y, mLeftMargin, bottomMargins - 4, mBtns[i], mMaxTimeSpent - i * intervalTimeSpent));
+            float x = (float) (mRadius * Math.sin(i * mAngle));
+            float y = (float) (mRadius * Math.cos(i * mAngle));
+            mBtns[i].startAnimation(animTranslate(-x, y, mLeftMargin, bottomMargins - 4, mBtns[i], mMaxTimeSpent - i * mIntervalTimeSpent));
             mBtns[i].setVisibility(View.GONE);
         }
     }
 
 
-
-
+    /**
+     * 对相应的View进行位移
+     *
+     * @param toX
+     * @param toY
+     * @param lastX
+     * @param lastY
+     * @param button
+     * @param durationMillis
+     * @return
+     */
     private Animation animTranslate(float toX, float toY, final int lastX, final int lastY, final Button button, long durationMillis) {
         Animation animation = new TranslateAnimation(0, toX, 0, toY);
         animation.setAnimationListener(new AnimationListener() {
@@ -163,7 +171,7 @@ public class SWSectorMenuView extends RelativeLayout {
     View.OnTouchListener touchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
-            log.d("hjx   ===>>  event.getAction() = "+event.getAction());
+            log.d("SWGoBangLog:    action = " + event.getAction());
             if (MotionEvent.ACTION_OUTSIDE == event.getAction()) {
                 for (int i = 0; i < mBtns.length; i++) {
                     if (mIsOpen) {

@@ -33,7 +33,7 @@ public class SWSignInActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_main);
-        log.d("onCreate");
+        log.d("SWGoBangLog:    onCreate");
         initData();
     }
 
@@ -47,7 +47,7 @@ public class SWSignInActivity extends FragmentActivity {
      * 启动主activity,进入游戏页面
      */
     public static void startMainActivity() {
-        log.d("startMainActivity");
+        log.d("SWGoBangLog:  startMainActivity");
         if (mActivity != null) {
             Intent intent = new Intent(mActivity, SWMainHomeActivity.class);
             mActivity.startActivity(intent);
@@ -70,7 +70,7 @@ public class SWSignInActivity extends FragmentActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         int action = event.getAction();
-        log.d("hjx    ==SWMainHomeActivity==>>>  action = " + "   keyCode = " + keyCode);
+        log.d("SWGoBangLog:   action = " + "   keyCode = " + keyCode);
         if (action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK) {
             return true;
         }

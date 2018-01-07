@@ -15,7 +15,6 @@ import android.widget.Toast;
 import net.sunniwell.gobang.R;
 import net.sunniwell.gobang.presenter.ASWGoBangPresenterImpl;
 import net.sunniwell.gobang.presenter.SWPveGoBangPresenterImpl;
-import net.sunniwell.gobang.presenter.SWPvpGoBangPresenterImpl;
 import net.sunniwell.gobang.utils.SWGoBangConstant;
 import net.sunniwell.gobang.view.ISWGoBangView;
 import net.sunniwell.jar.log.SWLogger;
@@ -69,7 +68,6 @@ public class SWGoBangView extends View implements ISWGoBangView {
 
     public SWGoBangView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        log.d("hjx   ===>>>  初始化。。。");
         initView();
     }
 
@@ -109,7 +107,6 @@ public class SWGoBangView extends View implements ISWGoBangView {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        log.d("hjx   ===>>>  测量。。。");
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
 
@@ -130,10 +127,9 @@ public class SWGoBangView extends View implements ISWGoBangView {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        log.d("hjx   ===>>>  Size改变。。。");
         mLineWidth = w;
         mLineHeight = mLineWidth * 1.0f / SWGoBangConstant.LINE_NUM;
-        log.d("hjx   ===>>>   宽 = " + mLineWidth + "      高 = " + mLineHeight);
+        log.d("SWGoBangLog:    mLineWidth = " + mLineWidth + "      mLineHeight = " + mLineHeight);
 
         int pieceWidth = (int) (mLineHeight * PIECE_SCALE);
         // 根据适应高度来修改棋子的大小
@@ -144,7 +140,6 @@ public class SWGoBangView extends View implements ISWGoBangView {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        log.d("hjx   ===>>>  开始画。。。");
         // 画线
         drawLine(canvas);
         // 绘制小黑点
@@ -177,8 +172,8 @@ public class SWGoBangView extends View implements ISWGoBangView {
      * @param canvas
      */
     private void drawPiece(Canvas canvas) {
-        log.d("hjx    =====>>>   黑棋数量  size = " + mGoBangPresenter.getBlackArray().size());
-        log.d("hjx    =====>>>   白棋数量  size = " + mGoBangPresenter.getWhiteArray().size());
+        log.d("SWGoBangLog:  BlackArray().size = " + mGoBangPresenter.getBlackArray().size());
+        log.d("SWGoBangLog:  WhiteArray().size = " + mGoBangPresenter.getWhiteArray().size());
         if (mGoBangPresenter.getBlackArray() != null)
             for (Point point : mGoBangPresenter.getBlackArray()) {
                 canvas.drawBitmap(mBlackPiece, (point.x + (1 - PIECE_SCALE) / 2) * mLineHeight, (point.y + (1 - PIECE_SCALE) / 2) * mLineHeight, mPaint);
@@ -217,7 +212,6 @@ public class SWGoBangView extends View implements ISWGoBangView {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int action = event.getAction();
-        log.d("hjx    ===>>>onTouchEvent    action = " + action);
         // 这里点击SWGoBangView的时候没有up事件，暂时先用down事件
         if (action == MotionEvent.ACTION_DOWN) {
             int x = (int) event.getX();
@@ -237,7 +231,7 @@ public class SWGoBangView extends View implements ISWGoBangView {
                 if (mGoBangPresenter instanceof SWPveGoBangPresenterImpl)
                     mGoBangPresenter.playPiece(point.x, point.y, 1);
             } else {
-                Toast.makeText(getContext(), "急个卵，还没轮到你呢~~", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), getResources().getString(R.string.game_board_turn), Toast.LENGTH_LONG).show();
             }
         }
         return super.onTouchEvent(event);
@@ -320,7 +314,6 @@ public class SWGoBangView extends View implements ISWGoBangView {
         // 对方落子完成，轮到我方
         if (point != null) {
             mGoBangPresenter.handleChessPosition(point);
-            log.d("hjx    ====>>>  对方落子成功    point = " + point);
             invalidate();
         }
     }
